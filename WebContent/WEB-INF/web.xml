@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>StrutsToddler</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- 스트러츠의 프론트 엔드 컨트롤러 선언 : 스트처르 프레임워크의 default url pattern 확장자는 *.action 
+		                                        url pattern의 확장자 변경시 설정파일에서 설정 요구됨
+         스트러츠의 설정파일(xml) : (빌드 패스 | 클래스 패스 루트) 하위에 존재
+         			   				파일명 - struts.xml
+			   					 	외부 설정파일 존재시 - struts.properties
+	-->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
+<!-- 	  <listener> --><!-- <listener-class>kr.or.ddit.listener.Log4jInitializeListener</listener-class>	 --><!-- 	  </listener> -->
+	  
+	<context-param>
+	 		<param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+	 		<param-value>/WEB-INF/views/tiles/tiles-def.xml</param-value>
+	</context-param>
+	 
+	 
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+	</listener>
+	 
+</web-app>

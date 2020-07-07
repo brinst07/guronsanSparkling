@@ -12,4 +12,5 @@ public interface IMemberService {
 	public void updateMemberInfo(MemberVO memberInfo);
 	public void insertMember(MemberVO vo);
 	public int totalCount();
+	
 }

@@ -83,7 +83,7 @@
 		}
 		$('select[name=mem_gugun] option[value="'+mem_add2+'"]').attr('selected',true);
 		
-		var birCheck = '${member.getMem_calendar()}';
+// 		var birCheck = '${member.getMem_calendar()}';
 		if(birCheck == 1){
 			$('input:radio[value=solar]').prop('checked',true);
 		}else if(birCheck == 2){
@@ -106,7 +106,7 @@
 			var mem_add2 = $('<input type="hidden" name="mem_add2" value= "'+ $('select[name=mem_gugun]').val() +'"></input>')
 			var hp = $('select[name=mem_hp1]').val() + "-" + $('input[name=mem_hp2]').val() + "-" + $('input[name=mem_hp3]').val();
 			var mem_hp = $('<input type="hidden"  name="mem_hp" value="'+ hp +'"></input>');
-			var solnar = $('input[name=mem_calendar]:checked').val();
+// 			var solnar = $('input[name=mem_calendar]:checked').val();
 			if(solnar == 'solar'){
 				solnar = "1";
 			}else{

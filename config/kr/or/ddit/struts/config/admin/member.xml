@@ -5,8 +5,11 @@
 
 <struts>
 	<package name="adminMemberPKG" extends="struts-default,tiles-default" namespace="/admin/member">
-		<action name="memberMgr">
+		<action name="memberMgr" class="kr.or.ddit.member.controller.MemberListAction">
 			<result type="tiles">admin/member/memberMgr</result>
+		</action>
+		<action name="memberView" class="kr.or.ddit.member.controller.MemberViewAction">
+			<result type="tiles">admin/member/memberDetail</result>
 		</action>
 	</package>
 </struts>

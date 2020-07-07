@@ -65,4 +65,5 @@ public class IMemberDaoImpl implements IMemberDao {
 		return (int) client.queryForObject("member.totalCount");
 	}
 
+
 }

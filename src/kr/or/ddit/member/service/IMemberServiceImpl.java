@@ -87,4 +87,5 @@ public class IMemberServiceImpl implements IMemberService {
 		return total;
 	}
 
+
 }

@@ -27,6 +27,7 @@ public class MemberVO {
 	String mem_memorialday;
 	String mem_mileage;
 	String mem_delete;
+	String mem_calendar;
 	// 전송되는 파일, 파일 컨텐츠 타입, 파일명
 	// input type=file name=files
 	// 전송되는 파일(변수명 필드네임)
@@ -213,6 +214,14 @@ public class MemberVO {
 
 	public void setFilesFileName(List<String> filesFileName) {
 		this.filesFileName = filesFileName;
+	}
+
+	public String getMem_calendar() {
+		return mem_calendar;
+	}
+
+	public void setMem_calendar(String mem_calendar) {
+		this.mem_calendar = mem_calendar;
 	}
 
 }

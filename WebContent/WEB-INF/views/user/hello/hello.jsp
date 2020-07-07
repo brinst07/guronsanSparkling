@@ -8,5 +8,6 @@
 </head>
 <body>
 Hello!! Struts2!!!!!
+반갑다!!!!!!!!!!!!난녕은이야!!!!!!!!!
 </body>
 </html>

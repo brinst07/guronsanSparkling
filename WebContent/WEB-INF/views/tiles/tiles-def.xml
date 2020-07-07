@@ -26,4 +26,16 @@
 	 <definition name="user/*/*" extends="user/main">
 	 	<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp"></put-attribute>
 	 </definition>
+	 
+	 <!-- admin -->
+	 <definition name="admin/main" template="/WEB-INF/views/admin/mainTemplate.jsp">
+	 	<put-attribute name="title" value="관리자화면"></put-attribute>
+	 	<put-attribute name="header" value="/WEB-INF/views/admin/inc/header.jsp"></put-attribute>
+	 	<put-attribute name="footer" value="/WEB-INF/views/admin/inc/footer.jsp"></put-attribute>
+	 </definition>
+	 
+	 <definition name="admin/*/*" extends="admin/main">
+	 	<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp"></put-attribute>
+	 </definition>	
+	  
 </tiles-definitions>

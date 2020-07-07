@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="adminMemberPKG" extends="struts-default,tiles-default" namespace="/admin/member">
+		<action name="memberMgr">
+			<result type="tiles">admin/member/memberMgr</result>
+		</action>
+	</package>
+</struts>

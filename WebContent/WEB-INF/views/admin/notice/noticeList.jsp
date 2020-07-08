@@ -11,12 +11,12 @@
 $(function() {
 	
 	$('#noticeRegistBTN').on('click', function() {
-		location.replace('/guronsan/controller/admin/noticeFormAction.do');
+		location.replace('${pageContext.request.contextPath}/admin/notice/noticeForm.do');
 	});
 	
 	$('#noticeBody tr').on('click', function() {
 		var notice_no = $(this).find('td:eq(0) input').val();
-		$(location).attr('href', '/guronsan/controller/admin/noticeViewAction.do?notice_no=' + notice_no);
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/notice/noticeView.do?notice_no=' + notice_no);
 	});
 });
 </script>

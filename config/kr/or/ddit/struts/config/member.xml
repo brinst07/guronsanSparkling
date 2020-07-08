@@ -43,6 +43,13 @@
 			</result>
 		</action>
 		
+		<action name="zipcodeSearchForm" class="kr.or.ddit.member.controller.ZipcodeSearchFormAction">
+			<result>/WEB-INF/views/user/member/zipcodeSearchForm.jsp</result>
+		</action>
+		
+		<action name="zipcodeSearchResult" class="kr.or.ddit.member.controller.ZipcodeSearchResultAction">
+		</action>
+		
 		<action name="idCheck" class="kr.or.ddit.member.controller.IDCheckAction"></action>
 	</package>
 </struts>

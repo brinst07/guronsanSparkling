@@ -17,7 +17,7 @@ $(function(){
      	  $('input[name=mem_bir]').val($('input[name=mem_bir1]').val()+'-'+$('input[name=mem_bir2]').val()+'-'+$('input[name=mem_bir3]').val());
           $('input[name=mem_zip]').val($('input[name=mem_zip1]').val()+'-'+$('input[name=mem_zip2]').val());
           $('input[name=mem_hometel]').val($('select[name=mem_hometel1]').val()+'-'+$('input[name=mem_hometel2]').val()+'-'+$('input[name=mem_hometel3]').val());
-          $('input[name=mem_mail]').val($('input[name=mem_mail1]').val()+'-'+$('select[name=mem_mail2]').val());
+          $('input[name=mem_mail]').val($('input[name=mem_mail1]').val()+'@'+$('select[name=mem_mail2]').val());
           $('input[name=mem_comtel]').val($('select[name=mem_comtel1]').val()+'-'+$('input[name=mem_comtel2]').val()+'-'+$('input[name=mem_comtel3]').val());
           $('input[name=mem_hp]').val($('select[name=mem_hp1]').val()+'-'+$('input[name=mem_hp2]').val()+'-'+$('input[name=mem_hp3]').val());
           	  
@@ -69,7 +69,7 @@ $(function(){
   			return false;
   		}  				
   		
-  	/* 	var mem_comtel2 = $('input[name=mem_comtel2]').val();
+  	 	var mem_comtel2 = $('input[name=mem_comtel2]').val();
   		var mem_comtel3 = $('input[name=mem_comtel3]').val();
   		if (!mem_comtel2.validationCOMTEL2()) {
   			alert('회사전화번호를 바르게 입력해주세요');
@@ -80,7 +80,7 @@ $(function(){
   			return false;
   		}  		
   		
-  		var mem hp2 = $('input[name=mem_hp2]').val();
+  		var mem_hp2 = $('input[name=mem_hp2]').val();
   		var mem_hp3 = $('input[name=mem_hp3]').val();
   		if (!mem_hp2.validationHP2()) {
   			alert('휴대전화번호를 바르게 입력해주세요');
@@ -90,13 +90,13 @@ $(function(){
   			alert('휴대전화번호를 바르게 입력해주세요');
   			return false;
   		}
-  		 */
+  		
   		if (!mem_mail.validationMAIL()) {
   			alert('이메일을 바르게 입력해주세요');
   			return false;
   		}  		  	
   		
-  		var mem_like = $('input[name=mem_like]').val();
+  		/* var mem_like = $('input[name=mem_like]').val();
   		if (!mem_like.validationLIKE()) {
   			alert('취미를 바르게 입력해주세요');
   			return false;
@@ -106,7 +106,7 @@ $(function(){
   		if (!mem_job.validationJOB()) {
   			alert('직업을 바르게 입력해주세요');
   			return false;
-  		}
+  		} */
   		
       });
       
@@ -138,7 +138,7 @@ function idCheck(){
 	});
 };
 function zipcodePopup(){	
-	var url = '/user/join/zipcodeSearchForm.do';
+	var url = '/user/member/zipcodeSearchForm.do';
 	var opts = 'width=400px, height=450px, status=no, resizable=no, scrollbars=no';
 	window.open(url,'우편번호검색',opts);	
 };

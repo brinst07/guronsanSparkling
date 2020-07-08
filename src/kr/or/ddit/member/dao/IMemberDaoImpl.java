@@ -52,12 +52,10 @@ public class IMemberDaoImpl implements IMemberDao {
 	@Override
 	public void insertMember(MemberVO vo) throws Exception{
 		try {
-			client.insert("member.insert",vo);
+			client.insert("member.insertMemberInfo",vo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="qna">
+	<typeAlias alias="qnaVO" type="kr.or.ddit.vo.QnAVO" />
+	
+	<resultMap class="qnaVO" id="qnaResultMap">
+		<result property="qna_no"      column="qna_no"/>
+		<result property="qna_title"    column="qna_title"/>
+		<result property="qna_writer"   column="qna_writer"/>
+		<result property="qna_nickname" column="qna_nickname"/>
+		<result property="qna_pwd"      column="qna_pwd"/>
+		<result property="qna_mail"     column="qna_mail"/>
+		<result property="qna_ip"       column="qna_ip"/>
+		<result property="qna_content"  column="qna_content"/>
+		<result property="qna_hit"      column="qna_hit"/>
+		<result property="qna_reg_date" column="qna_reg_date"/>
+		<result property="qna_status"   column="qna_status"/>
+		<result property="qna_group"    column="qna_group"/>
+		<result property="qna_seq"      column="qna_seq"/>
+		<result property="qna_depth"    column="qna_depth"/>
+		<result property="items" column="qna_no" select="qnafile.qnafileList"/>
+	</resultMap>
+	
+	<sql id="selectAll">
+	SELECT *
+		FROM QNA
+		WHERE QNA_STATUS = 'n'
+	</sql>
+	
+<sql id="searchCondition">
+	<dynamic prepend="AND">
+		<isNotEmpty prepend="search_keyword" open="(" close=")">
+			<isEqual property="search_keycode" compareValue="TOTAL" >
+				QNA_TITLE LIKE '%'|| #search_keyword#||'%'
+				OR QNA_CONTENT LIKE '%'|| #search_keyword#||'%'
+				OR QNA_NICKNAME LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+			<isEqual property="search_keycode" compareValue="TITLE" >
+				QNA_TITLE LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+			<isEqual property="search_keycode" compareValue="CONTENT" >
+				QNA_CONTENT LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+			<isEqual property="search_keycode" compareValue="NICKNAME" >
+				QNA_NICKNAME LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
+</sql>
+	
+	<select id="qnaList" resultClass="qnaVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				<include refid="searchCondition"/> 
+ 				ORDER BY QNA_GROUP, QNA_SEQ DESC) A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>
+	
+	<insert id="insertQna" parameterClass="qnaVO">
+		<selectKey keyProperty="qna_no" resultClass="String">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA(QNA_NO,
+								QNA_TITLE,
+								QNA_WRITER,
+								QNA_NICKNAME,
+								QNA_PWD,
+								QNA_MAIL,
+								QNA_IP,
+								QNA_CONTENT,
+								QNA_GROUP)
+					VALUES(#qna_no#,
+							#qna_title#,
+							#qna_writer#,
+							#qna_nickname#,
+							#qna_pwd#,
+							#qna_mail#,
+							#qna_ip#,
+							#qna_content#,
+							#qna_no#)
+	</insert>
+	
+	<select id="qnaInfo" parameterClass="map" resultMap="qnaResultMap">
+		<include refid="selectAll"/>
+		AND QNA_NO = #qna_no#
+	</select>
+	
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		SELECT COUNT(QNA_NO)
+		FROM QNA
+		WHERE QNA_STATUS = 'n'
+		<include refid="searchCondition"/>
+	</select>
+	
+		<update id="deleteQna" parameterClass="map">
+		UPDATE QNA SET QNA_STATUS = 'y'
+			WHERE QNA_NO = #qna_no#
+	</update>
+	
+	<update id="updateQna" parameterClass="qnaVO">
+		UPDATE QNA
+		SET QNA_TITLE = #qna_title# 
+			,QNA_NICKNAME = #qna_nickname#
+			,QNA_PWD = #qna_pwd#
+			,QNA_MAIL = #qna_mail#
+			,QNA_CONTENT = #qna_content# 
+			,QNA_IP = #qna_ip#
+		WHERE QNA_NO = #qna_no#
+	</update>
+	<insert id="insertQnaReply" parameterClass="QnaVO">
+      <selectKey keyProperty="qna_no" resultClass="String">
+         SELECT QNA_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+      INSERT INTO QNA(QNA_NO,
+                        QNA_TITLE,
+                        QNA_WRITER,
+                        QNA_IP,
+                        QNA_CONTENT,
+                        QNA_GROUP,
+                        QNA_SEQ,
+                        QNA_DEPTH)
+               VALUES(#qna_no#,
+                     #qna_title#,
+                     #qna_writer#,
+                     #qna_ip#,
+                     #qna_content#,
+                     #qna_group#,
+                     #qna_seq#,
+                     #qna_depth#)
+   </insert>
+	<select id="incrementSeq" parameterClass="qnaVO" resultClass="String">
+      SELECT MAX(QNA_SEQ) + 1
+      FROM QNA
+      WHERE QNA_GROUP = #qna_group#
+   </select>   
+   
+   <update id="updateSeq" parameterClass="qnaVO">
+      UPDATE QNA 
+      SET QNA_SEQ = QNA_SEQ + 1
+      WHERE QNA_GROUP = #qna_group#
+      AND QNA_SEQ > #qna_seq#
+   </update>
+   
+   <select id="qnaReplyCheck" parameterClass="String" resultClass="String">
+   select count(*)
+   from qna
+   where qna_group = #qna_no# 
+   
+   </select>
+	
+	
+</sqlMap>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="library">
+	<typeAlias alias="libraryVO" type="kr.or.ddit.vo.LibraryVO" />
+	
+	<resultMap class="libraryVO" id="libraryResultMap">
+		<result property="library_no"       column="library_no"/>
+		<result property="library_title"    column="library_title"/>
+		<result property="library_writer"   column="library_writer"/>
+		<result property="library_nickname" column="library_nickname"/>
+		<result property="library_pwd"      column="library_pwd"/>
+		<result property="library_mail"     column="library_mail"/>
+		<result property="library_ip"       column="library_ip"/>
+		<result property="library_content"  column="library_content"/>
+		<result property="library_hit"      column="library_hit"/>
+		<result property="library_reg_date" column="library_reg_date"/>
+		<result property="library_status"   column="library_status"/>
+		<result property="library_group"    column="library_group"/>
+		<result property="library_seq"      column="library_seq"/>
+		<result property="library_depth"    column="library_depth"/>
+		<result property="items" column="library_no" select="libraryfile.libraryfileList"/>
+	</resultMap>
+	
+	<sql id="selectAll">
+	SELECT *
+		FROM library
+		WHERE library_STATUS = 'n'
+	</sql>
+	
+	<sql id="searchCondition">
+		<dynamic prepend="AND">
+			<isNotEmpty prepend="search_keyword" open="(" close=")">
+				<isEqual property="search_keycord" compareValue="TITLE" >
+					LIBRARY_TITLE LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="CONTENT" >
+					LIBRARY_CONTENT LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="NICKNAME" >
+					LIBRARY_NICKNAME LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<select id="libraryCount" resultClass="int">
+		select count(*)
+		from library
+		where library_status = 'n'	
+	</select>
+	
+	<select id="libraryList" resultClass="libraryVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				<include refid="searchCondition"/> 
+ 				ORDER BY LIBRARY_GROUP, LIBRARY_SEQ DESC) A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>
+	
+	<insert id="insertLibrary" parameterClass="libraryVO">
+		<selectKey keyProperty="library_no" resultClass="String">
+			SELECT library_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO library(library_NO,
+								library_TITLE,
+								library_WRITER,
+								library_NICKNAME,
+								library_PWD,
+								library_MAIL,
+								library_IP,
+								library_CONTENT,
+								library_GROUP)
+					VALUES(#library_no#,
+							#library_title#,
+							#library_writer#,
+							#library_nickname#,
+							#library_pwd#,
+							#library_mail#,
+							#library_ip#,
+							#library_content#,
+							#library_no#)
+	</insert>
+	
+	<select id="libraryInfo" parameterClass="map" resultMap="libraryResultMap">
+		<include refid="selectAll"/>
+		AND library_NO = #library_no#
+	</select>
+	
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		SELECT COUNT(library_NO)
+		FROM library
+		WHERE library_STATUS = 'n'
+		<include refid="searchCondition"/>
+	</select>
+	
+	<update id="deleteLibraryboard" parameterClass="map">
+			UPDATE library SET library_STATUS = 'y'
+			WHERE library_NO = #library_no#
+	</update>
+	
+	<update id="updateLibrary" parameterClass="libraryVO">
+		UPDATE library
+		SET library_TITLE = #library_title# 
+			,library_NICKNAME = #library_nickname#
+			,library_PWD = #library_pwd#
+			,library_MAIL = #library_mail#
+			,library_CONTENT = #library_content# 
+			,library_IP = #library_ip#
+		WHERE library_NO = #library_no#
+	</update>
+	<insert id="insertLibraryReply" parameterClass="libraryVO">
+      <selectKey keyProperty="library_no" resultClass="String">
+         SELECT library_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+      INSERT INTO library(library_NO,
+                       library_TITLE,
+                        library_WRITER,
+                        library_NICKNAME,
+                        library_PWD,
+                        library_MAIL,
+                        library_IP,
+                        library_CONTENT,
+                        library_GROUP,
+                        library_SEQ,
+                        library_DEPTH)
+               VALUES(#library_no#,
+                     #library_title#,
+                     #library_writer#,
+                     #library_nickname#,
+                     #library_pwd#,
+                     #library_mail#,
+                     #library_ip#,
+                     #library_content#,
+                     #library_group#,
+                     #library_seq#,
+                     #library_depth#)
+   </insert>
+	<select id="incrementSeq" parameterClass="libraryVO" resultClass="String">
+      SELECT MAX(library_SEQ) + 1
+      FROM library
+      WHERE library_GROUP = #library_group#
+   </select>   
+   
+   <update id="updateSeq" parameterClass="libraryVO">
+      UPDATE library 
+      SET library_SEQ = library_SEQ + 1
+      WHERE library_GROUP = #library_group#
+      AND library_SEQ > #library_seq#
+   </update>
+   
+   <update id="addFile" parameterClass="map">
+   		UPDATE library
+   		SET library_content = #library_content#
+   		WHERE library_no = #library_no#
+   </update>
+   
+   <update id ="updateLibraryHit" parameterClass="String">
+   		UPDATE library
+   		SET library_hit = library_hit + 1 
+   		WHERE library_no = #library_no#
+   </update>
+	
+</sqlMap>

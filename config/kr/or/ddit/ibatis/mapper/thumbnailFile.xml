@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="thumbfile">
+	<typeAlias alias="thumbfileVO" type="kr.or.ddit.vo.ThumbnailFileVO" />
+	
+	<statement id="thumbnailfileList" resultClass="thumbfileVO">
+		SELECT *
+		FROM thumbnailFILE
+		WHERE thumbfile_thumbnail_NO = #thumbfile_thumbnail_NO#
+	</statement>	
+	
+	<insert id="insertThumbnailfile" parameterClass="thumbfileVO">
+		<selectKey keyProperty="thumbfile_seq">
+			SELECT thumbnailfile_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO thumbnailFILE(thumbFILE_SEQ, thumbFILE_thumbnail_NO, thumbFILE_NAME, thumbfile_SAVE_NAME, thumbFILE_CONTENT_TYPE, thumbFILE_SIZE)
+					VALUES(#thumbfile_seq#, #thumbfile_thumbnail_no#, #thumbfile_name#, #thumbfile_save_name#, #thumbfile_content_type#, #thumbfile_size#)
+	</insert>
+	
+	<select id="thumbnailfileInfo" parameterClass="map" resultClass="thumbfileVO">
+		SELECT *
+		FROM thumbnailFILE
+		WHERE thumbFILE_SEQ = #thumbfile_seq#
+	</select>
+</sqlMap>

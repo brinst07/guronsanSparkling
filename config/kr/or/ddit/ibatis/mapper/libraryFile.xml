@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="libraryfile">
+	<typeAlias alias="libraryfileVO" type="kr.or.ddit.vo.LibraryFileVO" />
+	
+	<statement id="libraryfileList" resultClass="libraryfileVO">
+		SELECT *
+		FROM libraryfile
+		WHERE libraryfile_library_NO = #library_no#
+	</statement>	
+	
+	<insert id="insertLibraryfile" parameterClass="libraryfileVO">
+		<selectKey keyProperty="libraryfile_seq">
+			SELECT libraryFILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO libraryFILE(libraryFILE_SEQ, libraryFILE_library_NO, libraryFILE_NAME, libraryFILE_SAVE_NAME, libraryFILE_CONTENT_TYPE, libraryFILE_SIZE)
+					VALUES(#libraryfile_seq#, #libraryfile_library_no#, #libraryfile_name#, #libraryfile_save_name#, #libraryfile_content_type#, #libraryfile_size#)
+	</insert>
+	
+	<select id="libraryFileInfo" parameterClass="map" resultClass="libraryfileVO">
+		SELECT *
+		FROM libraryFILE
+		WHERE libraryFILE_SEQ = #libraryfile_seq#
+	</select>
+	
+	<select id="fileList" parameterClass="int" resultClass="libraryfileVO">
+		SELECT *
+		FROM libraryFILE
+		WHERE LIBRARYFILE_LIBRARY_NO = #libraryfile_library_no#
+	</select>
+	
+</sqlMap>

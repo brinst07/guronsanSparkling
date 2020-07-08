@@ -1,26 +1,44 @@
 package kr.or.ddit.vo;
 
+import java.io.File;
+import java.util.List;
+
 public class MemberVO {
-	private String mem_id;
-	private String mem_pass;
-	private String mem_name;
-	private String mem_regno1;
-	private String mem_regno2;
-	private String mem_bir;
-	private String mem_zip;
-	private String mem_add1;
-	private String mem_add2;
-	private String mem_hometel;
-	private String mem_comtel;
-	private String mem_hp;
-	private String mem_mail;
-	private String mem_job;
-	private String mem_like;
-	private String mem_memorial;
-	private String mem_memorialday;
-	private String mem_mileage;
-	private String mem_delete;
-	private String mem_calendar;
+	//SELECT 'String ' ||LOWER(COLUMN_NAME)||';'
+	//  FROM USER_TAB_COLUMNS
+	// WHERE TABLE_NAME='MEMBER';	
+	String mem_id;
+	String mem_pass;
+	String mem_name;
+	String mem_regno1;
+	String mem_regno2;
+	String mem_bir;
+	String mem_zip;
+	String mem_add1;
+	String mem_add2;
+	String mem_hometel;
+	String mem_comtel;
+	String mem_hp;
+	String mem_mail;
+	String mem_job;
+	String mem_like;
+	String mem_memorial;
+	String mem_memorialday;
+	String mem_mileage;
+	String mem_delete;
+	String mem_calendar;
+	//	전송되는 파일, 파일 컨텐츠 타입, 파일명
+	//	input type=file name=files
+	//	전송되는 파일(변수명 필드네임)
+	private List<File> files;
+	//	전송되는 파일 컨텐츠 타입
+	//	변수명명규칠 : 필드네임 + ContenType
+	private List<String> filesContentType;
+	//	전송되는 파일명
+	//	변수명명규칙 : 필드네임 + FileName
+	private List<String> filesFileName;
+	
+	
 	
 	public String getMem_id() {
 		return mem_id;
@@ -135,6 +153,24 @@ public class MemberVO {
 	}
 	public void setMem_delete(String mem_delete) {
 		this.mem_delete = mem_delete;
+	}
+	public List<File> getFiles() {
+		return files;
+	}
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
+	public List<String> getFilesContentType() {
+		return filesContentType;
+	}
+	public void setFilesContentType(List<String> filesContentType) {
+		this.filesContentType = filesContentType;
+	}
+	public List<String> getFilesFileName() {
+		return filesFileName;
+	}
+	public void setFilesFileName(List<String> filesFileName) {
+		this.filesFileName = filesFileName;
 	}
 	public String getMem_calendar() {
 		return mem_calendar;

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="notice">
+	<typeAlias alias="noticeVO" type="kr.or.ddit.vo.NoticeVO" />
+
+	<!-- <select id="loginCheck" parameterClass="map" resultClass="memberVO">
+		select *
+		from member
+		where mem_id = #mem_id# and
+			  mem_pass = #mem_pass#
+	</select> -->
+	<sql id="searchCondition">
+		<dynamic prepend="AND">
+			<isNotEmpty prepend="search_keyword" open="(" close=")">
+				<isEqual property="search_keycode" compareValue="TOTAL" >
+					notice_title LIKE '%'|| #search_keyword#||'%'
+					OR notice_content LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="TITLE" >
+					notice_title LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="CONTENT" >
+					notice_content LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	
+	<resultMap class="noticeVO" id="noticeResultMap">
+		<result property="notice_no"       column="notice_no"/>
+		<result property="notice_title"    column="notice_title"/>
+		<result property="notice_writer"   column="notice_writer"/>
+		<result property="notice_content"  column="notice_content"/>
+		<result property="notice_hit"      column="notice_hit"/>
+		<result property="notice_reg_date" column="notice_reg_date"/>
+		<result property="notice_status"   column="notice_status"/>
+		<result property="items" column="notice_no" select="noticefile.noticefileList"/>
+	</resultMap>
+	
+	
+	
+	<sql id="selectAll">
+      SELECT *
+      FROM NOTICE
+      WHERE NOTICE_STATUS = 'n'
+   </sql>
+   
+   <select id="noticeList" resultClass="noticeVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				<include refid="searchCondition"/> 
+ 				)  A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>  
+   
+   	<select id="noticeInfo" parameterClass="map"  resultMap="noticeResultMap">
+		<include refid="selectAll"/>
+			AND NOTICE_NO = #notice_no#
+	</select>
+   
+
+   
+   <insert id="insertNotice" parameterClass="noticeVO">
+      <selectKey keyProperty="notice_no" resultClass="string">
+         SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+      INSERT INTO NOTICE(NOTICE_NO
+						,NOTICE_TITLE
+						,NOTICE_WRITER
+						,NOTICE_CONTENT)
+				VALUES(#notice_no#
+					  ,#notice_title#
+					  ,#notice_writer#
+					  ,#notice_content#)
+   </insert>
+	
+	
+
+	<select id="userNoticeList" resultClass="noticeVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				 <include refid="searchCondition"/> 
+ 				) A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>
+	
+	
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		SELECT COUNT(notice_NO)
+		FROM notice
+		WHERE notice_status = 'n'
+		<include refid="searchCondition"/>
+	</select>
+	
+	<update id="updateNotice" parameterClass="noticeVO">
+		UPDATE NOTICE
+		SET NOTICE_TITLE = #notice_title# 
+			,NOTICE_CONTENT = #notice_content# 
+		WHERE NOTICE_NO = #notice_no#
+	</update>
+	
+	<update id="deleteNotice" parameterClass="map">
+		UPDATE NOTICE SET NOTICE_STATUS = 'y'
+			WHERE NOTICE_NO = #notice_no#
+	</update>
+	
+	<update id ="updateNoticeHit" parameterClass="String">
+   		UPDATE NOTICE
+   		SET notice_hit = notice_hit + 1 
+   		WHERE notice_no = #notice_no#
+   </update>
+	
+</sqlMap>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="qnafile">
+	<typeAlias alias="qnafileVO" type="kr.or.ddit.vo.QnAFileVO" />
+	
+	<statement id="qnafileList" resultClass="qnafileVO">
+		SELECT *
+		FROM QNAFILE
+		WHERE QNAFILE_QNA_NO = #qna_no#
+	</statement>	
+	
+	<insert id="insertQnafile" parameterClass="qnafileVO">
+		<selectKey keyProperty="qnafile_seq">
+			SELECT QNAFILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNAFILE(QNAFILE_SEQ, QNAFILE_QNA_NO, QNAFILE_NAME, QNAFILE_SAVE_NAME, QNAFILE_CONTENT_TYPE, QNAFILE_SIZE)
+					VALUES(#qnafile_seq#, #qnafile_qna_no#, #qnafile_name#, #qnafile_save_name#, #qnafile_content_type#, #qnafile_size#)
+	</insert>
+	
+	<select id="qnafileInfo" parameterClass="map" resultClass="qnafileVO">
+		SELECT *
+		FROM qnafile
+		WHERE qnafile_SEQ = #qnafile_seq#
+	</select>
+</sqlMap>

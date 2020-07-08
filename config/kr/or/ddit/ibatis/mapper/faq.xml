@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="faq">
+	<typeAlias alias="faqVO" type="kr.or.ddit.vo.FAQVO" />
+
+	<!-- <select id="loginCheck" parameterClass="map" resultClass="memberVO">
+		select *
+		from member
+		where mem_id = #mem_id# and
+			  mem_pass = #mem_pass#
+	</select> -->
+	
+	<sql id="selectAll">
+      SELECT *
+      FROM FAQ
+      WHERE FAQ_STATUS = 'n'
+   </sql>
+   
+	
+
+<sql id="searchCondition">
+	<dynamic prepend="AND">
+		<isNotEmpty prepend="search_keyword" open="(" close=")">
+			<isEqual property="search_keycode" compareValue="TOTAL" >
+				faq_title LIKE '%'|| #search_keyword#||'%'
+				OR faq_content LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+			<isEqual property="search_keycode" compareValue="TITLE" >
+				faq_title LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+			<isEqual property="search_keycode" compareValue="CONTENT" >
+				faq_content LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
+</sql>
+
+	 
+	
+	<select id="userFAQList" resultClass="faqVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				 <include refid="searchCondition"/> 
+ 				) A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>
+	
+	
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		SELECT COUNT(faq_NO)
+		FROM faq
+		WHERE faq_status = 'n'
+		<include refid="searchCondition"/>
+	</select>
+
+
+	<select id="faqList" resultClass="faqVO" parameterClass="map">
+		SELECT B.*
+ 		FROM  ( FAQ ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				<include refid="searchCondition"/> 
+ 				)  A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>
+	
+	
+	<insert id="insertFAQ" parameterClass="faqVO">
+      <selectKey keyProperty="faq_no" resultClass="string">
+         SELECT FAQ_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+      INSERT INTO FAQ(FAQ_NO
+						,FAQ_TITLE
+						,FAQ_WRITER
+						,FAQ_CONTENT)
+				VALUES(#faq_no#
+					  ,#faq_title#
+					  ,#faq_writer#
+					  ,#faq_content#)
+   </insert>
+
+
+	
+	<update id="updateFAQ" parameterClass="faqVO">
+		UPDATE FAQ
+		SET FAQ_TITLE = #faq_title# 
+			,FAQ_CONTENT = #faq_content# 
+		WHERE FAQ_NO = #faq_no#
+	</update>
+	
+	<update id="deleteFAQ" parameterClass="map">
+		UPDATE FAQ 
+		SET FAQ_STATUS = 'y'
+		WHERE FAQ_NO = #faq_no#
+	</update>
+	
+	<select id="faqInfo" parameterClass="map"  resultClass="faqVO">
+		<include refid="selectAll"/>
+			AND faq_NO = #faq_no#
+	</select>
+
+	
+</sqlMap>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="noticefile">
+	<typeAlias alias="noticefileVO" type="kr.or.ddit.vo.NoticeFileVO" />
+	
+	<statement id="noticefileList" resultClass="noticefileVO">
+		SELECT *
+		FROM NOTICEFILE
+		WHERE NOTICEFILE_NOTICE_NO = #notice_no#
+	</statement>	
+	
+	<insert id="insertNoticefile" parameterClass="noticefileVO">
+		<selectKey keyProperty="noticefile_seq">
+			SELECT NOTICEFILE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICEFILE(NOTICEFILE_SEQ, NOTICEFILE_NOTICE_NO, NOTICEFILE_NAME, NOTICEFILE_SAVE_NAME, NOTICEFILE_CONTENT_TYPE, NOTICEFILE_SIZE)
+					VALUES(#noticefile_seq#, #noticefile_notice_no#, #noticefile_name#, #noticefile_save_name#, #noticefile_content_type#, #noticefile_size#)
+	</insert>
+	
+	<select id="noticefileInfo" parameterClass="map" resultClass="noticefileVO">
+		SELECT *
+		FROM NOTICEFILE
+		WHERE NOTICEFILE_SEQ = #noticefile_seq#
+	</select>
+</sqlMap>

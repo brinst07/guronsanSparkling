@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="thumbnail">
+	<typeAlias alias="thumbnailVO" type="kr.or.ddit.vo.ThumbnailVO" />
+
+	<resultMap class="thumbnailVO" id="thumbnailResultMap">
+		<result property="thumbnail_no" column="thumbnail_no" />
+		<result property="thumbnail_title" column="thumbnail_title" />
+		<result property="thumbnail_writer" column="thumbnail_writer" />
+		<result property="thumbnail_nickname" column="thumbnail_nickname" />
+		<result property="thumbnail_pwd" column="thumbnail_pwd" />
+		<result property="thumbnail_mail" column="thumbnail_mail" />
+		<result property="thumbnail_ip" column="thumbnail_ip" />
+		<result property="thumbnail_content" column="thumbnail_content" />
+		<result property="thumbnail_hit" column="thumbnail_hit" />
+		<result property="thumbnail_reg_date" column="thumbnail_reg_date" />
+		<result property="thumbnail_status" column="thumbnail_status" />
+		<result property="items" column="thumbnail_no"
+			select="thumbfile.thumbnailfileList" />
+	</resultMap>
+
+	<sql id="selectAll">
+		SELECT *
+		FROM thumbnail
+		WHERE thumbnail_STATUS = 'n'
+	</sql>
+
+	<sql id="searchCondition">
+		<dynamic prepend="AND">
+			<isNotEmpty prepend="search_keyword" open="(" close=")">
+				<isEqual property="search_keycode" compareValue="TOTAL">
+					thumbnail_TITLE LIKE '%'|| #search_keyword#||'%'
+					OR thumbnail_CONTENT LIKE '%'|| #search_keyword#||'%'
+					OR thumbnail_NICKNAME LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="TITLE">
+					thumbnail_TITLE LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="CONTENT">
+					thumbnail_CONTENT LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="NICKNAME">
+					thumbnail_NICKNAME LIKE '%'|| #search_keyword#||'%'
+				</isEqual>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+	<select id="thumbnailList" resultMap="thumbnailResultMap"
+		parameterClass="map">
+		SELECT B.*
+		FROM ( SELECT ROWNUM RNUM, A.*
+		FROM(
+		<include refid="selectAll" />
+		<include refid="searchCondition" />
+		) A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+		ORDER BY B.RNUM DESC
+	</select>
+
+	<insert id="insertThumbnail" parameterClass="thumbnailVO">
+		<selectKey keyProperty="thumbnail_no" resultClass="String">
+			SELECT thumbnail_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO thumbnail(
+		thumbnail_NO,
+		thumbnail_TITLE,
+		thumbnail_WRITER,
+		thumbnail_NICKNAME,
+		thumbnail_PWD,
+		thumbnail_MAIL,
+		thumbnail_IP,
+		thumbnail_CONTENT
+		)
+		VALUES(
+		#thumbnail_no#,
+		#thumbnail_title#,
+		#thumbnail_writer#,
+		#thumbnail_nickname#,
+		#thumbnail_pwd#,
+		#thumbnail_mail#,
+		#thumbnail_ip#,
+		#thumbnail_content#
+		)
+	</insert>
+
+	<select id="thumbnailInfo" parameterClass="map" resultMap="thumbnailResultMap">
+		<include refid="selectAll" />
+		AND thumbnail_NO = #thumbnail_no#
+	</select>
+
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		SELECT COUNT(thumbnail_NO)
+		FROM thumbnail
+		WHERE thumbnail_STATUS = 'n'
+		<include refid="searchCondition" />
+	</select>
+
+	<update id="deleteThumbnail" parameterClass="map">
+		UPDATE thumbnail SET
+		thumbnail_STATUS = 'y'
+		WHERE thumbnail_NO = #thumbnail_no#
+	</update>
+
+	<update id="updateThumbnail" parameterClass="thumbnailVO">
+		UPDATE thumbnail
+		SET
+		thumbnail_TITLE = #thumbnail_title#
+		,thumbnail_NICKNAME = #thumbnail_nickname#
+		,thumbnail_PWD = #thumbnail_pwd#
+		,thumbnail_MAIL = #thumbnail_mail#
+		,thumbnail_CONTENT = #thumbnail_content#
+		,thumbnail_IP = #thumbnail_ip#
+		WHERE thumbnail_NO = #thumbnail_no#
+	</update>
+	
+	<insert id="">
+	
+	</insert>
+
+	
+
+
+</sqlMap>

@@ -2,6 +2,6 @@
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 	<Resource name="jdbc/ddit" auth="brinst" type="javax.sql.DataSource" driverClassName="oracle.jdbc.driver.OracleDriver"
-			  url = "jdbc:oracle:thin:@localhost:1521:XE" username="brinst" password="oracle" initialSize="10" maxActive ="10"
+			  url = "jdbc:oracle:thin:@118.217.27.73:1521" username="guronsan" password="java" initialSize="10" maxActive ="10"
 			  maxIdle = "6" minIdle = "3" removeAbandoned="true"  removeAbandonedTimeout="60" maxWait="-1" factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"></Resource>
 </Context>

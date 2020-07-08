@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- user -->
+	<package name="userQnaPKG" extends="struts-default,tiles-default" namespace="/user/qna">
+		<action name="qnaList" class="kr.or.ddit.qna.controller.QnaListAction">
+			<result name="success" type="tiles">user/qna/qnaList</result>
+		</action>
+		<action name="qnaView" class="kr.or.ddit.qna.controller.QnaViewAction">
+			<result name="qna" type="tiles">user/qna/qnaView</result>
+			<result name="qnaReply" type="tiles">user/qna/qnaReplyView</result>
+		</action>
+		<action name="qnaForm">
+			<result type="tiles">user/qna/qnaForm</result>
+		</action>
+<!-- 		<action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction"> -->
+<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
+<!-- 			<result name="success" type="redirectAction">		 -->
+<!-- 				<param name="namespace">/user/freeboard</param> -->
+<!-- 				<param name="actionName">freeboardList</param>				 -->
+<!-- 			</result> -->
+<!-- 		</action> -->
+		<action name="deleteQna" class="kr.or.ddit.qna.controller.DeleteQnaAction">
+			<result type="redirectAction">
+				<param name="namespace">/user/qna</param>
+				<param name="actionName">qnaList</param>
+			</result>
+		</action>
+		<action name="updateQna" class="kr.or.ddit.qna.controller.UpdateQnaAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/qna</param>
+				<param name="actionName">qnaList</param>
+			</result>
+		</action>
+	</package>
+</struts>
+
+<!-- 		<action name="insertMemberInfo" class="kr.or.ddit.member.controller.InsertMemberInfoAction"> -->
+<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
+<!-- 			<interceptor-ref name="params"></interceptor-ref> -->
+<!-- 			<result name="success" type="redirectAction"> -->
+<!-- 				<param name="namespace">/user/join</param> -->
+<!-- 				<param name="actionName">loginForm</param> -->
+<!-- 				<param name="message">${message}</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->

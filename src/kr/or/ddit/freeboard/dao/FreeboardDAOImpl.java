@@ -79,4 +79,9 @@ public class FreeboardDAOImpl implements IFreeboardDAO {
 	      }
 	      return bo_no;
 	   }
+
+	@Override
+	public void updateFreeboardHit(String bo_no) throws Exception {
+		smc.update("freeboard.updateFreeboardHit", bo_no);
+	}
 }

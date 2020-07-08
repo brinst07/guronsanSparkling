@@ -15,4 +15,5 @@ public interface IFreeboardService {
 	public void updateFreeboard(FreeboardVO freeboardInfo);
 	public String totalCount(Map<String, String> params);
 	public String insertFreeboardReply(FreeboardVO freeboardInfo);
+	public void updateFreeboardHit(String bo_no);
 }

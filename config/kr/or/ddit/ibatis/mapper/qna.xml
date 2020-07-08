@@ -150,11 +150,16 @@
    </update>
    
    <select id="qnaReplyCheck" parameterClass="String" resultClass="String">
-   select count(*)
-   from qna
-   where qna_group = #qna_no# 
-   
+	   select count(*)
+	   from qna
+	   where qna_group = #qna_no# 
    </select>
+   
+   <update id="updateQnaHit" parameterClass="String">
+		UPDATE QNA
+		SET qna_hit = qna_hit + 1
+		WHERE qna_no = #qna_no#
+	</update>
 	
 	
 </sqlMap>

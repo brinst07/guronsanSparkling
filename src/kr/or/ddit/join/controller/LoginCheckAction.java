@@ -66,10 +66,10 @@ public class LoginCheckAction {
 			return "loginForm";
 		}else if(memberInfo.getMem_id().equals("admin")){
 			session.setAttribute("LOGIN_MEMBERINFO", memberInfo);
-			return null;
+			return "admin";
 		}else{
 			session.setAttribute("LOGIN_MEMBERINFO", memberInfo);
-			return "success";
+			return "user";
 		}
 	}
 	

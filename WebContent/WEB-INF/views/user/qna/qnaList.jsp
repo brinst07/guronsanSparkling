@@ -5,18 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시글 목록</title>
+<title>QnA 목록</title>
 <script type="text/javascript">
 $(function() {
 	$('button[type=button]').on('click', function() {
-		location.replace('${pageContext.request.contextPath}/user/freeboard/freeboardForm.do');
+		location.replace('${pageContext.request.contextPath}/user/qna/qnaForm.do');
 	});
 	
-	$('#freeboardBody tr').on('click', function() {
-		bo_no = $(this).find('td:eq(0) input').val();	
+	$('#qnaBody tr').on('click', function() {
+		qna_no = $(this).find('td:eq(0) input').val();		
 		rnum = $(this).find('td:eq(0)').text();
 		
-		$(location).attr('href', '${pageContext.request.contextPath}/user/freeboard/freeboardView.do?bo_no=' + bo_no);
+		$(location).attr('href', '${pageContext.request.contextPath}/user/qna/qnaView.do?qna_no=' + qna_no);
 	});
 	
 });
@@ -25,7 +25,7 @@ $(function() {
 <body>
 <div id="freeboardList_content">
 	<div class="panel panel-blue">
-    	<div class="panel-heading">자유게시판</div>
+    	<div class="panel-heading">QnA</div>
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
@@ -36,40 +36,40 @@ $(function() {
 					<th scope="col" width="10%">조회수</th>
 				</tr>
 			</thead>
-			<tbody id="freeboardBody">
-			<c:if test="${empty freeboardList }">
+			<tbody id="qnaBody">
+			<c:if test="${empty qnaList }">
 				<tr align="center">
 					<td colspan="5"><font color="red">등록된 게시글이 존재하지 않습니다.</font></td>
 				</tr>
 			</c:if>
 			
-			<c:if test="${!empty freeboardList }">
-				<c:forEach items="${freeboardList }" var="freeboardInfo">
+			<c:if test="${!empty qnaList }">
+				<c:forEach items="${qnaList }" var="qnaInfo">
 					<tr>
 						<%-- ${freeboardInfo.bo_rnum } --%>
-						<td><input type="hidden" value="${freeboardInfo.bo_no }"/>${freeboardInfo.rnum }</td>
+						<td><input type="hidden" value="${qnaInfo.qna_no }"/>${qnaInfo.rnum }</td>
 						<td align="left">
-							<c:forEach begin="1" end="${freeboardInfo.bo_depth }" varStatus="stat">
+							<c:forEach begin="1" end="${qnaInfo.qna_depth }" varStatus="stat">
 								&nbsp;&nbsp;&nbsp;
 								<c:if test="${stat.last }">
 									<i class="fa fa-angle-right"></i>
 								</c:if>
 							</c:forEach>
-							${freeboardInfo.bo_title }
+							${qnaInfo.qna_title }
 						</td>
-						<td>${freeboardInfo.bo_nickname }</td>
-						<td>${freeboardInfo.bo_reg_date }</td>
-						<td>${freeboardInfo.bo_hit }</td>
+						<td>${qnaInfo.qna_nickname }</td>
+						<td>${qnaInfo.qna_reg_date }</td>
+						<td>${qnaInfo.qna_hit }</td>
 					</tr>
 				</c:forEach>
 			</c:if>
-			</tbody>			
+			</tbody>
 		</table>
 	</div>
 </div>
 <div >
 ${pagination.getPagingHtmls() }
-<form action="${pageContext.request.contextPath}/user/freeboard/freeboardList.do" method="post" class="form-inline pull-right">
+<form action="${pageContext.request.contextPath}/user/qna/qnaList.do" method="post" class="form-inline pull-right">
 		<input id="search_keyword" name="search_keyword" type="text" placeholder="검색어 입력..." class="form-control" />
 		<select class="form-control" name="search_keycode" >
 			<option>검색조건</option>

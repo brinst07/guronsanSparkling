@@ -108,5 +108,14 @@ public class FreeboardServiceImpl implements IFreeboardService {
 	      return bo_no ;
 	   }
 
+	@Override
+	public void updateFreeboardHit(String bo_no) {
+		try {
+			dao.updateFreeboardHit(bo_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

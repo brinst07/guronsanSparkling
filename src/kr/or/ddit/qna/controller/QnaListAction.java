@@ -1,4 +1,4 @@
-package kr.or.ddit.freeboard.controller;
+package kr.or.ddit.qna.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,53 +8,54 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.sun.net.httpserver.Authenticator.Success;
-
-import kr.or.ddit.freeboard.service.FreeboardServiceImpl;
-import kr.or.ddit.freeboard.service.IFreeboardService;
+import kr.or.ddit.qna.service.IQnAService;
+import kr.or.ddit.qna.service.QnAServiceImpl;
 import kr.or.ddit.utiles.RolePaginationUtil;
-import kr.or.ddit.vo.FreeboardVO;
+import kr.or.ddit.vo.QnAVO;
 
-public class FreeboardListAction {
-	
+public class QnaListAction {
 	private String currentPage;
 	private String search_keyword;
 	private String search_keycode;
-	private List<FreeboardVO> freeboardList;
+	private List<QnAVO> qnaList;
 	private RolePaginationUtil pagination;
-
 	
-	public String execute() {
-		
+	
+	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
-		
-
 		if (currentPage == null) {
 			currentPage = "1";
 		}
-
 		
-
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("search_keyword", search_keyword);
 		params.put("search_keycode", search_keycode);
-
-		IFreeboardService freeService = FreeboardServiceImpl.getInstance();
-
-		String totalCount = freeService.totalCount(params);
+		
+		IQnAService qnaService = QnAServiceImpl.getInstance();
+		
+		String totalCount = qnaService.totalCount(params);
 		pagination = new RolePaginationUtil(request,
 				Integer.parseInt(currentPage), Integer.parseInt(totalCount));
 
 		params.put("startCount", String.valueOf(pagination.getStartCount()));
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
-
-		freeboardList = freeService.freeboardList(params);	
-
+		
+		qnaList = qnaService.qnaList(params);
+		
+		
 		return "success";
-	
 	}
 
+
+	public List<QnAVO> getQnaList() {
+		return qnaList;
+	}
+
+
+	public RolePaginationUtil getPagination() {
+		return pagination;
+	}
 
 
 	public void setCurrentPage(String currentPage) {
@@ -62,26 +63,12 @@ public class FreeboardListAction {
 	}
 
 
-
 	public void setSearch_keyword(String search_keyword) {
 		this.search_keyword = search_keyword;
 	}
 
 
-
 	public void setSearch_keycode(String search_keycode) {
 		this.search_keycode = search_keycode;
-	}
-
-
-
-	public List<FreeboardVO> getFreeboardList() {
-		return freeboardList;
-	}
-
-
-
-	public RolePaginationUtil getPagination() {
-		return pagination;
 	}
 }

@@ -21,58 +21,43 @@ $(function(){
     });
     // 도큐먼트 초기값 설정
     $('#bo_title').val('${freeboardInfo.bo_title}');
+    $('#bo_writer').val('${freeboardInfo.bo_writer}');
     $('.bo_content').summernote('code','${freeboardInfo.bo_content}');
     var bo_title = '${freeboardInfo.bo_title}';
     
     
 	$('form[name=freeboardView]').submit(function() {
-	//$('#updateBTN').click(function(){
+    	if(!$('#bo_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
+	
+		//$('#updateBTN').click(function(){
     	var bo_content = $('.bo_content').summernote('code');
 		$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
 		$(this).append('<input type="hidden" name="bo_no" value="${freeboardInfo.bo_no}"/>');
-   		$(this).attr('action', '/guronsan/controller/admin/updateFreeboardAction.do');
+		$(this).append('<input type="hidden" name="bo_writer" value="${freeboardInfo.bo_writer}"/>');
+   		$(this).attr('action', '${pageContext.request.contextPath}/admin/freeboard/updateFreeboard.do');
 		
 	});
 	
 	$('#deleteBTN').on('click', function() {
     	
-		$(location).attr('href', '/guronsan/controller/admin/deleteFreeboardAction.do?bo_no=${freeboardInfo.bo_no}');
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/freeboard/deleteFreeboard.do?bo_no=${freeboardInfo.bo_no}');
     		
 	});
 	
 	$('#listBTN').on('click', function(){
-    	location.replace("/guronsan/controller/admin/freeboardListAction.do");
+    	location.replace("${pageContext.request.contextPath}/admin/freeboard/freeboardList.do");
     })
 
-    
-/*     // 글쓰기
-    $('#btn1').click(function(){
-    	// /ddit/13/main.jsp?contentPage=/13/freeboard/freeboardForm.jsp
-    	$(location).attr('href', '${freeboardFormURI}');
-    }); */
-    
-    // 삭제
-    /* $('#btn2').click(function(){
-    	var flag = true;
-    	if(eval('${!empty LOGIN_MEMBERINFO}')){
-    		if('${LOGIN_MEMBERINFO.mem_id}' == '${noticeInfo.notice_writer}'){
-		    	// /ddit/13/freeboard/deleteFreeboardInfo.jsp?bo_no=1
-		    	$(location).attr('href', '${deleteFreeboardURI}?notice_no=${noticeInfo.notice_no}');	
-    		} else {
-    			flag = false;
-    		}
-    		flag = false;
-    	} else {
-    		flag = false;
-    	}
-    	if(!flag){
-    		BootstrapDialog.show({
-    			title: '알림',
-    			message: '작성자만 공지사항 삭제가 가능합니다.'
-    		});
-    	}
-    }); */
 });
+function alertPrint(msg) {
+	BootstrapDialog.show({
+	    title: '알림',
+	    message: msg
+	}); 
+	return false;
+}
     
 </script>
 
@@ -96,11 +81,12 @@ $(function(){
 						  </td>
 						  <!-- <td><label rows="10" cols="110" class="notice_title" disabled="disabled" style="overflow: auto;"></textarea></td> -->
 						</tr>
-						<!-- <tr>
+						<tr>
 						  <th>작성자</th>
-						  <td><label class="notice_writer"></label></td>
-						</tr> -->
-						
+						  <td>
+							<input type="text" class="form-control" class="bo_writer" id="bo_writer" name="bo_writer" disabled="disabled"></input>
+						  </td>
+						</tr>						
 						<tr>
 						  <th>내용</th>
 						  <td><textarea rows="10" cols="110" class="bo_content" disabled="disabled" style="overflow: auto;"></textarea> </td>

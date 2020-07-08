@@ -9,7 +9,7 @@
 $(function(){
 	// 섬머노트를 div를 활용한 textarea에 추가.
 	// http://summernote.org 활용
-    $('#bo_content').summernote({
+    $('#qna_content').summernote({
     		lang: 'ko-KR',
 			height: 150,
 			codemirror: {
@@ -17,36 +17,35 @@ $(function(){
 		}
     });
 
-    $('form[name=freeboardForm]').submit(function() {
-    	if(!$('#bo_title').val().validationTITLE()){
+    $('form[name=qnaForm]').submit(function() {
+    	if(!$('#qna_title').val().validationTITLE()){
     		return alertPrint('제목을 바르게 입력해주세요.'); 
     	}
-    	if(!$('#bo_nickname').val().validationNICKNAME()){
+    	if(!$('#qna_nickname').val().validationNICKNAME()){
     		return alertPrint('대화명을 바르게 입력해주세요.');
     	}
-    	if(!$('#bo_pwd').val().validationPWD()){
+    	if(!$('#qna_pwd').val().validationPWD()){
     		return alertPrint('패스워드를 바르게 입력해주세요.');
     	}
-    	if(!$('#bo_mail').val().validationMAIL()){
+    	if(!$('#qna_mail').val().validationMAIL()){
     		return alertPrint('메일을 바르게 입력해주세요.');
     	}
     	
-    	var bo_content = $('#bo_content').summernote('code');
-		$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
+    	var qna_content = $('#qna_content').summernote('code');
+		$(this).append('<input type="hidden" name="qna_content" value="' + qna_content + '"/>');
     	
-		$(this).append('<input type="hidden" name="bo_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
-		$(this).append('<input type="hidden" name="bo_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '${pageContext.request.contextPath}/user/freeboard/insertFreeboard.do');
+		$(this).append('<input type="hidden" name="qna_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
+		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
+		$(this).attr('action', '/user/InsertQna.do');
 		
 		return true;
 	});
     
     $('#btnList').on('click', function() {
-		location.replace('${pageContext.request.contextPath}/user/freeboard/freeboardList.do');
+		location.replace('${pageContext.request.contextPath}/user/qna/qnaList.do');
 	});
 
 });
-
 function alertPrint(msg) {
 	BootstrapDialog.show({
 	    title: '알림',
@@ -57,35 +56,35 @@ function alertPrint(msg) {
 </script>
 </head>
 <body>
-<form name="freeboardForm" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+<form name="qnaForm" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="bo_title">제목:</label>
+		<label class="control-label col-sm-2" for="qna_title">제목:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="bo_title" name="bo_title" placeholder="제목 입력...">
+			<input type="text" class="form-control" id="qna_title" name="qna_title" placeholder="제목 입력...">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="bo_nickname">작성자 대화명:</label>
+		<label class="control-label col-sm-2" for="qna_nickname">작성자 대화명:</label>
 		<div class="col-sm-10"> 
-			<input type="text" class="form-control" id="bo_nickname" name="bo_nickname" placeholder="대화명 입력...">
+			<input type="text" class="form-control" id="qna_nickname" name="qna_nickname" placeholder="대화명 입력...">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="bo_pwd">패스워드:</label>
+		<label class="control-label col-sm-2" for="qna_pwd">패스워드:</label>
 		<div class="col-sm-10"> 
-			<input type="password" class="form-control" id="bo_pwd" name="bo_pwd" placeholder="패스워드 입력...">
+			<input type="password" class="form-control" id="qna_pwd" name="qna_pwd" placeholder="패스워드 입력...">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="bo_mail">메일:</label>
+		<label class="control-label col-sm-2" for="qna_mail">메일:</label>
 		<div class="col-sm-10"> 
-			<input type="text" class="form-control" id="bo_mail" name="bo_mail" placeholder="메일주소 입력...">
+			<input type="text" class="form-control" id="qna_mail" name="qna_mail" placeholder="메일주소 입력...">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="bo_content">내용:</label>
+		<label class="control-label col-sm-2" for="qna_content">내용:</label>
 		<div class="col-sm-10"> 
-			<div id="bo_content"><p>내용을 입력해주세요...</p></div>
+			<div id="qna_content"><p>내용을 입력해주세요...</p></div>
 		</div>
 	</div>
 	<div class="form-group">

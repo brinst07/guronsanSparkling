@@ -76,7 +76,7 @@ public class RolePaginationUtil {
       if(this.currentPage < this.totalPage) {
          this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + (this.currentPage + 1) + "'>&raquo;</a></li>");   
       } else {
-         this.pagingHtmls.append("<li class='disabled'><a href='#'>&laquo;</a></li>");
+         this.pagingHtmls.append("<li class='disabled'><a href='#'>&raquo;</a></li>");
       }
       this.pagingHtmls.append("</ul>");
       this.pagingHtmls.append("</div>");

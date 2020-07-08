@@ -12,7 +12,7 @@ $(function() {
 	
 	$('#freeboardBody tr').on('click', function() {
 		var bo_no = $(this).find('td:eq(0) input').val();
-		$(location).attr('href', '/guronsan/controller/admin/freeboardViewAction.do?bo_no=' + bo_no);
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/freeboard/freeboardView.do?bo_no=' + bo_no);
 	});
 });
 </script>
@@ -30,7 +30,8 @@ $(function() {
 						<thead>
 							<tr>
 							  <th width="5%">번호</th>
-							  <th width="60%">제목</th>
+							  <th width="50%">제목</th>
+							  <th width="20%">작성자</th>
 							  <th>작성일</th>
 							</tr>
 						</thead>
@@ -55,30 +56,16 @@ $(function() {
 									<i class="fa fa-angle-right"></i>
 								</c:if>
 							</c:forEach>
-							${freeboardInfo.bo_title }
-							
+							${freeboardInfo.bo_title }							
 						</td>
-								<td>${freeboardInfo.bo_reg_date }</td>
-				
+						<td>${freeboardInfo.bo_writer }</td>
+						<td>${freeboardInfo.bo_reg_date }</td>
 					</tr>
 				</c:forEach>
 			</c:if>	
-						
-						
-						
-						
-						
-							<%-- <c:forEach items="${noticeList }" var="noticeInfo">
-							<tr>
-								<td>${noticeInfo.notice_no }</td>
-								<td>${noticeInfo.notice_title }</td>
-								<td>${noticeInfo.notice_writer }</td>
-								<td>${noticeInfo.notice_reg_date }</td>
-							</tr>
-							</c:forEach> --%>
-						</tbody>
+		</tbody>
 					</table>
-					<form action="/admin/freeboard.do">
+					<form action="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">
 					<div style="text-align:right;">
 						<select name="search_keycode" style="width:100px;">
 							<option selected="selected" value="TOTAL">전체</option>
@@ -97,7 +84,7 @@ $(function() {
 </div>
 <div>
 
- 					${pagination.getPagingHtmls() }
+${pagination.getPagingHtmls() }
 </div>
 
 </body>

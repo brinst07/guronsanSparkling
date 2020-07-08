@@ -130,6 +130,8 @@
 <script src="${pageContext.request.contextPath}/script/holder.js"></script>
 <script src="${pageContext.request.contextPath}/script/responsive-tabs.js"></script>
 <script src="${pageContext.request.contextPath}/script/zabuto_calendar.min.js"></script>
+<script type='text/javascript' src='${pageContext.request.contextPath }/js/common/validation.js'></script>
+
 <!-- summernote 에디터 js 파일 시작 -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.js"></script>
 <!-- summernote 에디터 js 파일 끝 -->

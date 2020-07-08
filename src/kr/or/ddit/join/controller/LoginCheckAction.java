@@ -41,6 +41,15 @@ public class LoginCheckAction {
 		
 		MemberVO memberInfo = service.memberInfo(params);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if(memberInfo == null){
 			this.message = "회원이 아닙니다.";
 //			try {

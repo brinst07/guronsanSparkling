@@ -67,7 +67,7 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<a href="${pageContext.request.contextPath }/user/member/memberForm.do">회원가입을 원하세요?????</a>
+										<a href="${pageContext.request.contextPath }/user/member/memberForm.do">회원가입</a>
 									</td>
 								</tr>
 							</table>

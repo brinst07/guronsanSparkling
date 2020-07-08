@@ -27,7 +27,7 @@
 
 			<result name="success" type="chain">		
 				<param name="namespace">/user/freeboard</param>
-				<param name="actionName">freeboardList</param>
+				<param name="actionName">freeboardList</param>				
 			</result>
 		</action>
 		

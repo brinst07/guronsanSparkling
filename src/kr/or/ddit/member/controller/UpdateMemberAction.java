@@ -1,6 +1,9 @@
 package kr.or.ddit.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.IMemberServiceImpl;
@@ -13,8 +16,13 @@ public class UpdateMemberAction implements ModelDriven<MemberVO>{
 	private MemberVO memberInfo;
 	
 	public String execute(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
 		IMemberService service = IMemberServiceImpl.getInstance();
 		service.updateMemberInfo(this.memberInfo);
+		
+		session.setAttribute("LOGIN_MEMBERINFO", memberInfo);
+	    
 		return "success";
 	}
 

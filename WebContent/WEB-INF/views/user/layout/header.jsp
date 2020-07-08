@@ -80,7 +80,7 @@
                         <span class="hidden-xs">${LOGIN_MEMBERINFO.mem_name }</span>&nbsp;<span class="caret"></span>
                      </a>
                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="/guronsan/controller/user/memberModifyFormAction.do"><i class="fa fa-user"></i>프로필관리</a></li>
+                        <li><a href="${pageContext.request.contextPath }/user/member/memberModifyForm.do"><i class="fa fa-user"></i>프로필관리</a></li>
                         <li><a href="#"><i class="fa fa-calendar"></i>스케줄관리</a></li>
                         <li><a href="#"><i class="fa fa-envelope"></i>쪽지관리&nbsp;&nbsp;<font color="red">3</font></a></li>
                         <li><a href="#"><i class="fa fa-tasks"></i>메일관리&nbsp;&nbsp;<font color="red">5</font></a></li>

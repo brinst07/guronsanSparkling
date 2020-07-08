@@ -23,9 +23,9 @@
 		<action name="updateMemberInfo" class="kr.or.ddit.member.controller.UpdateMemberAction">
 			<interceptor-ref name="modelDriven"></interceptor-ref>
 			<interceptor-ref name="params"></interceptor-ref>
-			<result type="chain">
-				<param name="namespace">/user/member</param>
-				<param name="actionName">memberList</param>
+			<result type="redirectAction">
+				<param name="namespace">/user/freeboard</param>
+				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
 		
@@ -49,6 +49,11 @@
 		
 		<action name="zipcodeSearchResult" class="kr.or.ddit.member.controller.ZipcodeSearchResultAction">
 		</action>
+		
+		<action name="memberModifyForm">
+			<result type="tiles">user/member/memberModifyForm</result>
+		</action>
+		
 		
 		<action name="idCheck" class="kr.or.ddit.member.controller.IDCheckAction"></action>
 	</package>

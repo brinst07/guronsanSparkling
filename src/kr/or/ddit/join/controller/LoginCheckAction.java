@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.IMemberServiceImpl;
+import kr.or.ddit.utiles.CryptoGenerator;
 import kr.or.ddit.vo.MemberVO;
 
 import org.apache.struts2.ServletActionContext;
@@ -22,6 +23,7 @@ public class LoginCheckAction {
 	// 선언하면 setter를 통해서 해당 전역변수 쿼리스트링 값이 주입
 	private String mem_id;
 	private String mem_pass;
+	
 	// 액션 클래스에서 View(jsp) 또는 다른 액션 대상의 리다이렉트 처리시 전달되는 값은 전역변수 선언 및 값 할당 후
 	// 해당 전역변수의 getter를 통해 ValueStack에 저장 후 스트럿츠 설정파일(리다이렉트 또는 포워딩 처리와 무관) 및 View에서 EL 표기법으로 접근 활용이 가능
 	// ValueStack - HttpServletRequest의 확장된 스트럿츠 프레임워크의 저장영역
@@ -32,6 +34,8 @@ public class LoginCheckAction {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 //		HttpServletResponse response = ServletActionContext.getResponse();
+		mem_id = CryptoGenerator.decryptRSA(session, mem_id);
+		mem_pass = CryptoGenerator.decryptRSA(session, mem_pass);
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
@@ -80,4 +84,5 @@ public class LoginCheckAction {
 	public String getMessage() {
 		return message;
 	}
+
 }

@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/admin.css" type="text/css">
 <title>회원관리 관리자 로그인</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath }/js/crypto/jsbn.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath }/js/crypto/rsa.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath }/js/crypto/prng4.js"></script>
+<script type='text/javascript' src="${pageContext.request.contextPath }/js/crypto/rng.js"></script>
 <script type="text/javascript">
 	$(function(){
 	
@@ -18,12 +22,22 @@
 		
 		//로그인 버튼을 클릭하면 전송하는 로직
 		$('.loginBtn').click(function(){
+			
+			
+		    var modulus = '${publicKeyMap["publicModulus"]}';
+       	    var exponent = '${publicKeyMap["publicExponent"]}';
+       	    
+       		var rsaObject = new RSAKey();
+       	    rsaObject.setPublic(modulus, exponent);
+       	    var encryptID = rsaObject.encrypt($('input[name=mem_id]').val());
+      	    var encryptPWD = rsaObject.encrypt($('input[name=mem_pass]').val());
+      	    
 			const mem_id = $('input[name=mem_id]').val();
 			const mem_pass = $('input[name=mem_pass]').val();
 			const checked = $('input[name=saveID]').is(':checked');
 			let form = $('<form action="${pageContext.request.contextPath}/user/join/loginCheck.do" method="post"></form>');
-			let inputID= $('<input type="hidden" value="'+mem_id+'" name="mem_id">');
-			let inputPWD = $('<input type="hidden" value="'+mem_pass+'" name="mem_pass">');
+			let inputID= $('<input type="hidden" value="'+encryptID+'" name="mem_id">');
+			let inputPWD = $('<input type="hidden" value="'+encryptPWD+'" name="mem_pass">');
 			form.append(inputID);
 			form.append(inputPWD);
 			$(document.body).append(form);
@@ -36,7 +50,6 @@
 </script>
 </head>
 <body>
-공개키 값 : ${publicKeyMap['publicModulus']} | ${publicKeyMap['publicExponent'] }
 	<table width="770" border="0" align="center" cellpadding="0"
 		cellspacing="0" style="margin: 90px;">
 		<tr>

@@ -46,7 +46,7 @@ public class IMemberDaoImpl implements IMemberDao {
 		//프로시저, 펑션을 작성 및 호출
 		//오라클 객체 생성
 		//client.update(arg0)
-		client.update("member.updateMember",memberInfo);
+		client.update("member.updateMemberInfo",memberInfo);
 	}
 
 	@Override

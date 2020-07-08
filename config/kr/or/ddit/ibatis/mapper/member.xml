@@ -91,9 +91,10 @@
 		mem_id = #mem_id#
 	</update>
 	
-	<select id="count" resultClass="int">
+	<select id="totalCount" resultClass="int">
 		select count(*)
 		from member
+		where mem_delete = 'n'
 	</select>
 	
 	<select id="memberPageList" resultClass="memberVO" parameterClass="map">

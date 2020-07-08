@@ -40,4 +40,16 @@
 		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
 	</listener>
 	 
+	 <filter>
+		<filter-name>fileUploadFilter</filter-name>
+		<filter-class>kr.or.ddit.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>fileUploadFilter</filter-name>
+		<url-pattern>*.java</url-pattern>
+	</filter-mapping>
+	 
+	 <listener>
+	 	<listener-class>kr.or.ddit.listener.Log4jInitializeListener</listener-class>	
+	 </listener>
 </web-app>

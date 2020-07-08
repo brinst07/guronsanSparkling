@@ -4,9 +4,9 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="freeboardPKG" extends="struts-default,tiles-default" namespace="/user/freeboard">
-		<action name="freeboardList">
-			<result type="tiles">user/freeboard/freeboardList</result>
+	<package name="userfreeboardPKG" extends="struts-default,tiles-default" namespace="/user/freeboard">
+		<action name="freeboardList" class="kr.or.ddit.freeboard.controller.FreeboardListAction">
+			<result name="success" type="tiles">user/freeboard/freeboardList</result>
 		</action>
 	</package>
 </struts>

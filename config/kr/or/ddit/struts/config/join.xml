@@ -4,28 +4,33 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<!-- 
+	<!--  	
 		http://localhost/StrutsToddler/user/join/loginForm.do
 	 -->
-	<package name="joinPKG" extends="abstractPKG" namespace="/user/join">
+	
+	<package name="joinPKG" extends="abstractPKG,tiles-default" namespace="/user/join">
 		<action name="loginForm">
 			<interceptor-ref name="cryptoInterceptor"></interceptor-ref>
 			<result>/WEB-INF/views/user/join/loginForm.jsp</result>
-		</action>
+		</action>		
+		
 		<action name="loginCheck" class="kr.or.ddit.join.controller.LoginCheckAction">
 			<result name="loginForm" type="redirectAction">
 				<param name="namespace">/user/join</param>
 				<param name="actionName">loginForm</param> 
 				<param name="message">${message}</param>
 			</result>
+			
 <!-- 			<result name="loginForm" type="redirect"> -->
 <!-- 				<![CDATA[/user/join/loginForm.do?message=${message}]]> -->
 <!-- 			</result> -->
-			<result name="success" type="chain">
-				<param name="namespace">/user/member</param>
-				<param name="actionName">memberList</param>
+
+			<result name="success" type="chain">		
+				<param name="namespace">/user/freeboard</param>
+				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
+		
 		<action name="logout" class="kr.or.ddit.join.controller.LogoutAction">
 			<result name="success" type="redirect">
 				<![CDATA[/user/join/loginForm.do?message=${message}]]>

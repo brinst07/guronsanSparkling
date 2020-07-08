@@ -32,7 +32,7 @@
   			  		   			type - default dispatcher(포워딩 처리 선언)(생략가능)
   			  		   				   redirectAction(액션에서 동일 또는 다른 패키지 내 액션으로 리다이렉트 처리)
   			  		   				   chain(액션에서 동일 또는 다른 패키지 내 액션으로 포워딩 처리)
-  			  		   			
+  			  		  
  -->
  <!-- http://localhost/StrutsToddler/hello/hello.do -->
  <package name="helloPKG" extends="struts-default" namespace="/hello">
@@ -41,10 +41,12 @@
 <!--  		<result name="login" type="dispatcher">/WEB-INF/views/user/hello/login.jsp</result> -->
  	</action>
  </package>
- <include file="kr/or/ddit/struts/config/common.xml"></include>
- <include file="kr/or/ddit/struts/config/join.xml"></include>
- <include file="kr/or/ddit/struts/config/member.xml"></include>
- <include file="kr/or/ddit/struts/config/file.xml"></include>
- <include file="kr/or/ddit/struts/config/freeboard.xml"></include>
- <include file="kr/or/ddit/struts/config/admin/member.xml"></include>
+ 
+ 
+	 <include file="kr/or/ddit/struts/config/common.xml"></include>
+	 <include file="kr/or/ddit/struts/config/join.xml"></include>
+	 <include file="kr/or/ddit/struts/config/member.xml"></include>
+	 <include file="kr/or/ddit/struts/config/file.xml"></include>
+	 <include file="kr/or/ddit/struts/config/freeboard.xml"></include>
+	 <include file="kr/or/ddit/struts/config/admin/member.xml"></include>
 </struts>

@@ -27,7 +27,7 @@ public class LoginCheckAction {
 	// ValueStack - HttpServletRequest의 확장된 스트럿츠 프레임워크의 저장영역
 	//				request.setAttribute() 처리와 동일
 	private String message;
-
+	
 	public String execute(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
@@ -51,6 +51,9 @@ public class LoginCheckAction {
 //				e.printStackTrace();
 //			}
 			return "loginForm";
+		}else if(memberInfo.getMem_id().equals("admin")){
+			session.setAttribute("LOGIN_MEMBERINFO", memberInfo);
+			return null;
 		}else{
 			session.setAttribute("LOGIN_MEMBERINFO", memberInfo);
 			return "success";

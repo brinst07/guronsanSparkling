@@ -25,38 +25,66 @@ $(function(){
     // 에디터 제거
     // $('#bo_content').summernote('destroy');
     
-	BootstrapDialog.show({
-	    title: '알럿창',
-	    message: '알럿창으로 활용하세요!'
-	});
+// 	BootstrapDialog.show({
+// 	    title: '알럿창',
+// 	    message: '알럿창으로 활용하세요!'
+// 	});
 	
-	BootstrapDialog.show({
-        message: '컨펌 다이얼로그로 활용하세요!',
-        buttons: [{
-            label: 'Button 1'
-        }, {
-            label: 'Button 2',
-            cssClass: 'btn-primary',
-            action: function(){
-                alert('Hi Orange!');
-            }
-        }, {
-            icon: 'glyphicon glyphicon-ban-circle',
-            label: 'Button 3',
-            cssClass: 'btn-warning'
-        }, {
-            label: 'Close',
-            action: function(dialogItself){
-                dialogItself.close();
-            }
-        }]
-    });
+// 	BootstrapDialog.show({
+//         message: '컨펌 다이얼로그로 활용하세요!',
+//         buttons: [{
+//             label: 'Button 1'
+//         }, {
+//             label: 'Button 2',
+//             cssClass: 'btn-primary',
+//             action: function(){
+//                 alert('Hi Orange!');
+//             }
+//         }, {
+//             icon: 'glyphicon glyphicon-ban-circle',
+//             label: 'Button 3',
+//             cssClass: 'btn-warning'
+//         }, {
+//             label: 'Close',
+//             action: function(dialogItself){
+//                 dialogItself.close();
+//             }
+//         }]
+//     });
+
+    $('form[name=freeboardForm]').submit(function() {
+//     	if(!$('#bo_title').val().validationTITLE()){
+//     		return alertPrint('제목을 바르게 입력해주세요.'); 
+//     	}
+//     	if(!$('#bo_nickname').val().validationNICKNAME()){
+//     		return alertPrint('대화명을 바르게 입력해주세요.');
+//     	}
+//     	if(!$('#bo_pwd').val().validationPWD()){
+//     		return alertPrint('패스워드를 바르게 입력해주세요.');
+//     	}
+//     	if(!$('#bo_mail').val().validationMAIL()){
+//     		return alertPrint('메일을 바르게 입력해주세요.');
+//     	}
+    	
+    	var bo_content = $('#bo_content').summernote('code');
+		$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
+    	
+		$(this).append('<input type="hidden" name="bo_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
+		$(this).append('<input type="hidden" name="bo_ip" value="${pageContext.request.remoteAddr}"/>');
+		$(this).attr('action', '/guronsan/controller/user/insertfreeboardAction.do');
+		
+		return true;
+	});
+    
+    $('#btnList').on('click', function() {
+		location.replace('/guronsan/controller/user/freeboardListAction.do');
+	});
 
 });
 </script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="" method="post">
+<form name="freeboardForm" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_title">제목:</label>
 		<div class="col-sm-10">
@@ -90,20 +118,20 @@ $(function(){
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="file01">첨부파일1:</label>
 		<div class="col-sm-10">
-			 <input type="file" class="filestyle" id="file01" name="file01" data-buttonName="btn-primary">
+			 <input type="file" class="filestyle" id="file01" name="files" data-buttonName="btn-primary">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="file02">첨부파일2:</label>
 		<div class="col-sm-10">
-			 <input type="file" class="filestyle" id="file02" name="file02" data-buttonName="btn-primary">
+			 <input type="file" class="filestyle" id="file02" name="files" data-buttonName="btn-primary">
 		</div>
 	</div>
 	<div class="form-group"> 
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-info" style="float: right">등록</button>
 			<button type="button" class="btn btn-danger" style="float: right">취소</button>
-			<button type="button" class="btn btn-primary" style="float: right">목록</button>
+			<button type="button" id="btnList" class="btn btn-primary" style="float: right">목록</button>
 		</div>
 	</div>
 </form>

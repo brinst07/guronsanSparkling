@@ -11,7 +11,7 @@ import com.opensymphony.xwork2.Action;
 public class DeleteMemberAction implements Action{
 
 	private String mem_id;
-	
+	private String message;
 
 	@Override
 	public String execute() throws Exception {
@@ -19,9 +19,14 @@ public class DeleteMemberAction implements Action{
 		params.put("mem_id", this.mem_id);
 		IMemberService service = IMemberServiceImpl.getInstance();
 		service.deleteMemberInfo(params);
+		this.message = "true";
 		return "success";
 	}
 	
+	public String getMessage() {
+		return message;
+	}
+
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}

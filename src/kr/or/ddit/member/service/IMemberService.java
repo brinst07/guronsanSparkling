@@ -11,6 +11,8 @@ public interface IMemberService {
 	public void deleteMemberInfo(Map<String,String> params);
 	public void updateMemberInfo(MemberVO memberInfo);
 	public void insertMember(MemberVO vo);
-	public int totalCount();
+	public int totalCount(Map<String,String> params);
+	public int updateAdminMember(MemberVO vo);
+	public MemberVO selectByID(String string);
 	
 }

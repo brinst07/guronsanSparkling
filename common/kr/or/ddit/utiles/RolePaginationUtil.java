@@ -6,7 +6,7 @@ public class RolePaginationUtil {
    private int currentPage;         // 현재 페이지
    private int totalCount;            // 전체 게시글 갯수
    private int totalPage;            // 전체 페이지 갯수
-   private int blockCount = 10;      // 페이지별 출력될 게시글 갯수
+   private int blockCount;      // 페이지별 출력될 게시글 갯수
    private int blockPage = 5;         // 페이지네이션 메뉴 갯수
    private int startPage;            // 페이지네이션 메뉴 시작 페이지 번호
    private int endPage;            // 페이지네이션 메뉴 끝 페이지 번호
@@ -17,10 +17,11 @@ public class RolePaginationUtil {
    
    public RolePaginationUtil(HttpServletRequest request,
                         int currentPage,
-                        int totalCount){
+                        int totalCount, int blockCount){
       this.request = request;
       this.currentPage = currentPage;
       this.totalCount = totalCount;
+      this.blockCount = blockCount;
       
       pagingHtmls = new StringBuffer();
       
@@ -61,20 +62,20 @@ public class RolePaginationUtil {
       if((this.currentPage - 1) == 0) {
          this.pagingHtmls.append("<li class='disabled'><a href='#'>&laquo;</a></li>");
       } else {
-         this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + (this.currentPage - 1) + "'>&laquo;</a></li>");   
+         this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + (this.currentPage - 1) + "&count=" + (this.blockCount) + "'>&laquo;</a></li>");   
       }
       // 1|2|3|4|5
       for (int i=this.startPage; i<=this.endPage; i++){
          if(this.currentPage == i){
             this.pagingHtmls.append("<li class='active'><a href='#'>" + i + "</a></li>");
          } else {
-            this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + i + "'>" + i + "</a></li>");
+            this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + i + "&count=" + (this.blockCount) + "'>" + i + "</a></li>");
          }
       }
       
       // 다음
       if(this.currentPage < this.totalPage) {
-         this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + (this.currentPage + 1) + "'>&raquo;</a></li>");   
+         this.pagingHtmls.append("<li><a href='" + requestURI + "?currentPage=" + (this.currentPage + 1) + "&count=" + (this.blockCount) + "'>&raquo;</a></li>");   
       } else {
          this.pagingHtmls.append("<li class='disabled'><a href='#'>&raquo;</a></li>");
       }

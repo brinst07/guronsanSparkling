@@ -5,21 +5,47 @@
 
 <sqlMap namespace="member">
 	<typeAlias alias="memberVO" type="kr.or.ddit.vo.MemberVO" />
-	
+
 	<sql id="selectAll">
-		select ROWNUM rnum, member.*
+		select *
 		from member
 		WHERE MEM_DELETE = 'n'
 	</sql>
-	
-	
+
+	<sql id="searchCondition">
+		<dynamic prepend="AND">
+			<isNotEmpty property="search_keyword" open="(" close=")">
+				<isNotEmpty property="search_keycode" prepend="AND">
+					$search_keyword$ LIKE '%'||#search_keycode#||'%'
+				</isNotEmpty>
+			</isNotEmpty>
+			<isNotEmpty property="mem_add1" prepend="AND">
+				mem_add1 = #mem_add1#
+			</isNotEmpty>
+			<isNotEmpty property="mem_add2" prepend="AND">
+				mem_add2 = #mem_add2#
+			</isNotEmpty>
+			<isNotEmpty property="mem_hp" prepend="AND">
+				mem_hp LIKE '%'||#mem_hp#||'%'
+			</isNotEmpty>
+			<isNotEmpty property="search_calendar" prepend="AND">
+				mem_calendar = #search_calendar#
+			</isNotEmpty>
+			<isNotEmpty property="mem_bir" prepend="AND">
+				TO_CHAR(mem_bir,'YYYY-MM-DD') LIKE '%'||#mem_bir#||'%'
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+
 	<select id="loginCheck" parameterClass="map" resultClass="memberVO">
-		select *
+		select
+		*
 		from member
 		where mem_id = #mem_id# and
-			  mem_pass = #mem_pass#
+		mem_pass = #mem_pass#
 	</select>
-	
+
 
 	<insert id="insertMemberInfo" parameterClass="memberVO">
 		insert into
@@ -28,34 +54,14 @@
 	</insert>
 
 	<select id="memberList" resultClass="memberVO">
-		<include refid="selectAll"/>
+		<include refid="selectAll" />
 	</select>
-	
+
 	<select id="memberSearch" parameterClass="map" resultClass="memberVO">
-		<include refid="selectAll"/>
-		<dynamic>
-				<isNotEmpty property="search_keyword">
-					<isNotEmpty property="search_keycode"  prepend="AND">
-						$search_keyword$ LIKE '%'||#search_keycode#||'%'
-					</isNotEmpty>
-				</isNotEmpty>
-				<isNotEmpty property="mem_add1" prepend="AND">
-					mem_add1 = #mem_add1#
-				</isNotEmpty>
-				<isNotEmpty property="mem_add2" prepend="AND">
-					mem_add2 = #mem_add2#
-				</isNotEmpty>
-				<isNotEmpty property="mem_hp" prepend="AND">
-					mem_hp LIKE  '%'||#mem_hp#||'%'
-				</isNotEmpty>
-				<isNotEmpty property="mem_bir" prepend="AND">
-					<isNotEmpty property="search_calendar">
-					mem_bir LIKE '%'||#mem_bir#||'%' AND mem_calendar = #search_calendar#					
-					</isNotEmpty>
-				</isNotEmpty>
-		</dynamic>
+
+
 	</select>
-	
+
 	<update id="updateMemberInfo" parameterClass="memberVO">
 		update member
 		set
@@ -63,23 +69,24 @@
 		mem_hometel = #mem_hometel#, mem_comtel = #mem_comtel#, mem_hp =
 		#mem_hp#,
 		mem_mail = #mem_mail#, mem_job = #mem_job#, mem_like =
-		#mem_like#, mem_calendar = #mem_calendar# 
+		#mem_like#, mem_calendar = #mem_calendar#
 		where mem_id = #mem_id#
 	</update>
-	
+
 	<update id="deleteMemberInfo">
 		update member
 		set mem_delete = 'y'
-		where mem_id = #mem_id#
+		where mem_id =
+		#mem_id#
 	</update>
 	<select id="memberSearchId" parameterClass="map" resultClass="memberVO">
-		<include refid="selectAll"/>
+		<include refid="selectAll" />
 		AND mem_id = #mem_id#
 	</select>
-	
+
 	<update id="memberUpdate" parameterClass="memberVO">
 		update member
-		set 
+		set
 		mem_pass = #mem_pass#,
 		mem_mail = #mem_mail#,
 		mem_add1 = #mem_add1#,
@@ -91,42 +98,73 @@
 		mem_id = #mem_id#
 	</update>
 	
+<<<<<<< Updated upstream
 	<select id="totalCount" resultClass="int">
 		select count(*)
 		from member
 		where mem_delete = 'n'
-	</select>
+=======
+	<update id="updateAdminMember" parameterClass="memberVO">
+		UPDATE MEMBER
+		SET
+		MEM_PASS = #mem_pass#,
+		MEM_ADD1 = #mem_add1#,
+		MEM_ADD2 = #mem_add2#,
+		MEM_HP = #mem_hp#,
+		MEM_MAIL = #mem_mail#,
+		MEM_BIR = #mem_bir#
+		WHERE MEM_ID = #mem_id#
+	</update>
 	
+	
+	<select id="count" resultClass="int" parameterClass="map">
+		select count(*)
+		from member
+		WHERE MEM_DELETE = 'n'
+		<include refid="searchCondition"/> 
+>>>>>>> Stashed changes
+	</select>
+
 	<select id="memberPageList" resultClass="memberVO" parameterClass="map">
-		SELECT *
-		FROM
-		(<include refid="selectAll"/>) A
-        <![CDATA[
-        WHERE A.RNUM <= #startCount#
-        AND   A.RNUM >= #endCount#
-        ]]>
-        ORDER BY A.RNUM DESC
-	</select>
-	
+		SELECT B.*
+ 		FROM  ( SELECT ROWNUM RNUM, A.* 
+ 			FROM(<include refid="selectAll"/>
+ 				<include refid="searchCondition"/> 
+ 				)  A) B
+ 		<![CDATA[
+	 		WHERE B.RNUM <= #startCount#
+	 		AND B.RNUM >=#endCount#
+ 		]]>
+ 		ORDER BY B.RNUM DESC
+	</select>  
+   
+   
+
 	<select id="selectByID" resultClass="memberVO" parameterClass="string">
 		SELECT *
 		FROM member
 		WHERE mem_id = #mem_id#
 	</select>
-	
+
 	<update id="deleteMember" parameterClass="map">
-		update member 
-		set MEM_DELETE = 'y' 
+		update member
+		set MEM_DELETE = 'y'
 		where mem_id = #mem_id#
 	</update>
-	
+
 	<select id="memberInfo" parameterClass="map" resultClass="memberVO">
-		<include refid="selectAll"/>
-		AND	MEM_ID = #mem_id#
+		<include refid="selectAll" />
+		AND MEM_ID = #mem_id#
 		<dynamic prepend="AND">
 			<isNotEmpty property="mem_pass">
 				MEM_PASS = #mem_pass#
-			</isNotEmpty>	
+			</isNotEmpty>
 		</dynamic>
+	</select>
+	
+	<select id="selectbyID" parameterClass="String" resultClass="memberVO">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_ID = #mem_id#
 	</select>
 </sqlMap>

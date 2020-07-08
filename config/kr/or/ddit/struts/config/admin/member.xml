@@ -5,11 +5,35 @@
 
 <struts>
 	<package name="adminMemberPKG" extends="struts-default,tiles-default" namespace="/admin/member">
+	
 		<action name="memberMgr" class="kr.or.ddit.member.controller.MemberListAction">
 			<result type="tiles">admin/member/memberMgr</result>
 		</action>
+		
 		<action name="memberView" class="kr.or.ddit.member.controller.MemberViewAction">
 			<result type="tiles">admin/member/memberDetail</result>
+		</action>
+		
+		<action name="deleteMember" class="kr.or.ddit.member.controller.DeleteMemberAction">
+			<result type="redirectAction">
+				<param name="namespace">/admin/member</param>
+				<param name="actionName">memberMgr</param>
+				<param name="message">${message}</param>
+			</result>
+		</action>
+		
+		<action name="memberUpdate" class="kr.or.ddit.member.controller.MemberUpdateAction">
+		<interceptor-ref name="modelDriven"></interceptor-ref>
+		<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/member</param>
+				<param name="actionName">memberMgr</param>
+				<param name="message">${message}</param>
+			</result>
+		</action>
+		
+		<action name="memberExcel" class="kr.or.ddit.member.controller.MemberExcelAction">
+			<result type="tiles">admin/member/memberTable</result>
 		</action>
 	</package>
 </struts>

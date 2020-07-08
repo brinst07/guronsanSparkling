@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="adminFAQPKG" extends="struts-default,tiles-default" namespace="/admin/faq">
+		<action name="faqList" class="kr.or.ddit.faq.controller.FAQListAction">
+			<result type="tiles">admin/faq/faqList</result>
+		</action>
+		<action name="faqRegistForm">
+			<result type="tiles">admin/faq/faqForm</result>
+		</action>
+		<action name="faqRegistAction" class="kr.or.ddit.faq.controller.FAQRegistAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/faq</param>
+				<param name="actionName">/faqList</param>
+			</result>
+		</action>
+		<action name="faqViewAction" class="kr.or.ddit.faq.controller.FAQViewAction">
+			<result type="tiles">admin/faq/faqView</result>
+		</action>
+		<action name="FAQModifyAction" class="kr.or.ddit.faq.controller.FAQModifyAction">
+		<interceptor-ref name="modelDriven"></interceptor-ref>
+		<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/faq</param>
+				<param name="actionName">faqList</param>
+			</result>
+		</action>
+		<action name="deleteFAQAction" class="kr.or.ddit.faq.controller.DeleteFAQAction">
+			<result type="redirectAction">
+				<param name="namespace">/admin/faq</param>
+				<param name="actionName">faqList</param>
+			</result>
+		</action>
+		<action name="faqListAction">
+			<result type="redirectAction">
+				<param name="namespace">/admin/faq</param>
+				<param name="actionName">faqList</param>
+			</result>
+		</action>
+	</package>
+</struts>

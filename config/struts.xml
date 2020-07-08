@@ -50,4 +50,5 @@
 	 <include file="kr/or/ddit/struts/config/freeboard.xml"></include>
 	 <include file="kr/or/ddit/struts/config/qna.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/member.xml"></include>
+	 <include file="kr/or/ddit/struts/config/admin/faq.xml"></include>
 </struts>

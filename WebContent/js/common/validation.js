@@ -12,7 +12,7 @@ String.prototype.validationID = function(){
 String.prototype.validationPWD = function(){
 	//<input type=test name = mem_id/>
 	// "a001".validationID();
-	return /^[a-z0-9]{8,20}$/.test(this);
+	return /^[a-z0-9]{4,20}$/.test(this);
 };
 
 String.prototype.validationBIR = function(){

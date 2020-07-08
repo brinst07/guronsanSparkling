@@ -48,12 +48,12 @@
 			</div>
 			<div class="gnb">
 				<ul>
-					<li><a href="/admin/main.do">회원관리</a></li>
+					<li><a href="/admin/member/memberMgr.do">회원관리</a></li>
 					<li><a href="/admin/notice.do">공지사항</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">자유게시판</a></li>
 					<li><a href="/admin/library.do">자료실</a></li>
 					<li><a href="/admin/qna.do">Q&A</a></li>
-					<li><a href="/admin/faq.do">FAQ</a></li>
+					<li><a href="/admin/faq/faqList.do">FAQ</a></li>
 					<li><a href="/admin/thum.do">썸네일자료실</a></li>
 				</ul>
 			</div>
@@ -85,6 +85,7 @@
 <!-- 부트스트랩 다이얼로그 js 파일 시작 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
 <!-- 부트스트랩 다이얼로그 js 파일 끝 -->
+<script type='text/javascript' src='${pageContext.request.contextPath }/js/common/validation.js'></script>
 
 
 </html>

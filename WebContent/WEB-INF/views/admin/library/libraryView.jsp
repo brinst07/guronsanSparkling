@@ -16,9 +16,13 @@ $(function(){
 	});
 	
 	$('#delete').on('click',function(){
-		var no = $('input[name=no]').val();
-		location.href='/admin/library/delete.do?no='+no;
+		var library_no = $('input[name=library_no]').val();
+		location.href='${pageContext.request.contextPath}/admin/library/deleteLibrary.do?library_no='+library_no;
 	});
+	
+	$('#list').on('click', function(){
+		location.replace('${pageContext.request.contextPath}/admin/library/libraryList.do');
+    })
 })
 </script>
 </head>
@@ -35,22 +39,22 @@ $(function(){
 					<table border="0" cellspacing="1" cellpadding="1">
 						<tr>
 						  <th>번호</th>
-						  <td><label class="library_title">${vo.getLibrary_no() }</label>
-						  <input type="hidden" value="${vo.getLibrary_no() }" name="no">
+						  <td><label class="library_title">${libraryInfo.library_no }</label>
+						  <input type="hidden" value="${libraryInfo.library_no }" name="library_no">
 						  </td>
 						</tr>
 						<tr>
 						  <th>제목</th>
-						  <td><label class="library_title">${vo.getLibrary_title() }</label></td>
+						  <td><label class="library_title">${libraryInfo.library_title }</label></td>
 						</tr>
 						<tr>
 						  <th>작성자</th>
-						  <td><label class="library_writer">${vo.getLibrary_writer() }</label>
+						  <td><label class="library_writer">${libraryInfo.library_writer }</label>
 						  </td>
 						</tr>
 						<tr>
 						  <th>내용</th>
-						  <td><textarea rows="10" cols="110" id="text" class="library_content"  style="overflow: auto;">${vo.getLibrary_content() }</textarea> 
+						  <td><textarea rows="10" cols="110" id="text" class="library_content"  style="overflow: auto;">${libraryInfo.library_content }</textarea> 
 						  <input type="hidden" value="" name="content">
 						  </td>
 						</tr>
@@ -58,7 +62,7 @@ $(function(){
 						  <th>첨부파일</th>
 						  <td>
 						  	<c:forEach items="${filesList }" var="file">
-						  		<a href="/admin/library/filedown.do?num=${file.getLibraryfile_seq()}">${file.getLibraryfile_name() }</a>
+						  		<a href="/admin/library/filedown.do?library_no=${file.getLibraryfile_seq()}">${file.getLibraryfile_name() }</a>
 						  	</c:forEach>
 						  	<input type="file" name="addfile">
 						  </td>

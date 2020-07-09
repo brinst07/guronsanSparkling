@@ -48,8 +48,9 @@
 			</div>
 			<div class="gnb">
 				<ul>
+					<li><a href="/admin/notice/noticeList.do">공지사항</a></li>
+					<li><a href="/admin/library/libraryList.do">자료실</a></li>
 					<li><a href="/admin/member/memberMgr.do">회원관리</a></li>
-					<li><a href="/admin/notice.do">공지사항</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">자유게시판</a></li>
 					<li><a href="/admin/library.do">자료실</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">Q&A</a></li>

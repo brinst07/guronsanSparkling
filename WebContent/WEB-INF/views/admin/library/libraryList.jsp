@@ -19,8 +19,8 @@ $(function() {
 	});
 	
 	$('#tbody tr').on('click',function(){
-		var num = $(this).find('td:eq(0)').text();
-		location.href = '/admin/library/libraryInfo.do?num='+num;
+		var library_no = $(this).find('td:eq(0)').text();
+		location.href = '${pageContext.request.contextPath}/admin/library/libraryView.do?library_no='+library_no;
 	});
 	
 	$('input[name=src]').on('click',function(){
@@ -74,8 +74,8 @@ $(function() {
 							<option value="CONTENT">내용</option>
 							<option value="NICKNAME">닉네임</option>
 						</select> 
-						<input type="hidden" name="select" value="">
-						<input name="unname" type="text" id="uname" size="20" /> 
+						<input type="hidden" name="search_keycode" value="">
+						<input name="unname" type="text" id="search_keyword" size="20" /> 
 						<input class="btn1" type="button" name="src" value="검색"/>
 					</div>
  					</form>

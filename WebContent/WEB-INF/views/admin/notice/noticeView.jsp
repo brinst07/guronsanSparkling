@@ -28,18 +28,18 @@ $(function(){
     	var notice_content = $('.notice_content').summernote('code');
 		$(this).append('<input type="hidden" name="notice_content" value="' + notice_content + '"/>');
 		$(this).append('<input type="hidden" name="notice_no" value="${noticeInfo.notice_no}"/>');
-   		$(this).attr('action', '/guronsan/controller/admin/updateNoticeAction.do');
+   		$(this).attr('action', '${pageContext.request.contextPath}/admin/notice/updateNotice.do');
 		
 	});
 	
 	$('#deleteBTN').on('click', function() {
     	
-		$(location).attr('href', '/guronsan/controller/admin/deleteNoticeAction.do?notice_no=${noticeInfo.notice_no}');
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/notice/deleteNotice.do?notice_no=${noticeInfo.notice_no}');
     		
 	});
 	
 	$('#listBTN').on('click', function(){
-    	location.replace("/guronsan/controller/admin/noticeListAction.do");
+		location.replace('${pageContext.request.contextPath}/admin/notice/noticeList.do');
     })
 
     

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="adminNoticePKG" extends="struts-default,tiles-default" namespace="/admin/notice">
+		<action name="noticeList" class="kr.or.ddit.notice.controller.NoticeListAction">
+			<result name="success" type="tiles">admin/notice/noticeList</result>
+		</action>
+		
+		<action name="noticeForm" class="kr.or.ddit.notice.controller.NoticeFormAction">
+			<result name="success" type="tiles">admin/notice/noticeForm</result>
+		</action>
+		
+		<action name="noticeView" class="kr.or.ddit.notice.controller.NoticeViewAction">
+			<result name="success" type="tiles">admin/notice/noticeView</result>
+		</action>
+		
+		<action name="deleteNotice" class="kr.or.ddit.notice.controller.DeleteNoticeAction">
+			<result type="chain">
+				<param name="namespace">/admin/notice</param>
+				<param name="actionName">noticeList</param>
+			</result>
+		</action>
+		
+		<action name="updateNotice" class="kr.or.ddit.notice.controller.UpdateNoticeAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+				<result type="chain">
+					<param name="namespace">/admin/notice</param>
+					<param name="actionName">noticeList</param>
+				</result>
+		</action>
+	</package>
+	
+	<package name="userNoticePKG" extends="struts-default,tiles-default" namespace="/user/notice">
+		<action name="noticeList" class="kr.or.ddit.notice.controller.NoticeListAction">
+			<result name="success" type="tiles">user/notice/noticeList</result>
+		</action>
+		
+		<action name="noticeView" class="kr.or.ddit.notice.controller.NoticeViewAction">
+			<result name="success" type="tiles">user/notice/noticeView</result>
+		</action>
+		
+		
+	</package>
+</struts>

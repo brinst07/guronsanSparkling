@@ -78,7 +78,7 @@ $(function(){
 	});
     
     $('#noticeListBTN').on('click', function() {
-		location.replace('/guronsan/controller/admin/noticedListAction.do');
+		location.replace('${pageContext.request.contextPath}/admin/notice/noticeList.do');
 	});
 
 });

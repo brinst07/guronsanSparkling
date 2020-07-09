@@ -61,7 +61,7 @@ $(function() {
 </div>
 <div >
 ${pagination.getPagingHtmls() }
-<form action="/user/noticeboardList.do" method="post" class="form-inline pull-right">
+<form action="${pageContext.request.contextPath}/user/notice/noticeList.do" method="post" class="form-inline pull-right">
 		<input id="search_keyword" name="search_keyword" type="text" placeholder="검색어 입력..." class="form-control" />
 		<select class="form-control" name="search_keycode" >
 			<option>검색조건</option>

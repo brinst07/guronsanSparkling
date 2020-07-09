@@ -10,9 +10,39 @@
 <title>게시물 보기</title>
 <script type="text/javascript">
 $(function(){
-	$('#modify').on('click',function(){
+	/* $('#modify').on('click',function(){
 		$('input[name=content]').val($('#text').val());
 		$('form').submit();
+		location.replace('${pageContext.request.contextPath}/admin/library/updateLibrary.do');
+	}); */
+	
+	// 도큐먼트 초기값 설정
+	$('#library_title').val('${libraryInfo.library_title}');
+	$('#library_writer').val('${libraryInfo.library_writer}');
+	$('#library_content').val('${libraryInfo.library_content}');
+	var library_title = '{libraryInfo.library_title}';
+	var library_writer = '{libraryInfo.library_writer}';
+	var library_title = '{libraryInfo.library_title}';
+	
+	
+	$('form[name=libraryView]').submit(function(){
+		
+		if(!$('#library_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
+    	if(!$('#library_nickname').val().validationNICKNAME()){
+    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	}
+    	if(!$('#library_pwd').val().validationPWD()){
+    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	}
+    	if(!$('#library_mail').val().validationMAIL()){
+    		return alertPrint('메일을 바르게 입력해주세요.');
+    	}	
+		
+		$(this).append('<input type="hidden" name="library_content" value="${libraryInfo.library_content}"/>');
+		$(this).append('<input type="hidden" name="library_no" value="${libraryInfo.library_no}"/>');
+		$(this).attr('action', '${pageContext.request.contextPath}/admin/library/updateLibrary.do');
 	});
 	
 	$('#delete').on('click',function(){
@@ -27,6 +57,8 @@ $(function(){
 </script>
 </head>
 <body>
+<form action="form-horizontal" role="form" action="" method="post" name="libraryView">
+
 <div class="wrap">
 	<table width="1000" border="0" cellpadding="0" cellspacing="0">
 		<tr valign="top">
@@ -45,16 +77,16 @@ $(function(){
 						</tr>
 						<tr>
 						  <th>제목</th>
-						  <td><label class="library_title">${libraryInfo.library_title }</label></td>
+						  <td><label id="library_title" class="library_title">${libraryInfo.library_title }</label></td>
 						</tr>
 						<tr>
 						  <th>작성자</th>
-						  <td><label class="library_writer">${libraryInfo.library_writer }</label>
+						  <td><label id="library_writer" class="library_writer">${libraryInfo.library_writer }</label>
 						  </td>
 						</tr>
 						<tr>
 						  <th>내용</th>
-						  <td><textarea rows="10" cols="110" id="text" class="library_content"  style="overflow: auto;">${libraryInfo.library_content }</textarea> 
+						  <td><textarea rows="10" cols="110" id="text" id="library_content" class="library_content"  style="overflow: auto;">${libraryInfo.library_content }</textarea> 
 						  <input type="hidden" value="" name="content">
 						  </td>
 						</tr>
@@ -70,7 +102,7 @@ $(function(){
 						</tr>
 					</table>
 					<div style="text-align:right">
-						<input class="btn2" type="button"  id="modify" value="수정"/> 
+						<input class="btn2" type="submit"  id="modify" value="수정"/> 
 						<input class="btn2" type="button" id="delete" value="삭제"/> 
 						<input class="btn2" type="button" id="list" value="목록"/>
 					</div>
@@ -80,5 +112,7 @@ $(function(){
 		</tr>
 	</table>
 </div>
+
+</form>
 </body>
 </html>

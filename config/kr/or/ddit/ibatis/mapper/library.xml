@@ -33,14 +33,23 @@
 	<sql id="searchCondition">
 		<dynamic prepend="AND">
 			<isNotEmpty prepend="search_keyword" open="(" close=")">
-				<isEqual property="search_keycord" compareValue="TITLE" >
+				<isEqual property="search_keycode" compareValue="TOTAL" >
+					LIBRARY_TITLE LIKE '%'|| #search_keyword#||'%'
+					OR LIBRARY_CONTENT LIKE '%'|| #search_keyword#||'%'
+					OR LIBRARY_WRITER LIKE '%'|| #search_keyword#||'%'
+					OR LIBRARY_NICKNAME LIKE '%'|| #search_keyword#||'%'
+					
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="TITLE" >
 					LIBRARY_TITLE LIKE '%'|| #search_keyword#||'%'
 				</isEqual>
 				<isEqual property="search_keycode" compareValue="CONTENT" >
 					LIBRARY_CONTENT LIKE '%'|| #search_keyword#||'%'
 				</isEqual>
 				<isEqual property="search_keycode" compareValue="NICKNAME" >
-					LIBRARY_NICKNAME LIKE '%'|| #search_keyword#||'%'
+					LIBRARY_WRITER LIKE '%'|| #search_keyword#||'%'
+					OR LIBRARY_NICKNAME LIKE '%'|| #search_keyword#||'%'
+					
 				</isEqual>
 			</isNotEmpty>
 		</dynamic>

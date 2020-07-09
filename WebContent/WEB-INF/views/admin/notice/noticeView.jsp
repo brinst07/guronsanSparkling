@@ -25,6 +25,12 @@ $(function(){
     
 	$('form[name=noticeView]').submit(function() {
 	//$('#updateBTN').click(function(){
+		
+		if(!$('#notice_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
+		
+		
     	var notice_content = $('.notice_content').summernote('code');
 		$(this).append('<input type="hidden" name="notice_content" value="' + notice_content + '"/>');
 		$(this).append('<input type="hidden" name="notice_no" value="${noticeInfo.notice_no}"/>');
@@ -71,6 +77,14 @@ $(function(){
     	}
     }); */
 });
+	
+function alertPrint(msg) {
+	BootstrapDialog.show({
+	    title: '알림',
+	    message: msg
+	}); 
+	return false;
+}
     
 </script>
 

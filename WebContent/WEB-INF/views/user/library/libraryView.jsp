@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시글 정보</title>
+<title>자료실 정보</title>
 <!-- 이미지 슬라이드 사이즈 조정 -->
 <style type="text/css">
 .carousel{
@@ -41,17 +41,49 @@ $(function(){
     var library_depth = '${libraryInfo.library_depth}';
     var library_seq = '${libraryInfo.library_seq}';
     
-    $('form[name=freeboardView]').submit(function() {
-    	
-    	
-    	var library_content = $('#library_content').summernote('code');
-		$(this).append('<input type="hidden" name="library_content" value="' + library_content + '"/>');
-		$(this).append('<input type="hidden" name="library_no" value="${libraryInfo.library_no}"/>');
-    	
-		$(this).append('<input type="hidden" name="library_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/user/updateLibrary.do');
-		
+    
+    $('form[name=libraryView]').submit(function() {
+
+    	var flag = true;
+    	if(eval('${!empty LOGIN_MEMBERINFO}')){
+    		if('${LOGIN_MEMBERINFO.mem_id}'== '${libraryInfo.library_writer}'){
+		    	//deletefreeboardFormInfo.jsp?bo_no=1
+		    			
+    			if(!$('#library_title').val().validationTITLE()){
+    	    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	    	}
+    	    	if(!$('#library_nickname').val().validationNICKNAME()){
+    	    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#library_pwd').val().validationPWD()){
+    	    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#library_mail').val().validationMAIL()){
+    	    		return alertPrint('메일을 바르게 입력해주세요.');
+    	    	}	
+
+		    			
+		    	var library_content = $('#library_content').summernote('code');
+				$(this).append('<input type="hidden" name="library_content" value="' + library_content + '"/>');
+				$(this).append('<input type="hidden" name="library_no" value="${libraryInfo.library_no}"/>');
+		    	
+				$(this).append('<input type="hidden" name="library_ip" value="${pageContext.request.remoteAddr}"/>');
+				$(this).attr('action', '${pageContext.request.contextPath}/user/library/updateLibrary.do');
+				
+				// $(location).attr('href', '${pageContext.request.contextPath}/user/library/deleteLibrary.do?library_no=${libraryInfo.library_no}');
+    		}else{
+	    		flag = false;
+    		}
+    	}else{
+	    	flag = false;
+    	}
+    	if(!flag){
+    		return alertPrint("작성자만 수정이 가능합니다.");
+    	}
+
 	});
+    
+    
     $('#btnList').on('click', function(){
     	location.replace("${pageContext.request.contextPath}/user/library/libraryList.do");
     })
@@ -61,7 +93,7 @@ $(function(){
     	if(eval('${!empty LOGIN_MEMBERINFO}')){
     		if('${LOGIN_MEMBERINFO.mem_id}'== '${libraryInfo.library_writer}'){
 		    	//deletefreeboardFormInfo.jsp?bo_no=1
-				$(location).attr('href', '/user/deleteLibrary.do?library_no=${libraryInfo.library_no}');
+				$(location).attr('href', '${pageContext.request.contextPath}/user/library/deleteLibrary.do?library_no=${libraryInfo.library_no}');
     		}else{
 	    		flag = false;
     		}
@@ -90,10 +122,19 @@ $(function(){
  	   }
     });
 });
+
+function alertPrint(msg) {
+	BootstrapDialog.show({
+	    title: '알림',
+	    message: msg
+	}); 
+	return false;
+}
+
 </script>
 </head>
 <body>
-<form class="form-horizontal" role="form" action="" method="post" name="freeboardView">
+<form class="form-horizontal" role="form" action="" method="post" name="libraryView">
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_title">제목:</label>
 		<div class="col-sm-10">

@@ -51,7 +51,7 @@ $(function() {
 						<tbody id="tbody">
 							<c:forEach items="${libraryList }" var="libraryInfo">
 							<tr>
-								<td>${libraryInfo.library_no }</td>
+								<td><input type="hidden" value="${libraryInfo.library_no }"/>${libraryInfo.rnum }</td>
 								<td>
 								<c:forEach begin="1" end="${libraryInfo.library_depth }" varStatus="stat">
 							&nbsp;&nbsp;&nbsp;
@@ -67,16 +67,15 @@ $(function() {
 						</tbody>
 					</table>
 					${pagingHTML }
-					<form action="/admin/library.do" method="post" name="search">
+					<form action="${pageContext.request.contextPath}/admin/library/libraryList.do" method="post" name="search">
 					<div style="text-align:right;">
-						<select style="width:100px;" id="condition">
+						<select name="search_keycode" style="width:100px;">
 							<option selected="selected" value="TITLE">제목</option>
 							<option value="CONTENT">내용</option>
-							<option value="NICKNAME">닉네임</option>
+							<option value="NICKNAME">작성자</option>
 						</select> 
-						<input type="hidden" name="search_keycode" value="">
-						<input name="unname" type="text" id="search_keyword" size="20" /> 
-						<input class="btn1" type="button" name="src" value="검색"/>
+						<input name="search_keyword" type="text" id="search_keyword" size="20" /> 
+						<input class="btn1" type="submit" name="src" value="검색"/>
 					</div>
  					</form>
 				</div>

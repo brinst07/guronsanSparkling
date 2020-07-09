@@ -19,6 +19,15 @@
 				<param name="actionName">libraryList</param>
 			</result>
 		</action>
+		
+		<action name="updateLibrary" class="kr.or.ddit.library.controller.UpdateLibraryAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="chain">
+				<param name="namespace">/admin/library</param>
+				<param name="actionName">libraryList</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="userLibraryPKG" extends="struts-default,tiles-default" namespace="/user/library">
@@ -29,5 +38,22 @@
 		<action name="libraryView" class="kr.or.ddit.library.controller.LibraryViewAction">
 			<result name="success" type="tiles">user/library/libraryView</result>
 		</action>
+		
+		<action name="deleteLibrary" class="kr.or.ddit.library.controller.DeleteLibraryAction">
+			<result type="chain">
+				<param name="namespace">/user/library</param>
+				<param name="actionName">libraryList</param>
+			</result>
+		</action>
+		
+		<action name="updateLibrary" class="kr.or.ddit.library.controller.UpdateLibraryAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="chain">
+				<param name="namespace">/user/library</param>
+				<param name="actionName">libraryList</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>

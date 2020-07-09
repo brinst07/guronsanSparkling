@@ -83,7 +83,7 @@ $(function() {
 							</c:forEach> --%>
 						</tbody>
 					</table>
-					<form action="/admin/notice.do">
+					<form action="${pageContext.request.contextPath}/admin/notice/noticeList.do">
 					<div style="text-align:right;">
 						<select name="search_keycode" style="width:100px;">
 							<option selected="selected" value="TOTAL">전체</option>

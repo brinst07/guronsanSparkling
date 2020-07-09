@@ -39,7 +39,7 @@ public class LibraryListAction {
 		}
 		int totalCount = service.libraryCount();
 		
-		pagination = new RolePaginationUtil(request, Integer.parseInt(currentPage), totalCount);
+		pagination = new RolePaginationUtil(request, Integer.parseInt(currentPage), totalCount, 10);
 		// 한페이지에 몇개의 게시물을 출력할 것인지
 		
 		//pagination.setBlockCount(Integer.parseInt(count));

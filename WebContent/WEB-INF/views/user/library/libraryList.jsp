@@ -69,7 +69,7 @@ $(function() {
 </div>
 <div >
 ${pagination.getPagingHtmls() }
-<form action="/user/libraryList.do" method="post" class="form-inline pull-right">
+<form action="${pageContext.request.contextPath}/user/library/libraryList.do" method="post" class="form-inline pull-right">
 		<input id="search_keyword" name="search_keyword" type="text" placeholder="검색어 입력..." class="form-control" />
 		<select class="form-control" name="search_keycode" >
 			<option>검색조건</option>

@@ -41,6 +41,9 @@ $(function(){
    
    
 });
+
+
+
 </script>
 </head>
 <body>
@@ -51,12 +54,12 @@ $(function(){
 			<input type="text" class="form-control" id="notice_title" name="notice_title" disabled="disabled" >
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label class="control-label col-sm-2" for="bo_nickname">작성자 대화명:</label>
 		<div class="col-sm-10"> 
 			<input type="text" class="form-control" id="notice_writer" name="notice_writer" disabled="disabled">
 		</div>
-	</div>
+	</div> -->
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_content">내용:</label>
 		<div class="col-sm-10"> 

@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ThumbnailVO {
 	private String rnum;
-
 	private String thumbnail_no;
 	private String thumbnail_title;
 	private String thumbnail_writer;
@@ -20,7 +19,7 @@ public class ThumbnailVO {
 	
 	public String getRnum() {
 		return rnum;
-	}
+	}	
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
 	}

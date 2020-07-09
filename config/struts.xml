@@ -56,4 +56,6 @@
 	 <include file="kr/or/ddit/struts/config/admin/notice.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/library.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/faq.xml"></include>
+	 <include file="kr/or/ddit/struts/config/user/thumbnail.xml"></include>
+	 <include file="kr/or/ddit/struts/config/admin/thumbnail.xml"></include>
 </struts>

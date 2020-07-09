@@ -21,7 +21,12 @@ public class FreeboardFileServiceImpl implements IFreeboardFileService {
 
 	@Override
 	public void insertFreefile(List<FreeFileVO> freefileList) {
-		// TODO Auto-generated method stub
+		try {
+			dao.insertFreefile(freefileList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

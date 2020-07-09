@@ -13,6 +13,24 @@
 <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 <script>
 $(function(){
+	var sido = getSido();
+	
+	$('select[name=mem_add1]').append(sido);
+
+	$('select[name=mem_add1]').on('change',
+		function() {
+		var selectSido = $('select[name=mem_add1]').val();
+		var gugun = getGugun(selectSido);
+		for (i = 1; i < gugun.length; i++) {
+			$('select[name=mem_add2]').append(
+				'<option value = "'+gugun[i]+'">' + gugun[i]
+					+ '</option>');
+			}
+		}
+	);
+	
+	
+	
       $('form').submit(function(){
      	  $('input[name=mem_bir]').val($('input[name=mem_bir1]').val()+'-'+$('input[name=mem_bir2]').val()+'-'+$('input[name=mem_bir3]').val());
           $('input[name=mem_zip]').val($('input[name=mem_zip1]').val()+'-'+$('input[name=mem_zip2]').val());
@@ -317,6 +335,20 @@ td {text-align: left; }
 	<tr>
 		<td class="fieldName" width="100px" height="25">주소</td>
 		<td>
+			<select style="width: 130px;" name="mem_add1">
+			<option selected="selected" value="">선택하세요</option>
+			</select> 
+			
+			<select style="width: 130px;" name="mem_add2">
+			<option selected="selected" value="">선택하세요</option>
+			</select>
+		</td>
+	</tr>
+		
+		
+	<!-- <tr>
+		<td class="fieldName" width="100px" height="25">주소</td>
+		<td>
 			<input type="hidden" name="mem_zip" />
 			<input type="text" name="mem_zip1" id="mem_zip1" size="3" value="" /> - 
 			<input type="text" name="mem_zip2" id="mem_zip2" size="3" value="" />
@@ -324,7 +356,7 @@ td {text-align: left; }
 			<input type="text" name="mem_add1" id="mem_add1" value="" />
 			<input type="text" name="mem_add2" id="mem_add2" value="" />
 		</td>
-	</tr>
+	</tr> -->
 	<tr><td class="tLine" colspan="2"></td></tr>
 	<tr>
 		<td class="fieldName" width="100px" height="25">직 업</td>

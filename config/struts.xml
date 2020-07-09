@@ -44,15 +44,16 @@
  
  
 	 <include file="kr/or/ddit/struts/config/common.xml"></include>
+	 <include file="kr/or/ddit/struts/config/user/member.xml"></include>
+	 <include file="kr/or/ddit/struts/config/user/faq.xml"></include>
 	 <include file="kr/or/ddit/struts/config/join.xml"></include>
-	 <include file="kr/or/ddit/struts/config/member.xml"></include>
 	 <include file="kr/or/ddit/struts/config/file.xml"></include>
 	 <include file="kr/or/ddit/struts/config/freeboard.xml"></include>
 	 <include file="kr/or/ddit/struts/config/qna.xml"></include>
+	 <include file="kr/or/ddit/struts/config/user/notice.xml"></include>
+	 <include file="kr/or/ddit/struts/config/user/library.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/member.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/notice.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/library.xml"></include>
-	 <include file="kr/or/ddit/struts/config/user/notice.xml"></include>
-	 <include file="kr/or/ddit/struts/config/user/library.xml"></include>
 	 <include file="kr/or/ddit/struts/config/admin/faq.xml"></include>
 </struts>

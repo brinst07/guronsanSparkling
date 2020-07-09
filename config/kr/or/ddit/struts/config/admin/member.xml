@@ -32,8 +32,20 @@
 			</result>
 		</action>
 		
+		<action name="logout" class="kr.or.ddit.member.controller.LogoutAction">
+			<result>/WEB-INF/views/user/join/loginForm.jsp</result>
+		</action>
+		
 		<action name="memberExcel" class="kr.or.ddit.member.controller.MemberExcelAction">
 			<result>/WEB-INF/views/admin/member/memberTable.jsp</result>
+		</action>
+		
+		<action name="mail" class="kr.or.ddit.member.controller.MemberMailAction">
+			<result>
+				<param name="namespace">/admin/member</param>
+				<param name="actionName">memberMgr</param>
+				<param name="message">${message}</param>
+			</result>
 		</action>
 	</package>
 </struts>

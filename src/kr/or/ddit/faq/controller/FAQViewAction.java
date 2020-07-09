@@ -24,6 +24,8 @@ public class FAQViewAction implements Action {
 		
 		params.put("faq_no", faq_no);
 		
+		service.updateFAQhit(params);
+		
 		this.faqInfo = service.faqInfo(params);
 		
 		return SUCCESS;

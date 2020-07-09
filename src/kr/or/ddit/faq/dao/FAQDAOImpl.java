@@ -59,4 +59,9 @@ public class FAQDAOImpl implements IFAQDAO {
 		smc.update("faq.deleteFAQ", params);
 	}
 
+	@Override
+	public void updateFAQhit(Map<String, String> params) throws Exception {
+		smc.update("faq.updateFAQhit",params);
+	}
+
 }

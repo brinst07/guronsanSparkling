@@ -62,7 +62,6 @@ $(function(){
     	
     	var faq_content = $('#faq_content').summernote('code');
 		$(this).append('<input type="hidden" name="faq_content" value="' + faq_content + '"/>');
-    	
 		$(this).append('<input type="hidden" name="faq_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
 		$(this).attr('action', '/admin/faq/faqRegistAction.do');
 		

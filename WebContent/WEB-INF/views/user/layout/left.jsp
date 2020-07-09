@@ -39,7 +39,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/user/faq/faqList.do">
 					<i class="fa fa-th-list fa-fw"><div class="icon-bg bg-blue"></div></i>
 					<span class="menu-title">자주하는질문</span>
 				</a>

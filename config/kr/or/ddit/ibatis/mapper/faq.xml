@@ -110,5 +110,8 @@
 			AND faq_NO = #faq_no#
 	</select>
 
+	<update id="updateFAQhit" parameterClass="map">
+		update FAQ set FAQ_HIT = (select max(FAQ_HIT) from FAQ where FAQ_NO = #faq_no#)+1 where FAQ_NO = #faq_no#
+	</update>
 	
 </sqlMap>

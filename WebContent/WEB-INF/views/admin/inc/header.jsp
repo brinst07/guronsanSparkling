@@ -52,7 +52,7 @@
 					<li><a href="/admin/notice.do">공지사항</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">자유게시판</a></li>
 					<li><a href="/admin/library.do">자료실</a></li>
-					<li><a href="/admin/qna.do">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/freeboard/freeboardList.do">Q&A</a></li>
 					<li><a href="/admin/faq/faqList.do">FAQ</a></li>
 					<li><a href="/admin/thum.do">썸네일자료실</a></li>
 				</ul>

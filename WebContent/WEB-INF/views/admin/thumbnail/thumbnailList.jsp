@@ -30,16 +30,15 @@
 				<td width="30">&nbsp;</td>
 				<td width="790">
 					<div id="container">
-						<div class="title">자료실</div>
+						<div class="title">썸네일 게시판</div>
 						<table border="0" cellspacing="1" cellpadding="1">
 							<thead>
 				<tr>
 					<th scope="col" width="1%"></th>
 					<th scope="col" width="10%">썸네일</th>
-					<th scope="col" width="59%">제목</th>
+					<th scope="col" width="40%">제목</th>
 					<th scope="col" width="10%">작성자</th>
 					<th scope="col" width="10%">작성일</th>
-					<th scope="col" width="10%">조회수</th>
 				</tr>
 			</thead>
 			<tbody id="freeboardBody">
@@ -68,7 +67,6 @@
 						</td>
 						<td>${thumbnailInfo.thumbnail_nickname }</td>
 						<td>${thumbnailInfo.thumbnail_reg_date }</td>
-						<td>${thumbnailInfo.thumbnail_hit }</td>
 					</tr>
 				</c:forEach>
 			</c:if>

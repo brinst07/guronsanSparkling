@@ -11,16 +11,16 @@ public class UpdateFreeboardAction implements ModelDriven<FreeboardVO>{
 	
 	public String execute(){
 		IFreeboardService freeService = FreeboardServiceImpl.getInstance();
-		freeService.updateFreeboard(freeboardInfo);
+		freeService.updateFreeboard(this.freeboardInfo);
 		
 		return "success";
 	}
 	
 	@Override
 	public FreeboardVO getModel() {
-		freeboardInfo = new FreeboardVO();
+		this.freeboardInfo = new FreeboardVO();
 		
-		return freeboardInfo;
+		return this.freeboardInfo;
 	}
 
 }

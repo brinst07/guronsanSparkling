@@ -16,13 +16,15 @@
 		<action name="qnaForm">
 			<result type="tiles">user/qna/qnaForm</result>
 		</action>
-<!-- 		<action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction"> -->
-<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
-<!-- 			<result name="success" type="redirectAction">		 -->
-<!-- 				<param name="namespace">/user/freeboard</param> -->
-<!-- 				<param name="actionName">freeboardList</param>				 -->
-<!-- 			</result> -->
-<!-- 		</action> -->
+		<action name="insertQna" class="kr.or.ddit.qna.controller.InsertQnaAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">		
+				<param name="namespace">/user/qna</param>
+				<param name="actionName">qnaList</param>				
+			</result>
+		</action>
 		<action name="deleteQna" class="kr.or.ddit.qna.controller.DeleteQnaAction">
 			<result type="redirectAction">
 				<param name="namespace">/user/qna</param>
@@ -37,6 +39,43 @@
 				<param name="actionName">qnaList</param>
 			</result>
 		</action>
+	</package>
+	
+	<!-- admin -->
+	<package name="adminQnaPKG" extends="struts-default,tiles-default" namespace="/admin/qna">
+		<action name="qnaList" class="kr.or.ddit.qna.controller.QnaListAction">
+			<result name="success" type="tiles">admin/qna/qnaList</result>
+		</action>
+		<action name="qnaView" class="kr.or.ddit.qna.controller.QnaViewAction">
+			<result name="qna" type="tiles">admin/qna/qnaView</result>
+			<result name="qnaReply" type="tiles">admin/qna/qnaReplyView</result>
+		</action>
+		<action name="deleteQnaReply" class="kr.or.ddit.qna.controller.DeleteQnaReplyAction">
+			<result type="redirectAction">
+				<param name="namespace">/admin/qna</param>
+				<param name="actionName">qnaList</param>
+			</result>
+		</action>
+		<action name="updateQnaReply" class="kr.or.ddit.qna.controller.UpdateQnaAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/qna</param>
+				<param name="actionName">qnaList</param>
+			</result>
+		</action>
+		<action name="qnaReplyForm">
+			<result type="tiles">admin/qna/qnaReplyForm</result>
+		</action>
+		
+<!-- 		<action name="updateQnaReply" class="kr.or.ddit.qna.controller.UpdateQnaReplyAction"> -->
+<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
+<!-- 			<interceptor-ref name="params"></interceptor-ref> -->
+<!-- 			<result type="redirectAction"> -->
+<!-- 				<param name="namespace">/admin/qna</param> -->
+<!-- 				<param name="actionName">qnaList</param> -->
+<!-- 			</result> -->
+<!-- 		</action> -->
 	</package>
 </struts>
 

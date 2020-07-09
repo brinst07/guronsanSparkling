@@ -26,24 +26,26 @@ $(function(){
     var qna_group = '${qnaInfo.qna_group}';
     var qna_depth = '${qnaInfo.qna_depth}';
     var qna_seq = '${qnaInfo.qna_seq}';
+    var qna_writer = '${qnaInfo.qna_writer}';
     
 	
 	$('#listBTN').on('click', function() {
-		$(location).attr('href', '/admin/qna.do');
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaList.do');
 	});
 	
 	$('#btn3').click(function(){
 		
-		$(location).attr('href','/admin/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
+		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
+// 		$(location).attr('href','/admin/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
 		var flag = '${flag}';
 		
 		if(flag == true){
 		 	var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;
-		 	var parentInfo = '&qna_group='+qna_group+'&qna_seq='+qna_seq+'&qna_depth='+qna_depth;
-	 		$(location).attr('href','/admin/qnaReplyForm.do' + queryString + parentInfo); 
+		 	var parentInfo = '&qna_group='+qna_group+'&qna_seq='+qna_seq+'&qna_depth='+qna_depth + '&qna_writer=' + qna_writer;
+	 		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyForm.do' + queryString + parentInfo); 
 		}
 		else{
-			alert("댓글이 존재합니다.");
+			return alertPrint('댓글이 존재합니다.');
 		} 
 		
 		/* var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;
@@ -68,6 +70,13 @@ $(function(){
 	}); */
 
 });
+function alertPrint(msg) {
+	BootstrapDialog.show({
+	    title: '알림',
+	    message: msg
+	}); 
+	return false;
+}
     
 </script>
 

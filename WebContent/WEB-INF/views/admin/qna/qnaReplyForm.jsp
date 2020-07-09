@@ -52,9 +52,6 @@ $(function(){
 </script>
 </head>
 <body>
-
-
-
 <div class="wrap">
 	<table width="1000" border="0" cellpadding="0" cellspacing="0">
 		<tr valign="top">

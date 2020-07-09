@@ -25,7 +25,7 @@ $(function(){
     $('.bo_content').summernote('code','${freeboardInfo.bo_content}');
     var bo_title = '${freeboardInfo.bo_title}';
     
-    
+
 	$('form[name=freeboardView]').submit(function() {
     	if(!$('#bo_title').val().validationTITLE()){
     		return alertPrint('제목을 바르게 입력해주세요.'); 
@@ -36,10 +36,14 @@ $(function(){
 		$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
 		$(this).append('<input type="hidden" name="bo_no" value="${freeboardInfo.bo_no}"/>');
 		$(this).append('<input type="hidden" name="bo_writer" value="${freeboardInfo.bo_writer}"/>');
+		$(this).append('<input type="hidden" name="bo_nickname" value="${freeboardInfo.bo_nickname}"/>');
+		$(this).append('<input type="hidden" name="bo_writer" value="${freeboardInfo.bo_writer}"/>');
+		$(this).append('<input type="hidden" name="bo_mail" value="${freeboardInfo.bo_mail}"/>');
+		$(this).append('<input type="hidden" name="bo_pwd" value="${freeboardInfo.bo_pwd}"/>');
    		$(this).attr('action', '${pageContext.request.contextPath}/admin/freeboard/updateFreeboard.do');
 		
 	});
-	
+
 	$('#deleteBTN').on('click', function() {
     	
 		$(location).attr('href', '${pageContext.request.contextPath}/admin/freeboard/deleteFreeboard.do?bo_no=${freeboardInfo.bo_no}');
@@ -63,7 +67,7 @@ function alertPrint(msg) {
 
 </head>
 <body>
-<form class="form-horizontal" role="form" action="" method="post" name="freeboaradView">
+<form class="form-horizontal" role="form" action="" method="post" name="freeboardView">
 
 <div class="wrap">
 	<table width="1000" border="0" cellpadding="0" cellspacing="0">

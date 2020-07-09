@@ -42,25 +42,40 @@ $(function(){
     var bo_seq = '${freeboardInfo.bo_seq}';
     
     $('form[name=freeboardView]').submit(function() {
-    	if(!$('#bo_title').val().validationTITLE()){
-    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	var flag = true;
+    	if(eval('${!empty LOGIN_MEMBERINFO}')){
+    		if('${LOGIN_MEMBERINFO.mem_id}'== '${freeboardInfo.bo_writer}'){
+		    	/* //deletefreeboardFormInfo.jsp?bo_no=1
+				$(location).attr('href', '${pageContext.request.contextPath}/user/freeboard/deleteFreeboard.do?bo_no=${freeboardInfo.bo_no}'); */
+    	    	if(!$('#bo_title').val().validationTITLE()){
+    	    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	    	}
+    	    	if(!$('#bo_nickname').val().validationNICKNAME()){
+    	    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#bo_pwd').val().validationPWD()){
+    	    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#bo_mail').val().validationMAIL()){
+    	    		return alertPrint('메일을 바르게 입력해주세요.');
+    	    	}
+    	    	
+    	    	var bo_content = $('#bo_content').summernote('code');
+    			$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
+    			$(this).append('<input type="hidden" name="bo_no" value="${freeboardInfo.bo_no}"/>');
+    	    	
+    			$(this).append('<input type="hidden" name="bo_ip" value="${pageContext.request.remoteAddr}"/>');
+    			$(this).attr('action', '${pageContext.request.contextPath}/user/freeboard/updateFreeboard.do');
+
+    		}else{
+	    		flag = false;
+    		}
+    	}else{
+	    	flag = false;
     	}
-    	if(!$('#bo_nickname').val().validationNICKNAME()){
-    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	if(!flag){
+    		return alertPrint('작성자만 게시글 수정이 가능합니다.');
     	}
-    	if(!$('#bo_pwd').val().validationPWD()){
-    		return alertPrint('패스워드를 바르게 입력해주세요.');
-    	}
-    	if(!$('#bo_mail').val().validationMAIL()){
-    		return alertPrint('메일을 바르게 입력해주세요.');
-    	}
-    	
-    	var bo_content = $('#bo_content').summernote('code');
-		$(this).append('<input type="hidden" name="bo_content" value="' + bo_content + '"/>');
-		$(this).append('<input type="hidden" name="bo_no" value="${freeboardInfo.bo_no}"/>');
-    	
-		$(this).append('<input type="hidden" name="bo_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '${pageContext.request.contextPath}/user/freeboard/updateFreeboard.do');
 		
 	});
     $('#btnList').on('click', function(){
@@ -80,10 +95,11 @@ $(function(){
 	    	flag = false;
     	}
     	if(!flag){
-    		BootstrapDialog.show({
+    		return alertPrint('작성자만 게시글 삭제가 가능합니다.');
+    		/* BootstrapDialog.show({
 			    title: '알림',
 			    message: '작성자만 게시글 삭제가 가능합니다.'
-			});
+			}); */
     	}
 	});
     

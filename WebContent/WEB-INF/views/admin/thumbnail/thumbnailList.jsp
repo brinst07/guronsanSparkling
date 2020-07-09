@@ -34,9 +34,9 @@
 						<table border="0" cellspacing="1" cellpadding="1">
 							<thead>
 				<tr>
-					<th scope="col" width="5%">No</th>
+					<th scope="col" width="1%"></th>
 					<th scope="col" width="10%">썸네일</th>
-					<th scope="col" width="55%">제목</th>
+					<th scope="col" width="59%">제목</th>
 					<th scope="col" width="10%">작성자</th>
 					<th scope="col" width="10%">작성일</th>
 					<th scope="col" width="10%">조회수</th>
@@ -53,7 +53,7 @@
 				<c:forEach items="${thumbnailList }" var="thumbnailInfo">
 					<tr>
 						<%-- ${freeboardInfo.bo_rnum } --%>
-						<td><input type="hidden" value="${thumbnailInfo.thumbnail_no }"/>${thumbnailInfo.rnum }</td>
+						<td><input type="hidden" value="${thumbnailInfo.thumbnail_no }"/></td>
 
 						<td>
 							<c:if test="${!empty thumbnailInfo.items}">

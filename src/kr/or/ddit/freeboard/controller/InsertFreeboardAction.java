@@ -87,10 +87,6 @@ public class InsertFreeboardAction implements ModelDriven<FreeboardVO>{
 				fileVO.setFreefile_size(String.valueOf(targetFile.length()));
 				
 				fileItemList.add(fileVO);
-				
-				
-				
-				
 			}
 		}
 		IFreeboardFileService service = FreeboardFileServiceImpl.getInstance();

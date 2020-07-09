@@ -16,4 +16,5 @@ public interface IFAQService {
 	public String insertFAQ(FAQVO faqInfo);
 	public void updateFAQ(FAQVO faqInfo);
 	public void deleteFAQ(Map<String, String> params);
+	public void updateFAQhit(Map<String, String> params);
 }

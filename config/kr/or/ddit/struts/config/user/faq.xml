@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="userFAQPKG" extends="struts-default,tiles-default" namespace="/user/faq">
+		<action name="faqList" class="kr.or.ddit.faq.controller.FAQListAction">
+			<result type="tiles">user/faq/faqList</result>
+		</action>
+		<action name="faqView" class="kr.or.ddit.faq.controller.FAQViewAction">
+			<result type="tiles">user/faq/faqView</result>
+		</action>
+	</package>
+</struts>

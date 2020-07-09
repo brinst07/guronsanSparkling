@@ -30,7 +30,14 @@
 <!-- 부트스트랩 다이얼로그 스타일 파일 시작 -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
 <!-- 부트스트랩 다이얼로그 스타일 파일 끝 -->
-
+<script type="text/javascript">
+$(function(){
+	if('${LOGIN_MEMBERINFO.getMem_id()}'!='admin'){
+		alert('관리자계정으로 로그인후 사용해주세요');
+		location.href = '/user/join/loginForm.do';
+	}
+})
+</script>
 </head>
 <body>
 	<div class="wrap">
@@ -40,7 +47,7 @@
 					<li><a href="#"><img src="${pageContext.request.contextPath }/image/admin_t.jpg" /></a></li>
 					<li><a href="#"><img src="${pageContext.request.contextPath }/image/admin_f.jpg" /></a></li>
 					<li><a href="#"><img src="${pageContext.request.contextPath }/image/admin_homelink.jpg" /></a></li>
-					<li><a href="/admin/logout.do"><img src="${pageContext.request.contextPath }/image/admin_logout.jpg" /></a></li>
+					<li><a href="/admin/member/logout.do"><img src="${pageContext.request.contextPath }/image/admin_logout.jpg" /></a></li>
 				</ul>
 			</div>
 			<div class="logo">

@@ -104,6 +104,16 @@ public class FAQServiceImpl implements IFAQService {
 		
 		return faq_no;
 	}
+
+	@Override
+	public void updateFAQhit(Map<String, String> params) {
+		try {
+			faqDAO.updateFAQhit(params);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 

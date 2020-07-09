@@ -16,5 +16,6 @@ public interface IFAQDAO {
 	public String insertFAQ(FAQVO faqInfo) throws Exception;
 	public void updateFAQ(FAQVO faqInfo) throws Exception;
 	public void deleteFAQ(Map<String, String> params) throws Exception;
+	public void updateFAQhit(Map<String, String> params) throws Exception;
 }
 

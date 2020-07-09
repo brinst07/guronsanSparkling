@@ -97,6 +97,8 @@ hs_err_pid*
 .svn/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,svn
-/target
+/target/
+
+.classpath/
 
 .classpath

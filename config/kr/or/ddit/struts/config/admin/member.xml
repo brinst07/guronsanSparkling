@@ -33,7 +33,7 @@
 		</action>
 		
 		<action name="memberExcel" class="kr.or.ddit.member.controller.MemberExcelAction">
-			<result type="tiles">admin/member/memberTable</result>
+			<result>/WEB-INF/views/admin/member/memberTable.jsp</result>
 		</action>
 	</package>
 </struts>

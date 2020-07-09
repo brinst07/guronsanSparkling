@@ -30,7 +30,7 @@ public class IMemberDaoImpl implements IMemberDao {
 
 	@Override
 	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
-		return client.queryForList("member.memberList", params);
+		return client.queryForList("member.memberPageList", params);
 	}
 
 	@Override
@@ -59,8 +59,18 @@ public class IMemberDaoImpl implements IMemberDao {
 	}
 
 	@Override
-	public int totalCount() throws Exception {
-		return (int) client.queryForObject("member.totalCount");
+	public int totalCount(Map<String,String> params) throws Exception {
+		return (int) client.queryForObject("member.count",params);
+	}
+
+	@Override
+	public int updateAdminMember(MemberVO vo) throws Exception {
+		return client.update("member.updateAdminMember",vo);
+	}
+
+	@Override
+	public MemberVO selectByID(String string) throws Exception {
+		return (MemberVO) client.queryForObject("member.selectbyID", string);
 	}
 
 

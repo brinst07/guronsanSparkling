@@ -7,185 +7,193 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원리스트</title>
 <script type="text/javascript">
-	$(function() {
+	$(function() {	
+		if(eval('${!empty param.message}')){
+			 	BootstrapDialog.show({
+		 	    title: '알럿창',
+		 	    message: '성공적으로 삭제되었습니다.'
+		 		});
+		}
+	
+		if('${flag}'=='true'){
+		 	BootstrapDialog.show({
+	 	    title: '알림',
+	 	    message: 'D드라이브에 pdf 생성이 완료되었습니다.!'
+	 		});
+		}
 		
-// 		if('${flag}'=='true'){
-// 		 	BootstrapDialog.show({
-// 	 	    title: '알림',
-// 	 	    message: 'D드라이브에 pdf 생성이 완료되었습니다.!'
-// 	 		});
-// 		}
-		
-// 		var sido = getSido();
-// 		//거주지 박스에 값 넣는 부분
-// 		$('select[name=search_sido]').append(sido);
+		var sido = getSido();
+		//거주지 박스에 값 넣는 부분
+		$('select[name=search_sido]').append(sido);
 
-// 		$('select[name=search_sido]').on(
-// 				'change',
-// 				function() {
-// 					var selectSido = $('select[name=search_sido]').val();
-// 					var gugun = getGugun(selectSido);
-// 					for (i = 1; i < gugun.length; i++) {
-// 						$('select[name=search_gugun]').append(
-// 								'<option value = "'+gugun[i]+'">' + gugun[i]
-// 										+ '</option>');
-// 					}
-// 				});
+		$('select[name=search_sido]').on(
+				'change',
+				function() {
+					var selectSido = $('select[name=search_sido]').val();
+					var gugun = getGugun(selectSido);
+					for (i = 1; i < gugun.length; i++) {
+						$('select[name=search_gugun]').append(
+								'<option value = "'+gugun[i]+'">' + gugun[i]
+										+ '</option>');
+					}
+				});
 
-// 		// 휴대폰 앞자리 select 넣는부분
-// 		var hplist = settingDisernNum();
-// 		$('select[name=search_hp1]').append(hplist);
+		// 휴대폰 앞자리 select 넣는부분
+		var hplist = settingDisernNum();
+		$('select[name=search_hp1]').append(hplist);
 
-// 		// 생년월일 selectbox에 값넣는 부분
-// 		$('select[name=search_year]').append(getYearsOptions(new Date()));
+		// 생년월일 selectbox에 값넣는 부분
+		$('select[name=search_year]').append(getYearsOptions(new Date()));
 
-// 		$('select[name=search_month]').append(getMonthOptions());
+		$('select[name=search_month]').append(getMonthOptions());
 
-// 		// 월이 선택되면 그에 맞는 일이 셀렉트박스에 들어간다.
-// 		$('select[name=search_month]').on(
-// 				'change',
-// 				function() {
-// 					$('select[name=search_day] option').remove();
-// 					$('select[name=search_day]').append(
-// 							'<option value="">선택하세요</option>');
-// 					var thisyear = $('select[name=search_year]').val();
-// 					var thismonth = new Date($(this).val());
-// 					for (i = 1; i < getLastDate(thismonth); i++) {
-// 						if (i < 10) {
-// 							$('select[name=search_day]').append(
-// 									'<option value = "0'+i+'">' + 0 + i
-// 											+ '</option>');
-// 						} else {
-// 							$('select[name=search_day]').append(
-// 									'<option value = "'+i+'">' + i
-// 											+ '</option>');
-// 						}
-// 					}
+		// 월이 선택되면 그에 맞는 일이 셀렉트박스에 들어간다.
+		$('select[name=search_month]').on(
+				'change',
+				function() {
+					$('select[name=search_day] option').remove();
+					$('select[name=search_day]').append(
+							'<option value="">선택하세요</option>');
+					var thisyear = $('select[name=search_year]').val();
+					var thismonth = new Date($(this).val());
+					for (i = 1; i < getLastDate(thismonth); i++) {
+						if (i < 10) {
+							$('select[name=search_day]').append(
+									'<option value = "0'+i+'">' + 0 + i
+											+ '</option>');
+						} else {
+							$('select[name=search_day]').append(
+									'<option value = "'+i+'">' + i
+											+ '</option>');
+						}
+					}
 
-// 				});
+				});
 
-// 		$('#searchbtn')
-// 				.on(
-// 						'click',
-// 						function() {
-// 							var form = $('<form action="/admin/memberSearch.do" method="post"></form>');
-// 							var search_base = $('<input name = "search_keyword" value="'
-// 									+ $('select[name=search_keyword]').val()
-// 									+ '"></input>')
-// 							var search = $('<input name="search_keycode" value="'
-// 									+ $('input[name=search_keycode]').val()
-// 									+ '"></input>');
-// 							var add1 = $('<input name = "mem_add1" value="'
-// 									+ $('select[name=search_sido]').val()
-// 									+ '"></input>');
-// 							var add2 = $('<input name = "mem_add2" value="'
-// 									+ $('select[name=search_gugun]').val()
-// 									+ '"></input>');
-// 							var mem_hp = "";
-// 							if ($('select[name=search_hp1]').val() != "") {
-// 								mem_hp = $('select[name=search_hp1]').val();
-// 								if ($('input[name=search_hp2]').val() != "") {
-// 									mem_hp += "-"
-// 											+ $('input[name=search_hp2]').val();
-// 									if ($('input[name=search_hp3]').val() != "") {
-// 										mem_hp += "-"
-// 												+ $('input[name=search_hp3]')
-// 														.val();
-// 									}
-// 								}
+		$('#searchbtn')
+				.on(
+						'click',
+						function() {
+							var form = $('<form action="/admin/member/memberMgr.do" method="post"></form>');
+							var search_base = $('<input name = "search_keyword" value="'
+									+ $('select[name=search_keyword]').val()
+									+ '"></input>')
+							var search = $('<input name="search_keycode" value="'
+									+ $('input[name=search_keycode]').val()
+									+ '"></input>');
+							var add1 = $('<input name = "mem_add1" value="'
+									+ $('select[name=search_sido]').val()
+									+ '"></input>');
+							var add2 = $('<input name = "mem_add2" value="'
+									+ $('select[name=search_gugun]').val()
+									+ '"></input>');
+							var mem_hp = "";
+							if ($('select[name=search_hp1]').val() != "") {
+								mem_hp = $('select[name=search_hp1]').val();
+								if ($('input[name=search_hp2]').val() != "") {
+									mem_hp += "-"
+											+ $('input[name=search_hp2]').val();
+									if ($('input[name=search_hp3]').val() != "") {
+										mem_hp += "-"
+												+ $('input[name=search_hp3]')
+														.val();
+									}
+								}
 
-// 							}
+							}
 
-// 							var mem_bir = "";
-// 							if ($('select[name=search_year]').val().length == 4) {
-// 								mem_bir = $('select[name=search_year]').val();
-// 								if ($('select[name=search_month]').val().length == 2) {
-// 									mem_bir += "-"
-// 											+ $('select[name=search_month]')
-// 													.val();
-// 									if ($('select[name=search_day]').val().length == 2) {
-// 										mem_bir += "-"
-// 												+ $('select[name=search_day]')
-// 														.val();
-// 									}
-// 								}
-// 							}
-// 							var bir = $('<input name = "mem_bir" value="'+mem_bir +'"></input>');
-// 							var search_calendar = $('<input name="search_calendar" value="'
-// 									+ $('input[name=search_calendar]:checked')
-// 											.val() + '"></input>')
-// 							var hp = $('<input name = "mem_hp" value="'+mem_hp+'"></input>');
-// 							form.append(hp);
-// 							form.append(search);
-// 							form.append(search_base);
-// 							form.append(add1);
-// 							form.append(add2);
-// 							form.append(bir);
-// 							form.append(search_calendar);
-// 							form.appendTo('body');
-// 							form.submit();
-// 						});
+							var mem_bir = "";
+							if ($('select[name=search_year]').val().length == 4) {
+								mem_bir = $('select[name=search_year]').val();
+								if ($('select[name=search_month]').val().length == 2) {
+									mem_bir += "-"
+											+ $('select[name=search_month]')
+													.val();
+									if ($('select[name=search_day]').val().length == 2) {
+										mem_bir += "-"
+												+ $('select[name=search_day]')
+														.val();
+									}
+								}
+							}
+							var bir = $('<input name = "mem_bir" value="'+mem_bir +'"></input>');
+							var search_calendar = $('<input name="search_calendar" value="'
+									+ $('input[name=search_calendar]:checked')
+											.val() + '"></input>')
+							var hp = $('<input name = "mem_hp" value="'+mem_hp+'"></input>');
+							form.append(hp);
+							form.append(search);
+							form.append(search_base);
+							form.append(add1);
+							form.append(add2);
+							form.append(bir);
+							form.append(search_calendar);
+							form.appendTo('body');
+							form.submit();
+						});
 
 		$('.memberList tr').on('click', function() {
 			var id = $(this).find('td:eq(1)').text();
 			location.href = '/admin/member/memberView.do?mem_id='+id;
 		});
-
+		
+		$('select[name=search_count]').val('${param.count}');
+		
 		//페이지네이션 부분
 		$('select[name=search_count]').on('change', function() {
 			var count = $('select[name=search_count]').val();
-			location.href = '/admin/main.do?count=' + count;
+			location.href = '/admin/member/memberMgr.do?count=' + count;
 		});
 		
 		$('#selectAll').click(function() {
 			$('.check_child').prop('checked',this.checked);
 		});
 		
-// 		$('#excel').click(function(){
-// 			var selects = [];
-// 			$('.check_child:checked').each(function(){
-// 				selects.push($(this).prop("id"));
-// 			});
+		$('#excel').click(function(){
+			var selects = [];
+			$('.check_child:checked').each(function(){
+				selects.push($(this).prop("id"));
+			});
 			
-// 			var form = $('<form action="/admin/memberExcel.do" method="post" ></form>');
-// 			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
+			var form = $('<form action="/admin/member/memberExcel.do" method="post" ></form>');
+			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
 			
-// 			form.append(input);
-// 			form.appendTo('body');
-// 			form.submit();
-// 		});
+			form.append(input);
+			form.appendTo('body');
+			form.submit();
+		});
 		
-// 		$('#pdf').on('click',function(){
-// 			var selects = [];
-// 			$('.check_child:checked').each(function(){
-// 				selects.push($(this).prop("id"));
-// 			});
+		$('#pdf').on('click',function(){
+			var selects = [];
+			$('.check_child:checked').each(function(){
+				selects.push($(this).prop("id"));
+			});
 			
-// 			var form = $('<form action="/admin/memberPdf.do" method="post" ></form>');
-// 			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
+			var form = $('<form action="/admin/memberPdf.do" method="post" ></form>');
+			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
 			
-// 			form.append(input);
-// 			form.appendTo('body');
-// 			form.submit();
+			form.append(input);
+			form.appendTo('body');
+			form.submit();
 			
-// 		});
+		});
 		
-// 		$('#mail').on('click',function(){
-// 			var message  = prompt('메세지를 입력해주세요');
-// 			var selects = [];
-// 			$('.check_child:checked').each(function(){
-// 				selects.push($(this).prop("id"));
-// 			});
+		$('#mail').on('click',function(){
+			var message  = prompt('메세지를 입력해주세요');
+			var selects = [];
+			$('.check_child:checked').each(function(){
+				selects.push($(this).prop("id"));
+			});
 			
-// 			var form = $('<form action="/admin/mail.do" method="post" ></form>');
-// 			var input1 = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
-// 			var input2 = $('<input type = "hidden" name="message" value="'+ message +'" ></input>');
+			var form = $('<form action="/admin/mail.do" method="post" ></form>');
+			var input1 = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
+			var input2 = $('<input type = "hidden" name="message" value="'+ message +'" ></input>');
 			
-// 			form.append(input1);
-// 			form.append(input2);
-// 			form.appendTo('body');
-// 			form.submit();
-// 	     });
+			form.append(input1);
+			form.append(input2);
+			form.appendTo('body');
+			form.submit();
+	     });
 
 	});
 </script>

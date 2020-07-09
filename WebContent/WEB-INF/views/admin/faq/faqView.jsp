@@ -28,18 +28,18 @@ $(function(){
     	var faq_content = $('.faq_content').summernote('code');
 		$(this).append('<input type="hidden" name="faq_content" value="' + faq_content + '"/>');
 		$(this).append('<input type="hidden" name="faq_no" value="${faqInfo.faq_no}"/>');
-   		$(this).attr('action', '/guronsan/controller/admin/updateFAQAction.do');
+   		$(this).attr('action', '/admin/faq/FAQModifyAction.do');
 		
 	});
 	
 	$('#deleteBTN').on('click', function() {
     	
-		$(location).attr('href', '/guronsan/controller/admin/deleteFAQAction.do?faq_no=${faqInfo.faq_no}');
+		$(location).attr('href', '/admin/faq/deleteFAQAction.do?faq_no=${faqInfo.faq_no}');
     		
 	});
 	
 	$('#listBTN').on('click', function(){
-    	location.replace("/guronsan/controller/admin/faqListAction.do");
+    	location.replace("/admin/faq/faqListAction.do");
     })
 
     

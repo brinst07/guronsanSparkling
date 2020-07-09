@@ -44,7 +44,7 @@ public class FreeboardListAction {
 
 		String totalCount = freeService.totalCount(params);
 		pagination = new RolePaginationUtil(request,
-				Integer.parseInt(currentPage), Integer.parseInt(totalCount));
+				Integer.parseInt(currentPage), Integer.parseInt(totalCount),10);
 
 		params.put("startCount", String.valueOf(pagination.getStartCount()));
 		params.put("endCount", String.valueOf(pagination.getEndCount()));

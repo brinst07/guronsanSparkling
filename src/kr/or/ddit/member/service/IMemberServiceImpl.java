@@ -76,15 +76,38 @@ public class IMemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public int totalCount() {
+	public int totalCount(Map<String,String> params) {
 		int total = 0;
 		try {
-			total =  dao.totalCount();
+			total =  dao.totalCount(params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return total;
+	}
+
+	@Override
+	public int updateAdminMember(MemberVO vo) {
+		int count = 0;
+		try {
+			count = dao.updateAdminMember(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public MemberVO selectByID(String string) {
+		MemberVO vo = null;
+		try {
+			vo = dao.selectByID(string);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
 	}
 
 

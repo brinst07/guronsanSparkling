@@ -37,6 +37,7 @@
 		$('select[name=mem_month]').append(getMonthOptions());
 		
 		var mem_bir = '${member.getMem_bir()}';
+		var birCheck = '${member.getMem_calendar()}';
 		mem_bir = mem_bir.split("-");
 		mem_bir1 = mem_bir[2].split(" ");
 		
@@ -67,7 +68,7 @@
 			$('select[name=mem_day]').append('<option value = "'+i+'">'+i+'</option>');
 			}
 		}
-	
+		
 		$('select[name=mem_day]').val(mem_bir1[0]);
 		
 		var email = '${member.getMem_mail()}';
@@ -84,9 +85,9 @@
 		$('select[name=mem_gugun] option[value="'+mem_add2+'"]').attr('selected',true);
 		
 // 		var birCheck = '${member.getMem_calendar()}';
-		if(birCheck == 1){
+		if(birCheck == 'solar'){
 			$('input:radio[value=solar]').prop('checked',true);
-		}else if(birCheck == 2){
+		}else if(birCheck == 'lunar'){
 			$('input:radio[value=lunar]').prop('checked',true);			
 		}
 		
@@ -98,23 +99,37 @@
 				alert("비밀번호가 일치하지 않습니다.");
 				return;
 			}
-			var form = $('<form action = "/admin/memberUpdate.do" method="post" ></form>');
+			
+			var form = $('<form action = "/admin/member/memberUpdate.do" method="post" ></form>');
 			var id = $('<input type="hidden" name="mem_id" value="'+ $('input[name=mem_id]').val() +'"></input>');
 			var pass = $('<input type="hidden" name="mem_pass" value="'+ $('#mem_pass').val() +'"></input>');
+			var mem_mail =  $('#mem_mail1').val() +"@"+ $('#mem_mail2').val();
 			var mail = $('<input type="hidden" name="mem_mail" value="'+ $('#mem_mail1').val() +"@"+ $('#mem_mail2').val()+'"></input>');
 			var mem_add1 = $('<input type="hidden" name="mem_add1" value= "'+ $('select[name=mem_sido]').val() +'"></input>')
 			var mem_add2 = $('<input type="hidden" name="mem_add2" value= "'+ $('select[name=mem_gugun]').val() +'"></input>')
 			var hp = $('select[name=mem_hp1]').val() + "-" + $('input[name=mem_hp2]').val() + "-" + $('input[name=mem_hp3]').val();
 			var mem_hp = $('<input type="hidden"  name="mem_hp" value="'+ hp +'"></input>');
-// 			var solnar = $('input[name=mem_calendar]:checked').val();
-			if(solnar == 'solar'){
-				solnar = "1";
-			}else{
-				solnar = "2";
-			}
+			var solnar = $('input[name=mem_calendar]:checked').val();
 			var mem_calendar = $('<input type="hidden" name="mem_calendar" value="'+ solnar +'"></input>');
 			var bir = $('select[name=mem_year]').val()+"-"+$('select[name=mem_month]').val()+"-"+$('select[name=mem_day]').val();
 			var mem_bir = $('<input type="hidden"  name="mem_bir" value="'+ bir +'"></input>');
+			
+			if(!$('#mem_pass').val().validationPWD()){
+				alert('비밀번호를 바르게 입력해주세요.');
+				return false;
+			};
+			
+			if(!mem_mail.validationMAIL()){
+				alert('메일주소를 바르게 입력해주세요.');
+				return false;
+			};
+			
+			if(!hp.validationHP()){
+				alert('휴대폰전화번호를 바르게 입력해주세요.');
+				return false;
+			};
+			
+			
 			form.append(pass);
 			form.append(id);
 			form.append(mail);
@@ -129,7 +144,7 @@
 		
 		$('#deleteMember').on('click',function(){
 			var id = '${member.getMem_id() }';
-			location.href='/admin/deleteMember.do?mem_id='+id;
+			location.href='/admin/member/deleteMember.do?mem_id='+id;
 		});
 	});
 </script>

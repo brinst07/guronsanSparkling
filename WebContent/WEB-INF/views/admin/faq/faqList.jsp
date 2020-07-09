@@ -13,12 +13,12 @@
 $(function() {
 	
 	$('#faqRegistBTN').on('click', function() {
-		location.replace('/guronsan/controller/admin/faqFormAction.do');
+		location.replace('/admin/faq/faqRegistForm.do');
 	});
 	
 	$('#faqBody tr').on('click', function() {
 		var faq_no = $(this).find('td:eq(0) input').val();
-		$(location).attr('href', '/guronsan/controller/admin/faqViewAction.do?faq_no=' + faq_no);
+		$(location).attr('href', '/admin/faq/faqViewAction.do?faq_no=' + faq_no);
 	});
 });
 </script>
@@ -71,7 +71,7 @@ $(function() {
 			</c:if>	
 						</tbody>
 					</table>
-					<form action="/admin/faq.do">
+					<form action="/admin/faq/faqList.do">
 					<div style="text-align:right;">
 						<select name="search_keycode" style="width:100px;">
 							<option selected="selected" value="TOTAL">전체</option>
@@ -92,7 +92,7 @@ $(function() {
 </div>
 <div>
 
-${pagination.getPagingHtmls() }
+${pagination}
 </div>
 
 </body>

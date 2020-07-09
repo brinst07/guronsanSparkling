@@ -19,7 +19,7 @@
 								</tr>
 							</thead>
 							<tbody class="memberList">
-								<c:forEach var="excelmember" items="${excelList }">
+								<c:forEach var="excelmember" items="${memberList }">
 									<tr>
 										
 										<td class="td">${excelmember['mem_id']}</td>

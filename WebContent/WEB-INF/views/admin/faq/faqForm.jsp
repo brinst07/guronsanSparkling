@@ -55,24 +55,16 @@ $(function(){
 
 
     $('form[name=faqForm]').submit(function() {
-//     	if(!$('#bo_title').val().validationTITLE()){
-//     		return alertPrint('제목을 바르게 입력해주세요.'); 
-//     	}
-//     	if(!$('#bo_nickname').val().validationNICKNAME()){
-//     		return alertPrint('대화명을 바르게 입력해주세요.');
-//     	}
-//     	if(!$('#bo_pwd').val().validationPWD()){
-//     		return alertPrint('패스워드를 바르게 입력해주세요.');
-//     	}
-//     	if(!$('#bo_mail').val().validationMAIL()){
-//     		return alertPrint('메일을 바르게 입력해주세요.');
-//     	}
+    	
+    	if(!$('#faq_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
     	
     	var faq_content = $('#faq_content').summernote('code');
 		$(this).append('<input type="hidden" name="faq_content" value="' + faq_content + '"/>');
     	
 		$(this).append('<input type="hidden" name="faq_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
-		$(this).attr('action', '/guronsan/controller/admin/insertFAQAction.do');
+		$(this).attr('action', '/admin/faq/faqRegistAction.do');
 		
 		return true;
 	});
@@ -80,8 +72,18 @@ $(function(){
     $('#faqListBTN').on('click', function() {
 		location.replace('/guronsan/controller/admin/faqListAction.do');
 	});
+    
+    
 
 });
+
+function alertPrint(msg) {
+	   BootstrapDialog.show({
+	       title: '알림',
+	       message: msg
+	   }); 
+	   return false;
+}
 </script>
 </head>
 <body>

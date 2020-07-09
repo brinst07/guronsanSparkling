@@ -132,8 +132,8 @@
 							form.submit();
 						});
 
-		$('.memberList tr').on('click', function() {
-			var id = $(this).find('td:eq(1)').text();
+		$('.memberList tr td:gt(0)').on('click', function() {
+			var id = $(this).parent().find('td:eq(1)').text();
 			location.href = '/admin/member/memberView.do?mem_id='+id;
 		});
 		
@@ -169,7 +169,7 @@
 				selects.push($(this).prop("id"));
 			});
 			
-			var form = $('<form action="/admin/memberPdf.do" method="post" ></form>');
+			var form = $('<form action="/admin/member/memberPdf.do" method="post" ></form>');
 			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
 			
 			form.append(input);

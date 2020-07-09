@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="userThumbnailPKG" extends="struts-default,tiles-default" namespace="/user/thumbnail">
+		<action name="thumbnailList" class="kr.or.ddit.thumbnail.controller.ThumbnailListAction">
+			<result type="tiles">user/thumbnail/thumbnailList</result>
+		</action>
+		
+		<action name="thumbnailView" class="kr.or.ddit.thumbnail.controller.ThumbnailViewAction">
+			<result type="tiles">user/thumbnail/thumbnailView</result>
+		</action>
+
+		<action name="deleteThumbnail" class="kr.or.ddit.thumbnail.controller.DeleteThumbnailAction">
+			<result type="redirectAction">
+				<param name="namespace">/user/thumbnail</param>
+				<param name="actionName">thumbnailList</param>
+			</result>
+		</action>
+		
+		<action name="updateThumbnail" class="kr.or.ddit.thumbnail.controller.UpdateThumbnailAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/thumbnail</param>
+				<param name="actionName">thumbnailList</param>
+			</result>
+		</action>
+		
+		<action name="thumbnailForm">
+			<result type="tiles">user/thumbnail/thumbnailForm</result>
+		</action>
+		
+	</package>
+
+
+</struts>

@@ -45,9 +45,9 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/user/thumbnail/thumbnailList.do">
 					<i class="fa fa-database fa-fw"><div class="icon-bg bg-red"></div></i>
-					<span class="menu-title">정보마당</span>
+					<span class="menu-title">썸네일게시판</span>
 				</a>
 			</li> 
 		</ul>

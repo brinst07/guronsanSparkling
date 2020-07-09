@@ -9,10 +9,37 @@
 <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 <script>
 $(function(){
-     
+	var sido = getSido();
+	//거주지 박스에 값 넣는 부분
+	$('select[name=mem_add1]').append(sido);
+
+	$('select[name=mem_add1]').on('change',
+		function() {
+		var selectSido = $('select[name=mem_add1]').val();
+		var gugun = getGugun(selectSido);
+		for (i = 1; i < gugun.length; i++) {
+			$('select[name=mem_add2]').append(
+				'<option value = "'+gugun[i]+'">' + gugun[i]
+					+ '</option>');
+			}
+		}
+	);
 	
+	
+	 var mem_sido = '${LOGIN_MEMBERINFO.mem_add1}';
+	 $('select[name=mem_add1]').val(mem_sido).attr("selected","selected");
+
+	 var mem_gugun = '${LOGIN_MEMBERINFO.mem_add2}';
+	 $('select[name=mem_add2]').val(mem_gugun).attr("selected","selected");
+	 
 	 var mem_calendar = '${LOGIN_MEMBERINFO.mem_calendar}';
-	 $('input[name=mem_calendar]').val(mem_calendar).attr("checked","checked");
+	 
+	 if(mem_calendar=='solar'){
+		 $('input[value=solar]').attr("checked","checked");
+	 }else{
+		 
+		 $('input[value=lunar]').attr("checked","checked");
+	 }
 	 
 	 var mem_hometel = '${LOGIN_MEMBERINFO.mem_hometel}'.split("-"); 
 	
@@ -37,10 +64,12 @@ $(function(){
      var mem_mail = '${LOGIN_MEMBERINFO.mem_mail}'.split("@");
      $('input[name=mem_mail1]').val(mem_mail[0]);
      $('select[name=mem_mail2]').val(mem_mail[1]).attr("selected","selected");
-      $('form').submit(function(){
-         $('input[name=mem_zip]').val($('input[name=mem_zip1]').val()+'-'+$('input[name=mem_zip2]').val());
+     
+     
+     $('form').submit(function(){       
+    	 $('input[name=mem_zip]').val($('input[name=mem_zip1]').val()+'-'+$('input[name=mem_zip2]').val());
          $('input[name=mem_hometel]').val($('select[name=mem_hometel1]').val()+'-'+$('input[name=mem_hometel2]').val()+'-'+$('input[name=mem_hometel3]').val());
-         $('input[name=mem_mail]').val($('input[name=mem_mail1]').val()+'-'+$('select[name=mem_mail2]').val());
+         $('input[name=mem_mail]').val($('input[name=mem_mail1]').val()+'@'+$('select[name=mem_mail2]').val());
          $('input[name=mem_comtel]').val($('select[name=mem_comtel1]').val()+'-'+$('input[name=mem_comtel2]').val()+'-'+$('input[name=mem_comtel3]').val());
          $('input[name=mem_hp]').val($('select[name=mem_hp1]').val()+'-'+$('input[name=mem_hp2]').val()+'-'+$('input[name=mem_hp3]').val());
       	
@@ -142,12 +171,16 @@ td {text-align: left; }
 <body>
 <form name="memberForm" action="${pageContext.request.contextPath }/user/member/updateMemberInfo.do" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr><td><input type ="hidden" name="mem_id" value="${LOGIN_MEMBERINFO.mem_id }"></td>
+	<tr>
+	<td><input type ="hidden" name="mem_id" value="${LOGIN_MEMBERINFO.mem_id }"></td>
 	<td><input type ="hidden" name="mem_name" value="${LOGIN_MEMBERINFO.mem_name }"></td>
 	<td><input type ="hidden" name="mem_regno1" value="${LOGIN_MEMBERINFO.mem_regno1 }"></td>
 	<td><input type ="hidden" name="mem_regno2" value="${LOGIN_MEMBERINFO.mem_regno2 }"></td>
-	<td><input type ="hidden" name="mem_bir" value="${LOGIN_MEMBERINFO.mem_bir }"></td></tr>
-	<td><input type ="hidden" name="mem_calendar" value="${LOGIN_MEMBERINFO.mem_calendar }"></td></tr>
+	<td><input type ="hidden" name="mem_bir" value="${LOGIN_MEMBERINFO.mem_bir }"></td>
+	</tr>
+	
+	
+	
 	<tr><td class="tLine" colspan="2"></td></tr>
 	<tr><td rowspan="13" class="pic" colspan="2" style="vertical-align: bottom; width: 150px; text-align: center;">
 			<img src="${pageContext.request.contextPath }/image/btn_pic.gif" alt="사진올리기" class="btn" title="인적사항에 올릴 증명	을 검색합니다." 
@@ -305,6 +338,18 @@ td {text-align: left; }
 	<tr>
 		<td class="fieldName" width="100px" height="25">주소</td>
 		<td>
+			<select style="width: 130px;" name="mem_add1">
+			<option selected="selected" value="">선택하세요</option>
+			</select> 
+			
+			<select style="width: 130px;" name="mem_add2">
+			<option selected="selected" value="">선택하세요</option>
+			</select>
+		</td>
+	</tr>
+	<%-- <tr>
+		<td class="fieldName" width="100px" height="25">주소</td>
+		<td>
 			<input type="hidden" name="mem_zip" />
 			<input type="text" name="mem_zip1" id="mem_zip1" size="3" value="" /> - 
 			<input type="text" name="mem_zip2" id="mem_zip2" size="3" value="" />
@@ -312,7 +357,7 @@ td {text-align: left; }
 			<input type="text" name="mem_add1" id="mem_add1" value="${LOGIN_MEMBERINFO.mem_add1 }" />
 			<input type="text" name="mem_add2" id="mem_add2" value="${LOGIN_MEMBERINFO.mem_add2 }" />
 		</td>
-	</tr>
+	</tr> --%>
 	<tr><td class="tLine" colspan="2"></td></tr>
 	<tr>
 		<td class="fieldName" width="100px" height="25">직 업</td>

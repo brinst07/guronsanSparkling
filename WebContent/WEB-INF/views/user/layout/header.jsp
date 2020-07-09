@@ -27,6 +27,16 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
 <!-- 부트스트랩 다이얼로그 스타일 파일 끝 -->
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript">
+$(function(){
+	if('${LOGIN_MEMBERINFO}'== null){
+		alert('로그인후 사용해주세요');
+		location.href = '/user/join/loginForm.do';
+	}
+	
+})
+
+</script>
 </head>
 <body >
 <div id="header-topbar-option" class="page-header-topbar">
@@ -137,6 +147,7 @@
 <script src="${pageContext.request.contextPath}/script/responsive-tabs.js"></script>
 <script src="${pageContext.request.contextPath}/script/zabuto_calendar.min.js"></script>
 <script type='text/javascript' src='${pageContext.request.contextPath }/js/common/validation.js'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath }/js/commons.js'></script>
 
 <!-- summernote 에디터 js 파일 시작 -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.js"></script>

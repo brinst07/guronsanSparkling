@@ -9,7 +9,7 @@ import kr.or.ddit.vo.QnAVO;
 
 public interface IQnAService {
 	public List<QnAVO> qnaList(Map<String, String> params);
-	public String insertQna(QnAVO qnaInfo, FileItem[] items);
+	public String insertQna(QnAVO qnaInfo);
 	public QnAVO qnaInfo(Map<String, String> params);
 	public void updateQna(QnAVO qnaInfo);
 	public void deleteQna(Map<String, String> params);

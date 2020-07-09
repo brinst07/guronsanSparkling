@@ -76,7 +76,6 @@ $(function() {
 						<input class="btn1" type="submit" value="검색"/>
 					</div>
 					</form>
- 					
 				</div>
 			</td>
 		</tr>

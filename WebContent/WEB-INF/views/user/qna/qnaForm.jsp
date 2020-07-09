@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시글 등록</title>
+<title>QnA 등록</title>
 <script>
 $(function(){
 	// 섬머노트를 div를 활용한 textarea에 추가.
@@ -36,7 +36,7 @@ $(function(){
     	
 		$(this).append('<input type="hidden" name="qna_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
 		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/user/InsertQna.do');
+		$(this).attr('action', '${pageContext.request.contextPath}/user/qna/insertQna.do');
 		
 		return true;
 	});

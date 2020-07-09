@@ -42,15 +42,14 @@ public class QnAServiceImpl implements IQnAService {
 	}
 
 	@Override
-	public String insertQna(QnAVO qnaInfo, FileItem[] items) {
+	public String insertQna(QnAVO qnaInfo) {
 		String qna_no = null;
 		try {
 			qna_no = dao.insertQna(qnaInfo);
 			
-			List<QnAFileVO> qnafileList = AttachFileMapper.qnaMapper(items, qna_no);
-			
-			
-			fileDao.insertQnafile(qnafileList);
+//			List<QnAFileVO> qnafileList = AttachFileMapper.qnaMapper(items, qna_no);
+//			
+//			fileDao.insertQnafile(qnafileList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

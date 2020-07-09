@@ -9,13 +9,14 @@
 <title>Q&A 리스트</title>
 <script type="text/javascript">
 $(function() {
-	$('input[type=submit]').on('click', function() {
-		location.replace('/admin/qnaForm.do');
-	});
+/* 	$('input[type=submit]').on('click', function() {
+		location.replace('${pageContext.request.contextPath}/admin/qna/qnaList.do');
+		
+	}); */
 	
 	$('#qnaBody tr').on('click', function() {
 		var qna_no = $(this).find('td:eq(0) input').val();
-		$(location).attr('href', '/admin/qnaView.do?qna_no=' + qna_no);
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaView.do?qna_no=' + qna_no);
 	});
 });
 </script>
@@ -65,7 +66,7 @@ $(function() {
 							</c:if>	
 						</tbody>
 					</table>
-					<form action="/admin/qna.do">
+					<form action="${pageContext.request.contextPath}/admin/qna/qnaList.do">
 					<div style="text-align:right;">
 						<select name="search_keycode" style="width:100px;">
 							<option selected="selected" value="TOTAL">전체</option>

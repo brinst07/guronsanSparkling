@@ -41,15 +41,14 @@ public class FreeboardServiceImpl implements IFreeboardService {
 	}
 
 	@Override
-	public String insertFreeboard(FreeboardVO freeboardInfo, FileItem[] items) {
+	public String insertFreeboard(FreeboardVO freeboardInfo) {
 		String bo_no = null;
 		
 		try {
 			bo_no = dao.insertFreeboard(freeboardInfo);
-			
-			List<FreeFileVO> freefileList = AttachFileMapper.mapper(items, bo_no);
-			
-			freefileDao.insertFreefile(freefileList);
+//			List<FreeFileVO> freefileList = AttachFileMapper.mapper(items, bo_no);
+//			
+//			freefileDao.insertFreefile(freefileList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

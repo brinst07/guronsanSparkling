@@ -36,6 +36,16 @@
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
+		<action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/freeboard</param>
+				<param name="actionName">freeboardList</param>
+			</result>
+		
+		</action>
 	</package>
 	
 	<!-- admin -->

@@ -10,8 +10,28 @@ import kr.or.ddit.vo.QnAVO;
 public class QnaViewAction {
 	private String qna_no;
 	private QnAVO qnaInfo;
+	private String flag;
+	
+	public QnAVO getQnaInfo() {
+		return qnaInfo;
+	}
+
+	public void setQna_no(String qna_no) {
+		this.qna_no = qna_no;
+	}
+
+
 	
 	public String execute(){
+		flag = "2";
+		IQnAService service = QnAServiceImpl.getInstance();
+		int num = Integer.parseInt(service.qnaReplyCheck(qna_no));
+		if(num == 1){
+			flag = "1";
+		}else{
+			flag = "2";
+		}
+		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("qna_no", qna_no);
 		
@@ -28,12 +48,10 @@ public class QnaViewAction {
 		
 		return addr;
 	}
-
-	public QnAVO getQnaInfo() {
-		return qnaInfo;
+	
+	public String getFlag() {
+		return flag;
 	}
 
-	public void setQna_no(String qna_no) {
-		this.qna_no = qna_no;
-	}
+
 }

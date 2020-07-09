@@ -48,7 +48,7 @@ $(function(){
 		$(this).append('<input type="hidden" name="qna_no" value="${qnaInfo.qna_no}"/>');
     	
 		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/user/updateQna.do');
+		$(this).attr('action', '${pageContext.request.contextPath}/admin/qna/updateQnaReply.do');
 		
 	});
     $('#btnList').on('click', function(){
@@ -75,19 +75,7 @@ $(function(){
     	}
 	});
     
-    $('#btn3').click(function(){
- 	   if(eval('${!empty LOGIN_MEMBERINFO}')){
- 	   var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;
- 	   var parentInfo = '&qna_group='+qna_group+'&qna_seq='+qna_seq+'&qna_depth='+qna_depth;
- 	   $(location).attr('href','/user/qnaReplyForm.do' + queryString + parentInfo); 
- 	   }
- 	   else{
- 		   BootstrapDialog.show({
- 	             title: '알림',
- 	             message: '로그인 후 작성이 가능합니다.'
- 	       });
- 	   }
-    });
+
 });
 </script>
 </head>

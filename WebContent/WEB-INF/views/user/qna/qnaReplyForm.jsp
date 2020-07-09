@@ -59,10 +59,10 @@ function alertPrint(msg) {
 	 </div>
 	 <div class="col-sm-8">
 	 	<label class="col-sm-2 control-label">제목 :</label>
-    	<p class="form-control-static">${param.bo_title }</p>
+    	<p class="form-control-static">${param.qna_title }</p>
 	 </div>
 	 <div class="col-sm-1">
-	 	<p class="text-right text-danger bg-danger">${LOGIN_MEMBERINFO.mem_name }의 댓글</p>
+	 	<p class="text-right text-danger bg-danger">${LOGIN_MEMBERINFO.qna_writer}의 댓글</p>
 	 </div>
 </div>
 <hr />

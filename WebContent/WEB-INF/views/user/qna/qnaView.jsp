@@ -42,25 +42,39 @@ $(function(){
     var qna_seq = '${qnaInfo.qna_seq}';
     
     $('form[name=qnaView]').submit(function() {
-    	if(!$('#qna_title').val().validationTITLE()){
-    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	var flag = true;
+    	if(eval('${!empty LOGIN_MEMBERINFO}')){
+    		if('${LOGIN_MEMBERINFO.mem_id}'== '${qnaInfo.qna_writer}'){
+    	    	
+    	    	if(!$('#qna_title').val().validationTITLE()){
+    	    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	    	}
+    	    	if(!$('#qna_nickname').val().validationNICKNAME()){
+    	    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#qna_pwd').val().validationPWD()){
+    	    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#qna_mail').val().validationMAIL()){
+    	    		return alertPrint('메일을 바르게 입력해주세요.');
+    	    	}
+    	    	
+    	    	var qna_content = $('#qna_content').summernote('code');
+    			$(this).append('<input type="hidden" name="qna_content" value="' + qna_content + '"/>');
+    			$(this).append('<input type="hidden" name="qna_no" value="${qnaInfo.qna_no}"/>');
+    	    	
+    			$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
+    			$(this).attr('action', '${pageContext.request.contextPath}/user/qna/updateQna.do');
+    		}else{
+	    		flag = false;
+    		}
+    	}else{
+	    	flag = false;
     	}
-    	if(!$('#qna_nickname').val().validationNICKNAME()){
-    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	if(!flag){
+    		return alertPrint('작성자만 게시글 수정이 가능합니다.');
     	}
-    	if(!$('#qna_pwd').val().validationPWD()){
-    		return alertPrint('패스워드를 바르게 입력해주세요.');
-    	}
-    	if(!$('#qna_mail').val().validationMAIL()){
-    		return alertPrint('메일을 바르게 입력해주세요.');
-    	}
-    	
-    	var qna_content = $('#qna_content').summernote('code');
-		$(this).append('<input type="hidden" name="qna_content" value="' + qna_content + '"/>');
-		$(this).append('<input type="hidden" name="qna_no" value="${qnaInfo.qna_no}"/>');
-    	
-		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '${pageContext.request.contextPath}/user/qna/updateQna.do');
+
 		
 	});
     $('#btnList').on('click', function(){
@@ -80,10 +94,7 @@ $(function(){
 	    	flag = false;
     	}
     	if(!flag){
-    		BootstrapDialog.show({
-			    title: '알림',
-			    message: '작성자만 게시글 삭제가 가능합니다.'
-			});
+    		return alertPrint('작성자만 게시글 삭제가 가능합니다.');
     	}
 	});
     

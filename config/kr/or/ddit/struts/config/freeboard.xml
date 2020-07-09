@@ -5,30 +5,37 @@
 
 <struts>
 	<!-- user -->
-	<package name="userFreeboardPKG" extends="struts-default,tiles-default" namespace="/user/freeboard">
-		<action name="freeboardList" class="kr.or.ddit.freeboard.controller.FreeboardListAction">
-			<result name="success" type="tiles">user/freeboard/freeboardList</result>
+	<package name="userFreeboardPKG" extends="struts-default,tiles-default"
+		namespace="/user/freeboard">
+		<action name="freeboardList"
+			class="kr.or.ddit.freeboard.controller.FreeboardListAction">
+			<result name="success" type="tiles">user/freeboard/freeboardList
+			</result>
 		</action>
-		<action name="freeboardView" class="kr.or.ddit.freeboard.controller.FreeboardViewAction">
-			<result name="success" type="tiles">user/freeboard/freeboardView</result>
+		<action name="freeboardView"
+			class="kr.or.ddit.freeboard.controller.FreeboardViewAction">
+			<result name="success" type="tiles">user/freeboard/freeboardView
+			</result>
 		</action>
 		<action name="freeboardForm">
 			<result type="tiles">user/freeboard/freeboardForm</result>
 		</action>
-<!-- 		<action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction"> -->
-<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
-<!-- 			<result name="success" type="redirectAction">		 -->
-<!-- 				<param name="namespace">/user/freeboard</param> -->
-<!-- 				<param name="actionName">freeboardList</param>				 -->
-<!-- 			</result> -->
-<!-- 		</action> -->
-		<action name="deleteFreeboard" class="kr.or.ddit.freeboard.controller.DeleteFreeboardAction">
+		<!-- <action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction"> -->
+		<!-- <interceptor-ref name="modelDriven"></interceptor-ref> -->
+		<!-- <result name="success" type="redirectAction"> -->
+		<!-- <param name="namespace">/user/freeboard</param> -->
+		<!-- <param name="actionName">freeboardList</param> -->
+		<!-- </result> -->
+		<!-- </action> -->
+		<action name="deleteFreeboard"
+			class="kr.or.ddit.freeboard.controller.DeleteFreeboardAction">
 			<result type="redirectAction">
 				<param name="namespace">/user/freeboard</param>
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
-		<action name="updateFreeboard" class="kr.or.ddit.freeboard.controller.UpdateFreeboardAction">
+		<action name="updateFreeboard"
+			class="kr.or.ddit.freeboard.controller.UpdateFreeboardAction">
 			<interceptor-ref name="modelDriven"></interceptor-ref>
 			<interceptor-ref name="params"></interceptor-ref>
 			<result type="redirectAction">
@@ -36,7 +43,8 @@
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
-		<action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction">
+		<action name="insertFreeboard"
+			class="kr.or.ddit.freeboard.controller.InsertFreeboardAction">
 			<interceptor-ref name="fileUpload"></interceptor-ref>
 			<interceptor-ref name="modelDriven"></interceptor-ref>
 			<interceptor-ref name="params"></interceptor-ref>
@@ -44,25 +52,32 @@
 				<param name="namespace">/user/freeboard</param>
 				<param name="actionName">freeboardList</param>
 			</result>
-		
+
 		</action>
 	</package>
-	
+
 	<!-- admin -->
-	<package name="adminFreeboardPKG" extends="struts-default,tiles-default" namespace="/admin/freeboard">
-		<action name="freeboardList" class="kr.or.ddit.freeboard.controller.FreeboardListAction">
-			<result name="success" type="tiles">admin/freeboard/freeboardList</result>
+	<package name="adminFreeboardPKG" extends="struts-default,tiles-default"
+		namespace="/admin/freeboard">
+		<action name="freeboardList"
+			class="kr.or.ddit.freeboard.controller.FreeboardListAction">
+			<result name="success" type="tiles">admin/freeboard/freeboardList
+			</result>
 		</action>
-		<action name="freeboardView" class="kr.or.ddit.freeboard.controller.FreeboardViewAction">
-			<result name="success" type="tiles">admin/freeboard/freeboardView</result>
+		<action name="freeboardView"
+			class="kr.or.ddit.freeboard.controller.FreeboardViewAction">
+			<result name="success" type="tiles">admin/freeboard/freeboardView
+			</result>
 		</action>
-		<action name="deleteFreeboard" class="kr.or.ddit.freeboard.controller.DeleteFreeboardAction">
+		<action name="deleteFreeboard"
+			class="kr.or.ddit.freeboard.controller.DeleteFreeboardAction">
 			<result type="redirectAction">
 				<param name="namespace">/admin/freeboard</param>
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
-		<action name="updateFreeboard" class="kr.or.ddit.freeboard.controller.UpdateFreeboardAction">
+		<action name="updateFreeboard"
+			class="kr.or.ddit.freeboard.controller.UpdateFreeboardAction">
 			<interceptor-ref name="modelDriven"></interceptor-ref>
 			<interceptor-ref name="params"></interceptor-ref>
 			<result type="redirectAction">
@@ -73,12 +88,12 @@
 	</package>
 </struts>
 
-<!-- 		<action name="insertMemberInfo" class="kr.or.ddit.member.controller.InsertMemberInfoAction"> -->
-<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
-<!-- 			<interceptor-ref name="params"></interceptor-ref> -->
-<!-- 			<result name="success" type="redirectAction"> -->
-<!-- 				<param name="namespace">/user/join</param> -->
-<!-- 				<param name="actionName">loginForm</param> -->
-<!-- 				<param name="message">${message}</param> -->
-<!-- 			</result> -->
-<!-- 		</action> -->
+<!-- <action name="insertMemberInfo" class="kr.or.ddit.member.controller.InsertMemberInfoAction"> -->
+<!-- <interceptor-ref name="modelDriven"></interceptor-ref> -->
+<!-- <interceptor-ref name="params"></interceptor-ref> -->
+<!-- <result name="success" type="redirectAction"> -->
+<!-- <param name="namespace">/user/join</param> -->
+<!-- <param name="actionName">loginForm</param> -->
+<!-- <param name="message">${message}</param> -->
+<!-- </result> -->
+<!-- </action> -->

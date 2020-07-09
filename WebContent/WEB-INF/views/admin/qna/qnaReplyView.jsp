@@ -27,10 +27,10 @@ $(function(){
     
 	
 	$('#listBTN').on('click', function() {
-		$(location).attr('href', '/admin/qna.do');
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaList.do');
 	});
 	$('#deleteBTN').on('click', function() {
-		$(location).attr('href', '/admin/deleteQnaReply.do?qna_no=${qnaInfo.qna_no}');
+		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/deleteQnaReply.do?qna_no=${qnaInfo.qna_no}');
 	});
 	
 	$('#btn3').click(function(){
@@ -40,17 +40,28 @@ $(function(){
 	});
 	
 	$('form[name=qnaReplyView]').submit(function() {
+    	if(!$('#qna_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
     	
     	var qna_content = $('.qna_content').summernote('code');
 		$(this).append('<input type="hidden" name="qna_content" value="' + qna_content + '"/>');
 		$(this).append('<input type="hidden" name="qna_no" value="${qnaInfo.qna_no}"/>');
     	
 		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/admin/updateQnaReply.do');
+		$(this).attr('action', '${pageContext.request.contextPath}/admin/qna/updateQnaReply.do');
 		
 	});
 
 });
+
+function alertPrint(msg) {
+	BootstrapDialog.show({
+	    title: '알림',
+	    message: msg
+	}); 
+	return false;
+}
     
 </script>
 

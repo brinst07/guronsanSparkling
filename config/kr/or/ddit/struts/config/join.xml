@@ -20,10 +20,6 @@
 				<param name="actionName">loginForm</param> 
 				<param name="message">${message}</param>
 			</result>
-			
-<!-- 			<result name="loginForm" type="redirect"> -->
-<!-- 				<![CDATA[/user/join/loginForm.do?message=${message}]]> -->
-<!-- 			</result> -->
 
 			<result name="user" type="redirectAction">		
 				<param name="namespace">/user/freeboard</param>

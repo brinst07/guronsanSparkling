@@ -16,7 +16,7 @@ public class ThumbnailVO {
 	private String thumbnail_hit;
 	private String thumbnail_reg_date;
 	private String thumbnail_status;
-	private List<ThumbnailVO> items;
+	private List<ThumbnailFileVO> items;
 
 	private List<File> files;
 	// 전송되는 파일 컨텐츠 타입
@@ -116,10 +116,10 @@ public class ThumbnailVO {
 	public void setFilesFileName(List<String> filesFileName) {
 		this.filesFileName = filesFileName;
 	}
-	public List<ThumbnailVO> getItems() {
+	public List<ThumbnailFileVO> getItems() {
 		return items;
 	}
-	public void setItems(List<ThumbnailVO> items) {
+	public void setItems(List<ThumbnailFileVO> items) {
 		this.items = items;
 	}
 	

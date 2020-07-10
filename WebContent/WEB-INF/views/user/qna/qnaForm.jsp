@@ -33,11 +33,9 @@ $(function(){
     	
     	var qna_content = $('#qna_content').summernote('code');
 		$(this).append('<input type="hidden" name="qna_content" value="' + qna_content + '"/>');
-    	
 		$(this).append('<input type="hidden" name="qna_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
 		$(this).append('<input type="hidden" name="qna_ip" value="${pageContext.request.remoteAddr}"/>');
 		$(this).attr('action', '${pageContext.request.contextPath}/user/qna/insertQna.do');
-		
 		return true;
 	});
     

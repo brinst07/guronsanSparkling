@@ -39,6 +39,8 @@
 				<param name="actionName">qnaList</param>
 			</result>
 		</action>
+		<action name="qnaFileDownload" class="kr.or.ddit.qna.controller.QnaFileDownloadAction">
+		</action>
 	</package>
 	
 	<!-- admin -->

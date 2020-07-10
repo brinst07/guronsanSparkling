@@ -8,20 +8,7 @@
 <title>회원리스트</title>
 <script type="text/javascript">
 	$(function() {	
-		if(eval('${!empty param.message}')){
-			 	BootstrapDialog.show({
-		 	    title: '알럿창',
-		 	    message: '성공적으로 삭제되었습니다.'
-		 		});
-		}
-	
-		if('${flag}'=='true'){
-		 	BootstrapDialog.show({
-	 	    title: '알림',
-	 	    message: 'D드라이브에 pdf 생성이 완료되었습니다.!'
-	 		});
-		}
-		
+
 		var sido = getSido();
 		//거주지 박스에 값 넣는 부분
 		$('select[name=search_sido]').append(sido);
@@ -162,38 +149,7 @@
 			form.appendTo('body');
 			form.submit();
 		});
-		
-		$('#pdf').on('click',function(){
-			var selects = [];
-			$('.check_child:checked').each(function(){
-				selects.push($(this).prop("id"));
-			});
-			
-			var form = $('<form action="/admin/member/memberPdf.do" method="post" ></form>');
-			var input = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
-			
-			form.append(input);
-			form.appendTo('body');
-			form.submit();
-			
-		});
-		
-		$('#mail').on('click',function(){
-			var message  = prompt('메세지를 입력해주세요');
-			var selects = [];
-			$('.check_child:checked').each(function(){
-				selects.push($(this).prop("id"));
-			});
-			
-			var form = $('<form action="/admin/mail.do" method="post" ></form>');
-			var input1 = $('<input type = "hidden" name="selects" value="'+ selects +'" ></input>');
-			var input2 = $('<input type = "hidden" name="message" value="'+ message +'" ></input>');
-			
-			form.append(input1);
-			form.append(input2);
-			form.appendTo('body');
-			form.submit();
-	     });
+	
 
 	});
 </script>
@@ -287,11 +243,9 @@
 							</tbody>
 						</table>
 						<div align="center">
-							<input class="publishingCoupon" type="button" value="선택회원 메일발송"
-								style=" float: left;" id="mail" /> <span class="pagingHtml"></span> <input
+							</span> <input
 								class="btn2" type="button" value="Excel작성" style="float: right;"  id="excel"/>
-							<input class="btn2" type="button" value="PDF작성"
-								style="float: right; margin-right: 5px;"  id="pdf"/>
+							 
 						</div>
 						${pagination }
 					</div>

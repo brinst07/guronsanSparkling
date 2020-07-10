@@ -39,25 +39,42 @@ $(function(){
     var thumbnail_title = '${thumbnailInfo.thumbnail_title}';
     
     $('form[name=freeboardView]').submit(function() {
-    	if(!$('#thumbnail_title').val().validationTITLE()){
-    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	var flag = true;
+    	if(eval('${!empty LOGIN_MEMBERINFO}')){
+    		if('${LOGIN_MEMBERINFO.mem_id}'== '${thumbnailInfo.thumbnail_writer}'){
+		    	/* //deletefreeboardFormInfo.jsp?bo_no=1
+				$(location).attr('href', '${pageContext.request.contextPath}/user/freeboard/deleteFreeboard.do?bo_no=${freeboardInfo.bo_no}'); */
+    			if(!$('#thumbnail_title').val().validationTITLE()){
+    	    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	    	}
+    	    	if(!$('#thumbnail_nickname').val().validationNICKNAME()){
+    	    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#thumbnail_pwd').val().validationPWD()){
+    	    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	    	}
+    	    	if(!$('#thumbnail_mail').val().validationMAIL()){
+    	    		return alertPrint('메일을 바르게 입력해주세요.');
+    	    	}
+    	    	
+    	    	var thumbnail_content = $('#thumbnail_content').summernote('code');
+    			$(this).append('<input type="hidden" name="thumbnail_content" value="' + thumbnail_content + '"/>');
+    			$(this).append('<input type="hidden" name="thumbnail_no" value="${thumbnailInfo.thumbnail_no}"/>');
+    	    	
+    			$(this).append('<input type="hidden" name="thumbnail_ip" value="${pageContext.request.remoteAddr}"/>');
+    			$(this).attr('action', '/user/thumbnail/updateThumbnail.do');
+
+    		}else{
+	    		flag = false;
+    		}
+    	}else{
+	    	flag = false;
     	}
-    	if(!$('#thumbnail_nickname').val().validationNICKNAME()){
-    		return alertPrint('대화명을 바르게 입력해주세요.');
-    	}
-    	if(!$('#thumbnail_pwd').val().validationPWD()){
-    		return alertPrint('패스워드를 바르게 입력해주세요.');
-    	}
-    	if(!$('#thumbnail_mail').val().validationMAIL()){
-    		return alertPrint('메일을 바르게 입력해주세요.');
+    	if(!flag){
+    		return alertPrint('작성자만 게시글 수정이 가능합니다.');
     	}
     	
-    	var thumbnail_content = $('#thumbnail_content').summernote('code');
-		$(this).append('<input type="hidden" name="thumbnail_content" value="' + thumbnail_content + '"/>');
-		$(this).append('<input type="hidden" name="thumbnail_no" value="${thumbnailInfo.thumbnail_no}"/>');
     	
-		$(this).append('<input type="hidden" name="thumbnail_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/user/thumbnail/updateThumbnail.do');
 	});
     $('#btnList').on('click', function(){
     	location.replace("/user/thumbnail/thumbnailList.do");

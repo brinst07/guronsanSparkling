@@ -63,6 +63,8 @@
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
+		<action name="freeFileDownload" class="kr.or.ddit.freeboard.controller.FreeboardFileDownloadAction">
+		</action>
 	</package>
 
 	<!-- admin -->

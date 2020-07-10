@@ -22,8 +22,8 @@
 			</result>
 
 			<result name="user" type="redirectAction">		
-				<param name="namespace">/user/freeboard</param>
-				<param name="actionName">freeboardList</param>				
+				<param name="namespace">/user/notice</param>
+				<param name="actionName">noticeList</param>				
 			</result>
 			<result name="admin" type="redirectAction">		
 				<param name="namespace">/admin/member</param>

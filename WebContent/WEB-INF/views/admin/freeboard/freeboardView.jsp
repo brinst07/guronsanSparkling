@@ -125,8 +125,8 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${freeboarditemInfo.freefile_save_name }" alt="pic1"
-						onclick="javascript:location.href='/user/fileDownload.do?freefile_seq=${freeboarditemInfo.freefile_seq }';" />
+						<img src="/files/${freeboarditemInfo.freefile_name }" alt="pic1"
+						onclick="javascript:location.href='/user/freeboard/freeFileDownload.do?freefile_seq=${freeboarditemInfo.freefile_seq }';" />
 					</div>
 				</c:forEach>
 			</div>

@@ -179,7 +179,7 @@ function alertPrint(msg) {
 						<div class="item">
 					</c:if>
 						<img src="/files/${fileitemInfo.freefile_name }" alt="pic1"
-						onclick="javascript:location.href='/user/freeFileDownload.do?freefile_seq=${fileitemInfo.freefile_seq }';" />
+						onclick="javascript:location.href='/user/freeboard/freeFileDownload.do?freefile_seq=${fileitemInfo.freefile_seq }';" />
 					</div>
 				</c:forEach>
 			</div>

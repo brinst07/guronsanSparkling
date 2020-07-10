@@ -69,7 +69,7 @@
 							src="${pageContext.request.contextPath }/image/admin_f.jpg" /></a></li>
 					<li><a href="#"><img
 							src="${pageContext.request.contextPath }/image/admin_homelink.jpg" /></a></li>
-					<li><a href="/admin/member/logout.do"><img
+					<li><a href="/user/join/loginForm.do"><img
 							src="${pageContext.request.contextPath }/image/admin_logout.jpg" /></a></li>
 				</ul>
 			</div>

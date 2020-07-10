@@ -14,7 +14,7 @@ public interface IQnAService {
 	public void updateQna(QnAVO qnaInfo);
 	public void deleteQna(Map<String, String> params);
 	public String totalCount(Map<String, String> params);
-	public String insertQnaReply(QnAVO qnaInfo, FileItem[] items);
+	public String insertQnaReply(QnAVO qnaInfo);
 	public String qnaReplyCheck(String parameter);
 	public void updateQnaHit(String qna_no);
 }

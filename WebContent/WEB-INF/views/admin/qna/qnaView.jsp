@@ -35,7 +35,7 @@ $(function(){
 	
 	$('#btn3').click(function(){
 		
-		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
+// 		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
 // 		$(location).attr('href','/admin/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
 		var flag = '${flag}';
 		
@@ -45,7 +45,8 @@ $(function(){
 	 		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyForm.do' + queryString + parentInfo); 
 		}
 		else{
-			return alertPrint('댓글이 존재합니다.');
+			alert('댓글이 존재합니다.');
+			return false;
 		} 
 		
 		/* var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;

@@ -9,7 +9,7 @@ import kr.or.ddit.vo.NoticeVO;
 
 public interface INoticeService {
 	public List<NoticeVO> noticeList(Map<String, String> params);
-	public String insertNotice(NoticeVO noticeInfo, FileItem[] items);
+	public String insertNotice(NoticeVO noticeInfo);
 	public NoticeVO noticeInfo(Map<String, String> params);
 	public String totalCount(Map<String, String> params);
 	public List<NoticeVO> userNoticeList(Map<String, String> params);

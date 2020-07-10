@@ -32,6 +32,18 @@
 					<param name="actionName">noticeList</param>
 				</result>
 		</action>
+		
+		<action name="insertNotice" class="kr.or.ddit.notice.controller.InsertNoticeAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/notice</param>
+				<param name="actionName">noticeList</param>
+			</result>
+		
+		</action>
+		
 	</package>
 	
 	<package name="userNoticePKG" extends="struts-default,tiles-default" namespace="/user/notice">

@@ -25,13 +25,13 @@ $(function(){
     	
 		$(this).append('<input type="hidden" name="library_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
 		$(this).append('<input type="hidden" name="library_ip" value="${pageContext.request.remoteAddr}"/>');
-		$(this).attr('action', '/user/insertLibrary.do');
+		$(this).attr('action', '${pageContext.request.contextPath}/user/library/insertLibrary.do');
 		
 		return true;
 	});
     
     $('#btnList').on('click', function() {
-		location.replace('/user/libraryList.do');
+		location.replace('${pageContext.request.contextPath}/user/library/libraryList.do');
 	});
 
 });

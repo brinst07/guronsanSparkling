@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(function() {
 	$('button[type=button]').on('click', function() {
-		location.replace('/user/libraryForm.do');
+		location.replace('${pageContext.request.contextPath}/user/library/libraryForm.do');
 	});
 	
 	$('#freeboardBody tr').on('click', function() {

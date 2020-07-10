@@ -9,7 +9,7 @@ import org.apache.commons.fileupload.FileItem;
 
 public interface ILibraryService {
 	public List<LibraryVO> libraryList(Map<String, String> params);
-	public String insertLibrary(LibraryVO libraryInfo, FileItem[] items);
+	public String insertLibrary(LibraryVO libraryInfo);
 	public LibraryVO libraryInfo(Map<String, String> params);
 	public void deleteLibraryboard(Map<String, String> params);
 	public void updateLibrary(LibraryVO libraryInfo);

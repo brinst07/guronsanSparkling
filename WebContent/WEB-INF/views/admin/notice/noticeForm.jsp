@@ -55,24 +55,24 @@ $(function(){
 
 
     $('form[name=noticeForm]').submit(function() {
-//     	if(!$('#bo_title').val().validationTITLE()){
-//     		return alertPrint('제목을 바르게 입력해주세요.'); 
-//     	}
-//     	if(!$('#bo_nickname').val().validationNICKNAME()){
-//     		return alertPrint('대화명을 바르게 입력해주세요.');
-//     	}
-//     	if(!$('#bo_pwd').val().validationPWD()){
-//     		return alertPrint('패스워드를 바르게 입력해주세요.');
-//     	}
-//     	if(!$('#bo_mail').val().validationMAIL()){
-//     		return alertPrint('메일을 바르게 입력해주세요.');
-//     	}
+    	if(!$('#bo_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
+    	if(!$('#bo_nickname').val().validationNICKNAME()){
+    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	}
+    	if(!$('#bo_pwd').val().validationPWD()){
+    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	}
+    	if(!$('#bo_mail').val().validationMAIL()){
+    		return alertPrint('메일을 바르게 입력해주세요.');
+    	}
     	
     	var notice_content = $('#notice_content').summernote('code');
 		$(this).append('<input type="hidden" name="notice_content" value="' + notice_content + '"/>');
     	
 		$(this).append('<input type="hidden" name="notice_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
-		$(this).attr('action', '/guronsan/controller/admin/insertNoticeAction.do');
+		$(this).attr('action', '${pageContext.request.contextPath}/admin/notice/insertNotice.do');
 		
 		return true;
 	});

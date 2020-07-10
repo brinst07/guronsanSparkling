@@ -39,6 +39,10 @@
 			<result name="success" type="tiles">user/library/libraryView</result>
 		</action>
 		
+		<action name="libraryForm" class="kr.or.ddit.library.controller.LibraryFormAction">
+			<result name="success" type="tiles">user/library/libraryForm</result>
+		</action>
+		
 		<action name="deleteLibrary" class="kr.or.ddit.library.controller.DeleteLibraryAction">
 			<result type="chain">
 				<param name="namespace">/user/library</param>
@@ -53,6 +57,17 @@
 				<param name="namespace">/user/library</param>
 				<param name="actionName">libraryList</param>
 			</result>
+		</action>
+		
+		<action name="insertLibrary" class="kr.or.ddit.library.controller.InsertLibraryAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/library</param>
+				<param name="actionName">libraryList</param>
+			</result>
+		
 		</action>
 		
 	</package>

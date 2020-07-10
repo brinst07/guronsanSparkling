@@ -19,6 +19,18 @@ $(function(){
     
     
     $('form[name=freeboardReplyForm]').submit(function(){
+    	if(!$('#bo_title').val().validationTITLE()){
+    		return alertPrint('제목을 바르게 입력해주세요.'); 
+    	}
+    	if(!$('#bo_nickname').val().validationNICKNAME()){
+    		return alertPrint('대화명을 바르게 입력해주세요.');
+    	}
+    	if(!$('#bo_pwd').val().validationPWD()){
+    		return alertPrint('패스워드를 바르게 입력해주세요.');
+    	}
+    	if(!$('#bo_mail').val().validationMAIL()){
+    		return alertPrint('메일을 바르게 입력해주세요.');
+    	}
 	
 		var bo_content = $('#bo_content').summernote('code');
 		$(this).append('<input type="hidden" name ="bo_content" value="'+bo_content+'"/>');
@@ -28,13 +40,13 @@ $(function(){
 		$(this).append('<input type="hidden" name ="bo_group" value="${param.bo_group}"/>');
 		$(this).append('<input type="hidden" name ="bo_seq" value="${param.bo_seq}"/>');
 		$(this).append('<input type="hidden" name ="bo_depth" value="${param.bo_depth}"/>');
-		$(this).attr('action','/user/insertFreeboardReply.do');
+		$(this).attr('action','${pageContext.request.contextPath}/user/freeboard/insertFreeboardReply.do');
 		
 		return true;
 	});
 	
 	$('#btn1').click(function() {
-	      $(location).attr('href', '/guronsan/controller/user/freeboardListAction.do');
+	      $(location).attr('href', '${pageContext.request.contextPath}/user/freeboard/freeboardList.do');
 	});
 	
 	
@@ -52,20 +64,20 @@ function alertPrint(msg) {
 </script>
 </head>
 <body>
-<div class="row">
-	 <div class="col-sm-3">
-		 <label class="col-sm-2 control-label">No :</label>
-  		 <p class="form-control-static">${param.rnum}</p>
-	 </div>
-	 <div class="col-sm-8">
-	 	<label class="col-sm-2 control-label">제목 :</label>
-    	<p class="form-control-static">${param.bo_title }</p>
-	 </div>
-	 <div class="col-sm-1">
-	 	<p class="text-right text-danger bg-danger">${LOGIN_MEMBERINFO.mem_name }의 댓글</p>
-	 </div>
-</div>
-<hr />
+<!-- <div class="row"> -->
+<!-- 	 <div class="col-sm-3"> -->
+<!-- 		 <label class="col-sm-2 control-label">No :</label> -->
+<%--   		 <p class="form-control-static">${param.rnum}</p> --%>
+<!-- 	 </div> -->
+<!-- 	 <div class="col-sm-8"> -->
+<!-- 	 	<label class="col-sm-2 control-label">제목 :</label> -->
+<%--     	<p class="form-control-static">${param.bo_title }</p> --%>
+<!-- 	 </div> -->
+<!-- 	 <div class="col-sm-1"> -->
+<%-- 	 	<p class="text-right text-danger bg-danger">${LOGIN_MEMBERINFO.mem_name }의 댓글</p> --%>
+<!-- 	 </div> -->
+<!-- </div> -->
+<!-- <hr /> -->
 <form class="form-horizontal" name="freeboardReplyForm" role="form" action="" method="post">
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_title">제목:</label>

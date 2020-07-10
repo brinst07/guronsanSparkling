@@ -28,7 +28,7 @@ $(function(){
 		$(this).append('<input type="hidden" name ="library_group" value="${param.library_group}"/>');
 		$(this).append('<input type="hidden" name ="library_seq" value="${param.library_seq}"/>');
 		$(this).append('<input type="hidden" name ="library_depth" value="${param.library_depth}"/>');
-		$(this).attr('action','/user/insertlibraryReply.do');
+		$(this).attr('action','${pageContext.request.contextPath}/user/library/insertLibraryReply.do');
 		
 		return true;
 	});
@@ -53,14 +53,14 @@ function alertPrint(msg) {
 </head>
 <body>
 <div class="row">
-	 <div class="col-sm-3">
-		 <label class="col-sm-2 control-label">No :</label>
-  		 <p class="form-control-static">${param.rnum}</p>
-	 </div>
-	 <div class="col-sm-8">
-	 	<label class="col-sm-2 control-label">제목 :</label>
-    	<p class="form-control-static">${param.library_title }</p>
-	 </div>
+<!-- 	 <div class="col-sm-3"> -->
+<!-- 		 <label class="col-sm-2 control-label">No :</label> -->
+<%--   		 <p class="form-control-static">${param.rnum}</p> --%>
+<!-- 	 </div> -->
+<!-- 	 <div class="col-sm-8"> -->
+<!-- 	 	<label class="col-sm-2 control-label">제목 :</label> -->
+<%--     	<p class="form-control-static">${param.library_title }</p> --%>
+<!-- 	 </div> -->
 	 <div class="col-sm-1">
 	 	<p class="text-right text-danger bg-danger">${LOGIN_MEMBERINFO.mem_name }의 댓글</p>
 	 </div>

@@ -17,9 +17,9 @@ import kr.or.ddit.vo.LibraryFileVO;
 import kr.or.ddit.vo.LibraryVO;
 
 public class LibraryServiceImpl implements ILibraryService {
+	private static ILibraryService service = new LibraryServiceImpl();
 	private ILibraryDAO dao;
 	private ILibraryFileDAO libraryFileDao;
-	private static ILibraryService service = new LibraryServiceImpl();
 	
 	private LibraryServiceImpl(){
 		dao = LibraryDAOImpl.getInstance();
@@ -93,13 +93,13 @@ public class LibraryServiceImpl implements ILibraryService {
 
 	@Override
 	public String insertLibraryReply(LibraryVO libraryInfo) {
-		  String bo_no = null;
+		  String library_no = null;
 	      try{
-	         bo_no = dao.insertLibraryReply(libraryInfo);
+	    	  library_no = dao.insertLibraryReply(libraryInfo);
 	      }catch(Exception e){
 	         e.printStackTrace();
 	      }
-	      return bo_no ;
+	      return library_no ;
 	}
 
 

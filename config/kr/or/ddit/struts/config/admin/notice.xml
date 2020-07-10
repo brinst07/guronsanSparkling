@@ -41,7 +41,9 @@
 				<param name="namespace">/admin/notice</param>
 				<param name="actionName">noticeList</param>
 			</result>
+		</action>
 		
+		<action name="noticeFileDownload" class="kr.or.ddit.notice.controller.NoticeFileDownloadAction">
 		</action>
 		
 	</package>

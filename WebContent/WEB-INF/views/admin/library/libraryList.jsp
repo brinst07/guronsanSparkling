@@ -19,7 +19,8 @@ $(function() {
 	});
 	
 	$('#tbody tr').on('click',function(){
-		var library_no = $(this).find('td:eq(0)').text();
+		var library_no = $(this).find('td:eq(0) input').val();
+		
 		location.href = '${pageContext.request.contextPath}/admin/library/libraryView.do?library_no='+library_no;
 	});
 	
@@ -51,7 +52,7 @@ $(function() {
 						<tbody id="tbody">
 							<c:forEach items="${libraryList }" var="libraryInfo">
 							<tr>
-								<td><input type="hidden" value="${libraryInfo.library_no }"/>${libraryInfo.rnum }</td>
+								<td><input type="hidden"  value="${libraryInfo.library_no }"/>${libraryInfo.rnum }</td>
 								<td>
 								<c:forEach begin="1" end="${libraryInfo.library_depth }" varStatus="stat">
 							&nbsp;&nbsp;&nbsp;

@@ -147,8 +147,8 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${noticeitemInfo.noticefile_save_name }" alt="pic1"
-						onclick="javascript:location.href='/user/noticeFileDownload.do?noticefile_seq=${fileitemInfo.noticefile_seq }';" />
+						<img src="/files/${noticeitemInfo.noticefile_name }" alt="pic1"
+						onclick="javascript:location.href='/admin/notice/noticeFileDownload.do?noticefile_seq=${noticeitemInfo.noticefile_seq }';" />
 					</div>
 				</c:forEach>
 			</div>

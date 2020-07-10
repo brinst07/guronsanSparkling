@@ -22,7 +22,6 @@ $(function(){
 	$('#library_content').val('${libraryInfo.library_content}');
 	var library_title = '{libraryInfo.library_title}';
 	var library_writer = '{libraryInfo.library_writer}';
-	var library_title = '{libraryInfo.library_title}';
 	
 	
 	$('form[name=libraryView]').submit(function(){
@@ -30,17 +29,10 @@ $(function(){
 		if(!$('#library_title').val().validationTITLE()){
     		return alertPrint('제목을 바르게 입력해주세요.'); 
     	}
-    	if(!$('#library_nickname').val().validationNICKNAME()){
-    		return alertPrint('대화명을 바르게 입력해주세요.');
-    	}
-    	if(!$('#library_pwd').val().validationPWD()){
-    		return alertPrint('패스워드를 바르게 입력해주세요.');
-    	}
-    	if(!$('#library_mail').val().validationMAIL()){
-    		return alertPrint('메일을 바르게 입력해주세요.');
-    	}	
 		
-		$(this).append('<input type="hidden" name="library_content" value="${libraryInfo.library_content}"/>');
+		var library_content = $('#library_content').val();
+		$(this).append('<input type="hidden" name="library_nickname" value="${libraryInfo.library_nickname}"/>');
+		$(this).append('<input type="hidden" name="library_content" value="'+library_content+'"/>');
 		$(this).append('<input type="hidden" name="library_no" value="${libraryInfo.library_no}"/>');
 		$(this).attr('action', '${pageContext.request.contextPath}/admin/library/updateLibrary.do');
 	});
@@ -72,12 +64,14 @@ $(function(){
 						<tr>
 						  <th>번호</th>
 						  <td><label class="library_title">${libraryInfo.library_no }</label>
-						  <input type="hidden" value="${libraryInfo.library_no }" name="library_no">
-						  </td>
+						   </td>
 						</tr>
 						<tr>
 						  <th>제목</th>
-						  <td><label id="library_title" class="library_title">${libraryInfo.library_title }</label></td>
+						  <td>
+						  <input type="text" class="form-control" id="library_title" class="library_title" name="library_title" ></input>
+						  
+<%-- 						  <label id="library_title" class="library_title">${libraryInfo.library_title }</label></td> --%>
 						</tr>
 						<tr>
 						  <th>작성자</th>
@@ -86,8 +80,7 @@ $(function(){
 						</tr>
 						<tr>
 						  <th>내용</th>
-						  <td><textarea rows="10" cols="110" id="text" id="library_content" class="library_content"  style="overflow: auto;">${libraryInfo.library_content }</textarea> 
-						  <input type="hidden" value="" name="content">
+						  <td><textarea rows="10" cols="110"  id="library_content" class="library_content"  style="overflow: auto;">${libraryInfo.library_content }</textarea> 
 						  </td>
 						</tr>
 						<tr>

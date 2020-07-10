@@ -112,7 +112,7 @@ $(function(){
  	   if(eval('${!empty LOGIN_MEMBERINFO}')){
  	   var queryString = '?rnum=${libraryInfo.rnum}&library_title='+library_title;
  	   var parentInfo = '&library_group='+library_group+'&library_seq='+library_seq+'&library_depth='+library_depth;
- 	   $(location).attr('href','/user/libraryReplyForm.do' + queryString + parentInfo); 
+ 	   $(location).attr('href','${pageContext.request.contextPath}/user/library/libraryReplyForm.do' + queryString + parentInfo); 
  	   }
  	   else{
  		   BootstrapDialog.show({
@@ -122,6 +122,8 @@ $(function(){
  	   }
     });
 });
+
+
 
 function alertPrint(msg) {
 	BootstrapDialog.show({
@@ -183,8 +185,8 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${fileitemInfo.libraryfile_save_name }" alt="pic1"
-						onclick="javascript:location.href='/user/libraryFileDownload.do?libraryfile_seq=${fileitemInfo.libraryfile_seq }';" />
+						<img src="/files/${fileitemInfo.libraryfile_name }" alt="pic1"
+						onclick="javascript:location.href='/user/library/libraryFileDownload.do?libraryfile_seq=${fileitemInfo.libraryfile_seq }';" />
 					</div>
 				</c:forEach>
 			</div>
@@ -196,7 +198,7 @@ function alertPrint(msg) {
 	<div class="form-group"> 
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="button" class="btn btn-danger" id="btnDelete">삭제</button>
-			<button type="button" class="btn btn-primary" id="btn3">답글</button>
+			<button type="button" class="btn btn-primary" id="btn3">댓글</button>
 			<button type="button" class="btn btn-info" id="btnList">목록</button>
 			<button type="submit" class="btn btn-default" style="float: right">수정</button>
 		</div>

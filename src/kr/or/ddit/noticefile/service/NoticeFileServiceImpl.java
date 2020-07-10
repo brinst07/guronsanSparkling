@@ -21,8 +21,11 @@ public class NoticeFileServiceImpl implements INoticeFileService{
 
 	@Override
 	public void insertNoticefile(List<NoticeFileVO> noticefileList) {
-		// TODO Auto-generated method stub
-		
+		try {
+			dao.insertNoticefile(noticefileList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

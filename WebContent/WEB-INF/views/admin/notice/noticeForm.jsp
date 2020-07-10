@@ -55,18 +55,18 @@ $(function(){
 
 
     $('form[name=noticeForm]').submit(function() {
-    	if(!$('#bo_title').val().validationTITLE()){
+    	if(!$('#notice_title').val().validationTITLE()){
     		return alertPrint('제목을 바르게 입력해주세요.'); 
     	}
-    	if(!$('#bo_nickname').val().validationNICKNAME()){
-    		return alertPrint('대화명을 바르게 입력해주세요.');
-    	}
-    	if(!$('#bo_pwd').val().validationPWD()){
-    		return alertPrint('패스워드를 바르게 입력해주세요.');
-    	}
-    	if(!$('#bo_mail').val().validationMAIL()){
-    		return alertPrint('메일을 바르게 입력해주세요.');
-    	}
+//     	if(!$('#bo_nickname').val().validationNICKNAME()){
+//     		return alertPrint('대화명을 바르게 입력해주세요.');
+//     	}
+//     	if(!$('#bo_pwd').val().validationPWD()){
+//     		return alertPrint('패스워드를 바르게 입력해주세요.');
+//     	}
+//     	if(!$('#bo_mail').val().validationMAIL()){
+//     		return alertPrint('메일을 바르게 입력해주세요.');
+//     	}
     	
     	var notice_content = $('#notice_content').summernote('code');
 		$(this).append('<input type="hidden" name="notice_content" value="' + notice_content + '"/>');
@@ -123,6 +123,12 @@ $(function(){
 							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="file01">첨부파일1:</label>
+								<div class="col-sm-10">
+									 <input type="file" class="filestyle" id="file01" name="files" data-buttonName="btn-primary">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="file01">첨부파일2:</label>
 								<div class="col-sm-10">
 									 <input type="file" class="filestyle" id="file01" name="files" data-buttonName="btn-primary">
 								</div>

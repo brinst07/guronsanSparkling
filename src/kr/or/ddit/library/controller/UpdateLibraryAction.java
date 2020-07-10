@@ -1,15 +1,10 @@
 package kr.or.ddit.library.controller;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.opensymphony.xwork2.ModelDriven;
 
 import kr.or.ddit.library.service.ILibraryService;
 import kr.or.ddit.library.service.LibraryServiceImpl;
-import kr.or.ddit.notice.service.INoticeService;
-import kr.or.ddit.notice.service.NoticeServiceImpl;
 import kr.or.ddit.vo.LibraryVO;
-import kr.or.ddit.vo.NoticeVO;
 
 
 public class UpdateLibraryAction implements ModelDriven<LibraryVO>{
@@ -18,7 +13,7 @@ public class UpdateLibraryAction implements ModelDriven<LibraryVO>{
 	
 	public String execute() {
 
-
+		System.out.println(libraryInfo.getLibrary_no());
 		ILibraryService service = LibraryServiceImpl.getInstance();
 		service.updateLibrary(this.libraryInfo);
 		

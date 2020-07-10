@@ -67,7 +67,22 @@
 				<param name="namespace">/user/library</param>
 				<param name="actionName">libraryList</param>
 			</result>
+		</action>
 		
+		<action name="libraryReplyForm">
+			<result type="tiles">user/library/libraryReplyForm</result>
+		</action>
+		
+		<action name="insertLibraryReply" class="kr.or.ddit.library.controller.InsertLibraryReplyAction">
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/library</param>
+				<param name="actionName">libraryList</param>
+			</result>
+		</action>
+		
+		<action name="libraryFileDownload" class="kr.or.ddit.library.controller.LibraryFileDownloadAction">
 		</action>
 		
 	</package>

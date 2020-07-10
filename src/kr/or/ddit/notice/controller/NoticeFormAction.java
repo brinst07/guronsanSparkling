@@ -6,7 +6,6 @@ public class NoticeFormAction {
 		
 		return "success";
 
-		
 	}
 
 }

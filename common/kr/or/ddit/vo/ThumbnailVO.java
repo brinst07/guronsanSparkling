@@ -1,5 +1,6 @@
 package kr.or.ddit.vo;
 
+import java.io.File;
 import java.util.List;
 
 public class ThumbnailVO {
@@ -15,19 +16,21 @@ public class ThumbnailVO {
 	private String thumbnail_hit;
 	private String thumbnail_reg_date;
 	private String thumbnail_status;
-	private List<ThumbnailFileVO> items;
+	private List<ThumbnailVO> items;
+
+	private List<File> files;
+	// 전송되는 파일 컨텐츠 타입
+	// 변수명명 규칙 : 필드네임 + ContentType 
+	private List<String> filesContentType;
+	// 전송되는 파일명
+	// 변수명명 규칙 : 필드네임 + FileName
+	private List<String> filesFileName;	
 	
 	public String getRnum() {
 		return rnum;
 	}	
 	public void setRnum(String rnum) {
 		this.rnum = rnum;
-	}
-	public List<ThumbnailFileVO> getItems() {
-		return items;
-	}
-	public void setItems(List<ThumbnailFileVO> items) {
-		this.items = items;
 	}
 	public String getThumbnail_no() {
 		return thumbnail_no;
@@ -94,6 +97,30 @@ public class ThumbnailVO {
 	}
 	public void setThumbnail_status(String thumbnail_status) {
 		this.thumbnail_status = thumbnail_status;
+	}
+	public List<File> getFiles() {
+		return files;
+	}
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
+	public List<String> getFilesContentType() {
+		return filesContentType;
+	}
+	public void setFilesContentType(List<String> filesContentType) {
+		this.filesContentType = filesContentType;
+	}
+	public List<String> getFilesFileName() {
+		return filesFileName;
+	}
+	public void setFilesFileName(List<String> filesFileName) {
+		this.filesFileName = filesFileName;
+	}
+	public List<ThumbnailVO> getItems() {
+		return items;
+	}
+	public void setItems(List<ThumbnailVO> items) {
+		this.items = items;
 	}
 	
 	

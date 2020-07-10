@@ -179,15 +179,6 @@ td {text-align: left; }
 <form name="memberForm" action="/user/member/insertMemberInfo.do" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr><td class="tLine" colspan="2"></td></tr>
-	<tr><td rowspan="13" class="pic" colspan="2" style="vertical-align: bottom; width: 150px; text-align: center;">
-			<img src="${pageContext.request.contextPath }/image/btn_pic.gif" alt="사진올리기" class="btn" title="인적사항에 올릴 증명	을 검색합니다." 
-				style="cursor: pointer;"
-				onclick="idPicOpenPopup();"/><br/>
-			<div style="width: 100%" align="center">
-				size : 235x315 이하
-			</div>
-		</td>
-	</tr>
 	<tr><td class="tLine" colspan="2"></td></tr>
 	<tr>
 		<td class="fieldName" width="100px" height="25">성 명</td>

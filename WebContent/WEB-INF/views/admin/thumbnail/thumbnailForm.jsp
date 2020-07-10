@@ -7,27 +7,38 @@
 <title>썸네일 등록</title>
 <script>
 $(function(){
-	// 섬머노트를 div를 활용한 textarea에 추가.
-	// http://summernote.org 활용
-    $('#thum_content').summernote({
-    		lang: 'ko-KR',
+	 $('#thumbnail_content').summernote({
+ 		lang: 'ko-KR',
 			height: 150,
 			codemirror: {
 			theme: 'monokai'
 		}
-    });
-    
-    $('#cancle').on('click',function(){
-    	location.replace('/admin/thumbnail/thumbnailList.do');
-    });  
-    
-    
-	$('#filesubmit').on('click',function(){
-		var content =$('#thum_content').summernote('code');
-		$('input[name=hiddencontent]').val(content);
-		$('input[name=id]').val('${LOGIN_MEMBERINFO}');
-		$('form[name=thumForm]').submit();
+ });
+
+
+ $('form[name=freeboardForm]').submit(function() {
+ 	
+ 	if(!$('#thumbnail_title').val().validationTITLE()){
+ 		return alertPrint('제목을 바르게 입력해주세요.'); 
+ 	}
+ 	
+ 	
+ 	var thumbnail_content = $('#thumbnail_content').summernote('code');
+		$(this).append('<input type="hidden" name="thumbnail_content" value="' + thumbnail_content + '"/>');
+ 		$(this).append('<input type="password" class="form-control" id="thumbnail_pwd" name="thumbnail_pwd" value="admin">');
+		$(this).append('<input type="hidden" name="thumbnail_writer" value="${LOGIN_MEMBERINFO.mem_id}"/>');
+		$(this).append('<input type="text" class="form-control" id="thumbnail_nickname" value="admin" name="thumbnail_nickname">');
+		$(this).append('<input type="hidden" name="thumbnail_ip" value="${pageContext.request.remoteAddr}"/>');
+		
+		$(this).attr('action', '/admin/thumbnail/insertThumbnail.do');
+		
+		return true;
 	});
+    
+    $('#btnList').on('click',function(){
+    	location.replace('/admin/thumbnail/thumbnailList.do');
+    });   
+	
 });
 
 function alertPrint(msg) {
@@ -40,41 +51,47 @@ function alertPrint(msg) {
 </script>
 </head>
 <body>
-
-<form name="thumForm" class="form-horizontal" role="form" action="/admin/thumFileUpload.do" method="post" enctype="multipart/form-data">
+<form name="freeboardForm" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="thum_title">제목:</label>
+		<label class="control-label col-sm-2" for="bo_title">제목:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="thum_title" placeholder="제목 입력...">
-			<input type="hidden" name="id" value=""/>
+			<input type="text" class="form-control" id="thumbnail_title" name="thumbnail_title" placeholder="제목 입력...">
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="thum_writer">작성자 대화명:</label>
+		<label class="control-label col-sm-2" for="bo_nickname">작성자:</label>
 		<div class="col-sm-10"> 
-			<input type="text" class="form-control" name="thum_writer" placeholder="대화명 입력...">
+			<input type="text" disabled="disabled" class="form-control" id="thumbnail_nickname" value="admin" name="thumbnail_nickname">
 		</div>
 	</div>
-
-
-	<div class="form-group">
-		<label class="control-label col-sm-2" for="thum_content">내용:</label>
+	<!-- <div class="form-group">
+		<label class="control-label col-sm-2" for="bo_pwd">패스워드:</label>
 		<div class="col-sm-10"> 
-			<div id="thum_content">내용을 입력해주세요...</div>
-			<input type="hidden" value="" name="hiddencontent">
+			<input type="password" class="form-control" id="thumbnail_pwd" name="thumbnail_pwd" placeholder="패스워드 입력...">
+		</div>
+	</div> -->
+	<!-- <div class="form-group">
+		<label class="control-label col-sm-2" for="bo_mail">메일:</label>
+		<div class="col-sm-10"> 
+			<input type="text" class="form-control" id="thumbnail_mail" name="thumbnail_mail" placeholder="메일주소 입력...">
+		</div>
+	</div> -->
+	<div class="form-group">
+		<label class="control-label col-sm-2" for="bo_content">내용:</label>
+		<div class="col-sm-10"> 
+			<div id="thumbnail_content"><p>내용을 입력해주세요...</p></div>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="file01">첨부파일1:</label>
 		<div class="col-sm-10">
-			 <input type="file" class="filestyle"  name="file01" data-buttonName="btn-primary">
+			 <input type="file" class="filestyle" id="file01" name="files" data-buttonName="btn-primary">
 		</div>
-	</div>
-
+	</div>	
 	<div class="form-group"> 
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="button" class="btn btn-info" style="float: right" id="filesubmit">등록</button>
-			<button type="button" class="btn btn-danger" style="float: right" id="cancle">취소</button>
+			<button type="submit" class="btn btn-info" style="float: right">등록</button>
+			<button type="button" id="btnList" class="btn btn-primary" style="float: right">취소</button>
 		</div>
 	</div>
 </form>

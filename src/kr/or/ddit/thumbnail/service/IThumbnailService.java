@@ -13,8 +13,7 @@ public interface IThumbnailService {
 
 	public String totalCount(Map<String, String> params);
 
-	public String insertThumbnail(ThumbnailVO thumbnailInfo,
-			FileItem[] items);
+	public String insertThumbnail(ThumbnailVO thumbnailInfo);
 	public ThumbnailVO thumbnailInfo(Map<String, String> params);
 	public void deleteThumbnail(Map<String, String> params);
 	public void updateThumbnail(ThumbnailVO thumbnailInfo);

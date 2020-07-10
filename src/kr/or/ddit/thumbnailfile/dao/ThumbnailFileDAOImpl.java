@@ -1,10 +1,12 @@
 package kr.or.ddit.thumbnailfile.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.ibatis.factory.SqlMapClientFactory;
 import kr.or.ddit.thumbnail.service.IThumbnailService;
 import kr.or.ddit.thumbnail.service.ThumbnailServiceImpl;
+import kr.or.ddit.vo.FreeFileVO;
 import kr.or.ddit.vo.LibraryFileVO;
 import kr.or.ddit.vo.ThumbnailFileVO;
 
@@ -36,5 +38,11 @@ public class ThumbnailFileDAOImpl implements IThumbnailFileDAO{
 		}finally{
 			smc.endTransaction();
 		}
+	}
+	
+	@Override
+	public ThumbnailFileVO thumbnailFileInfo(Map<String, String> params)
+			throws Exception {
+		return (ThumbnailFileVO) smc.queryForObject("thumbfile.thumbnailFileInfo", params);
 	}
 }

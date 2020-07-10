@@ -144,8 +144,8 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${fileitemInfo.thumbfile_save_name }" alt="pic1"
-						onclick="javascript:location.href='/user/thumbFileDownload.do?thumbfile_seq=${fileitemInfo.thumbfile_seq }';" 
+						<img src="/files/${fileitemInfo.thumbfile_name }" alt="pic1"
+						onclick="javascript:location.href='/user/thumbnail/thumbFileDownload.do?thumbfile_seq=${fileitemInfo.thumbfile_seq }';" 
 						width="200px" height="150px"
 						/>
 					</div>

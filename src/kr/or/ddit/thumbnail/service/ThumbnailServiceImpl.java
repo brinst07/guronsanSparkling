@@ -62,16 +62,13 @@ public class ThumbnailServiceImpl implements IThumbnailService {
 	}
 
 	@Override
-	public String insertThumbnail(ThumbnailVO thumbnailInfo, FileItem[] items) {
+	public String insertThumbnail(ThumbnailVO thumbnailInfo) {
 		String bo_no = null;
 
 		try {
 			bo_no = dao.insertThumbnail(thumbnailInfo);
 
-			List<ThumbnailFileVO> thumbnailfileList = AttachFileMapper
-					.thumbnailmapper(items, bo_no);
-
-			thumbfileDao.insertThumbnailfile(thumbnailfileList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

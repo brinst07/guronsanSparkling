@@ -63,25 +63,25 @@ function alertPrint(msg) {
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_title">제목:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="bo_title" name="thumbnail_title" placeholder="제목 입력...">
+			<input type="text" class="form-control" id="thumbnail_title" name="thumbnail_title" placeholder="제목 입력...">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_nickname">작성자 대화명:</label>
 		<div class="col-sm-10"> 
-			<input type="text" class="form-control" id="bo_nickname" name="thumbnail_nickname" placeholder="대화명 입력...">
+			<input type="text" class="form-control" id="thumbnail_nickname" name="thumbnail_nickname" placeholder="대화명 입력...">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_pwd">패스워드:</label>
 		<div class="col-sm-10"> 
-			<input type="password" class="form-control" id="bo_pwd" name="thumbnail_pwd" placeholder="패스워드 입력...">
+			<input type="password" class="form-control" id="thumbnail_pwd" name="thumbnail_pwd" placeholder="패스워드 입력...">
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="bo_mail">메일:</label>
 		<div class="col-sm-10"> 
-			<input type="text" class="form-control" id="bo_mail" name="thumbnail_mail" placeholder="메일주소 입력...">
+			<input type="text" class="form-control" id="thumbnail_mail" name="thumbnail_mail" placeholder="메일주소 입력...">
 		</div>
 	</div>
 	<div class="form-group">

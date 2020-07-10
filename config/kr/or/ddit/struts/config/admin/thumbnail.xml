@@ -38,6 +38,15 @@
 			<result type="tiles">admin/thumbnail/thumbnailForm</result>
 		</action>
 		
+		<action name="insertThumbnail" class="kr.or.ddit.thumbnail.controller.InsertThumbnailAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/thumbnail</param>
+				<param name="actionName">thumbnailList</param>
+			</result>
+		</action>
 	</package>
 
 

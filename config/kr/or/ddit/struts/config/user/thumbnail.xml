@@ -32,6 +32,20 @@
 		<action name="thumbnailForm">
 			<result type="tiles">user/thumbnail/thumbnailForm</result>
 		</action>
+
+		<action name="insertThumbnail" class="kr.or.ddit.thumbnail.controller.InsertThumbnailAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/user/thumbnail</param>
+				<param name="actionName">thumbnailList</param>
+			</result>
+		</action>
+		
+		<action name="thumbFileDownload" class="kr.or.ddit.thumbnail.controller.ThumbnailFileDownloadAction">
+		</action>
+		
 		
 	</package>
 

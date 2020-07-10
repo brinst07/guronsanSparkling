@@ -56,10 +56,10 @@
 
 						<td>
 							<c:if test="${!empty thumbnailInfo.items}">
-								<img src="/files/${thumbnailInfo.items.get(0).thumbfile_save_name}" width="40px" height="40px" alt="pic1">
+								<img src="/files/${thumbnailInfo.items.get(0).thumbfile_name}" width="40px" height="40px" alt="pic1">
 							</c:if>
 							<c:if test="${empty thumbnailInfo.items}">
-								<img src="/files/dsfsd8aa6802b198243779a54ddf7eb9c6dfd.jpg" width="40px" height="40px" alt="pic1">
+								<img src="/files/noimg.jpg" width="40px" height="40px" alt="pic1">
 							</c:if>
 						</td>
 						<td align="left">							

@@ -20,7 +20,7 @@
 					VALUES(#thumbfile_seq#, #thumbfile_thumbnail_no#, #thumbfile_name#, #thumbfile_save_name#, #thumbfile_content_type#, #thumbfile_size#)
 	</insert>
 	
-	<select id="thumbnailfileInfo" parameterClass="map" resultClass="thumbfileVO">
+	<select id="thumbnailFileInfo" parameterClass="map" resultClass="thumbfileVO">
 		SELECT *
 		FROM thumbnailFILE
 		WHERE thumbFILE_SEQ = #thumbfile_seq#

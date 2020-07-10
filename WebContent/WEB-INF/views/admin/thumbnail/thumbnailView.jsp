@@ -89,10 +89,15 @@ function alertPrint(msg) {
 						<tr>
 						  <th>첨부파일</th>
 							  <td>
-							  	<img src="/files/${thumbnailInfo.items.get(0).thumbfile_save_name }" alt="pic1"
-									onclick="javascript:location.href='/user/thumbFileDownload.do?thumbfile_seq=${fileitemInfo.thumbfile_seq }';" 
+							  <c:if test="${!empty thumbnailInfo.items}">
+							  	<img src="/files/${thumbnailInfo.items.get(0).thumbfile_name }" alt="pic1"
+									onclick="javascript:location.href='/user/thumbnail/thumbFileDownload.do?thumbfile_seq=${thumbnailInfo.items.get(0).thumbfile_seq }';" 
 										width="100px" height="80px"
 								/>
+							  </c:if>
+							  <c:if test="${empty thumbnailInfo.items}">
+							  		<img src="/files/noimg.jpg" width="200px" height="200px" alt="pic1">
+							  </c:if>
 							  </td>
 						</tr>
 					</table>

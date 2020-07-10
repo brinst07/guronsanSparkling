@@ -67,6 +67,15 @@
 		<action name="qnaReplyForm">
 			<result type="tiles">admin/qna/qnaReplyForm</result>
 		</action>
+		<action name="insertQnaReply" class="kr.or.ddit.qna.controller.InsertQnaReplyAction">
+			<interceptor-ref name="fileUpload"></interceptor-ref>
+			<interceptor-ref name="modelDriven"></interceptor-ref>
+			<interceptor-ref name="params"></interceptor-ref>
+			<result type="redirectAction">
+				<param name="namespace">/admin/qna</param>
+				<param name="actionName">qnaList</param>
+			</result>
+		</action>
 		
 <!-- 		<action name="updateQnaReply" class="kr.or.ddit.qna.controller.UpdateQnaReplyAction"> -->
 <!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->

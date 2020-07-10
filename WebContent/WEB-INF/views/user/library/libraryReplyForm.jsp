@@ -33,9 +33,10 @@ $(function(){
 		return true;
 	});
 	
-	$('#btn1').click(function() {
-	      $(location).attr('href', '/user/libraryList.do');
-	});
+	
+	$('#btn1').on('click', function(){
+    	location.replace("${pageContext.request.contextPath}/user/library/libraryList.do");
+    })
 	
 	
 	

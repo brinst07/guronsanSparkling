@@ -63,7 +63,7 @@ $(function(){
 					<table border="0" cellspacing="1" cellpadding="1">
 						<tr>
 						  <th>번호</th>
-						  <td><label class="library_title">${libraryInfo.library_no }</label>
+						  <td><label class="library_no">${libraryInfo.rnum }</label>
 						   </td>
 						</tr>
 						<tr>
@@ -87,19 +87,49 @@ $(function(){
 						  <th>첨부파일</th>
 						  <td>
 						  	<c:forEach items="${filesList }" var="file">
-						  		<a href="/admin/library/filedown.do?library_no=${file.getLibraryfile_seq()}">${file.getLibraryfile_name() }</a>
+						  		<a href="/user/library/libraryFileDownload.do?library_no=${file.getLibraryfile_seq()}">${file.getLibraryfile_name() }</a>
 						  	</c:forEach>
 						  	<input type="file" name="addfile">
 						  </td>
-						  
+
 						</tr>
 					</table>
+					
+					<label class="control-label col-sm-2" for="library_content">첨부파일:</label>
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+			</ol>
+			<!-- Wrapper for slides -->
+
+			<div class="carousel-inner" role="listbox" style="height: 450px;">
+				<c:forEach items="${libraryInfo.items }" var="libraryitemInfo" varStatus="stat">
+					<c:if test="${stat.first }">
+						<div class="item active">
+					</c:if>
+					<c:if test="${stat.last}">
+						<div class="item">
+					</c:if>
+						<img src="/files/${libraryitemInfo.libraryfile_name }" alt="pic1"
+						onclick="javascript:location.href='/user/library/libraryFileDownload.do?libraryfile_seq=${libraryitemInfo.libraryfile_seq }';" />
+					</div>
+				</c:forEach>
+			</div>
+			<!-- Left and right controls -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+				
+	
+				</div>
+				
 					<div style="text-align:right">
 						<input class="btn2" type="submit"  id="modify" value="수정"/> 
 						<input class="btn2" type="button" id="delete" value="삭제"/> 
 						<input class="btn2" type="button" id="list" value="목록"/>
 					</div>
-				</div>
+				
 				</form>
 			</td>
 		</tr>

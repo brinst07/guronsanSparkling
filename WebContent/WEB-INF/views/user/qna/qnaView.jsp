@@ -142,33 +142,36 @@ function alertPrint(msg) {
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="qna_content">첨부파일:</label>
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-			</ol>
-			<!-- Wrapper for slides -->
+		<c:if test="${not empty qnaInfo.items}">
 
-			<div class="carousel-inner" role="listbox" style="height: 200px;">
-				<c:forEach items="${qnaInfo.items }" var="qnafileInfo" varStatus="stat">
-					<c:if test="${stat.first }">
-						<div class="item active">
-					</c:if>
-					<c:if test="${stat.last}">
-						<div class="item">
-					</c:if>
-						<img src="/files/${qnafileInfo.qnafile_name }" alt="pic1"
-						onclick="javascript:location.href='/user/qna/qnaFileDownload.do?qnafile_seq=${qnafileInfo.qnafile_seq }';""/>
-					</div>
-				</c:forEach>
+			<label class="control-label col-sm-2" for="qna_content">첨부파일:</label>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+				</ol>
+				<!-- Wrapper for slides -->
+	
+				<div class="carousel-inner" role="listbox" style="height: 200px;">
+					<c:forEach items="${qnaInfo.items }" var="qnafileInfo" varStatus="stat">
+						<c:if test="${stat.first }">
+							<div class="item active">
+						</c:if>
+						<c:if test="${stat.last}">
+							<div class="item">
+						</c:if>
+							<img src="/files/${qnafileInfo.qnafile_name }" alt="pic1"
+							onclick="javascript:location.href='/user/qna/qnaFileDownload.do?qnafile_seq=${qnafileInfo.qnafile_seq }';""/>
+						</div>
+					</c:forEach>
+				</div>
+				<!-- Left and right controls -->
+				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
-			<!-- Left and right controls -->
-			<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-			<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 		</div>
-	</div>
+	</c:if>
 	<div class="form-group"> 
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-success">수정</button>

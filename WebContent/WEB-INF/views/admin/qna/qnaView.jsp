@@ -35,8 +35,6 @@ $(function(){
 	
 	$('#btn3').click(function(){
 		
-// 		$(location).attr('href','${pageContext.request.contextPath}/admin/qna/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
-// 		$(location).attr('href','/admin/qnaReplyCheck.do?qna_no=${qnaInfo.qna_no}');
 		var flag = '${flag}';
 		
 		if(flag == true){

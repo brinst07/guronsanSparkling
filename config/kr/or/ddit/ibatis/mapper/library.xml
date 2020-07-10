@@ -112,7 +112,7 @@
 	
 	<update id="deleteLibraryboard" parameterClass="map">
 			UPDATE library SET library_STATUS = 'y'
-			WHERE library_NO = #library_no#
+			WHERE library_GROUP = #library_no#
 	</update>
 	
 	<update id="updateLibrary" parameterClass="libraryVO">

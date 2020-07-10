@@ -105,7 +105,7 @@
 	
 		<update id="deleteQna" parameterClass="map">
 		UPDATE QNA SET QNA_STATUS = 'y'
-			WHERE QNA_NO = #qna_no#
+			WHERE QNA_GROUP = #qna_no#
 	</update>
 	
 	<update id="updateQna" parameterClass="qnaVO">

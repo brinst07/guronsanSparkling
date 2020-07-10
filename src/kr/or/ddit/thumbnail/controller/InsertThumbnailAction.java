@@ -47,7 +47,6 @@ public class InsertThumbnailAction implements ModelDriven<ThumbnailVO>{
 	}
 
 	public String execute()  throws Exception{
-		System.out.println("adsfasdfsda");
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
@@ -98,6 +97,8 @@ public class InsertThumbnailAction implements ModelDriven<ThumbnailVO>{
 		}
 		IThumbnailFileService service = ThumbnailFileServiceImpl.getInstance();
 		service.insertThumbnailfile(fileItemList);
+		
+		
 		
 		return "success";
 	}

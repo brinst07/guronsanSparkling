@@ -3,6 +3,10 @@ package kr.or.ddit.faq.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import kr.or.ddit.faq.service.FAQServiceImpl;
 import kr.or.ddit.faq.service.IFAQService;
 import kr.or.ddit.vo.FAQVO;
@@ -10,24 +14,30 @@ import kr.or.ddit.vo.FAQVO;
 import com.opensymphony.xwork2.Action;
 
 public class FAQViewAction implements Action {
-	
+
 	private String faq_no;
-	
+
 	private FAQVO faqInfo;
-	
+
 	@Override
 	public String execute() throws Exception {
-		
+
 		IFAQService service = FAQServiceImpl.getInstance();
-		
+
 		Map<String, String> params = new HashMap<String, String>();
-		
+
 		params.put("faq_no", faq_no);
-		
+
 		service.updateFAQhit(params);
-		
+
 		this.faqInfo = service.faqInfo(params);
-		
+
+		// content-header
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("boardlist", "자주하는질문게시판");
+		request.setAttribute("boardview", "상세보기");
+		request.setAttribute("boardhref", "/user/faq/faqList.do");
+
 		return SUCCESS;
 	}
 

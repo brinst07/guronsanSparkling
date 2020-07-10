@@ -3,6 +3,10 @@ package kr.or.ddit.freeboard.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import kr.or.ddit.freeboard.service.FreeboardServiceImpl;
 import kr.or.ddit.freeboard.service.IFreeboardService;
 import kr.or.ddit.vo.FreeboardVO;
@@ -21,6 +25,13 @@ public class FreeboardViewAction {
 		freeboardInfo = freeService.freeboardInfo(params);
 		
 		
+		//content-header
+		HttpServletRequest request = ServletActionContext.getRequest();
+		
+		request.setAttribute("boardlist", "자유게시판");
+		request.setAttribute("boardhref", "/user/freeboard/freeboardList.do");		
+		request.setAttribute("boardview", "상세보기");
+
 		return "success";
 	}
 

@@ -50,7 +50,13 @@ public class FreeboardListAction {
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
 
 		freeboardList = freeService.freeboardList(params);	
-		request.setAttribute("boardtitle", "자유게시판");
+
+
+		//content-header
+		request.setAttribute("boardlist", "자유게시판");
+		request.setAttribute("boardhref", "/user/freeboard/freeboardList.do");
+		
+		
 		return "success";
 	
 	}

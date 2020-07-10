@@ -17,7 +17,7 @@
 			<result name="success" type="tiles">user/freeboard/freeboardView
 			</result>
 		</action>
-		<action name="freeboardForm">
+		<action name="freeboardForm" class="kr.or.ddit.freeboard.controller.FreeboardFormAction">
 			<result type="tiles">user/freeboard/freeboardForm</result>
 		</action>
 		<!-- <action name="insertFreeboard" class="kr.or.ddit.freeboard.controller.InsertFreeboardAction"> -->

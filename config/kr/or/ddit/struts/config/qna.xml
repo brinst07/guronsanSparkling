@@ -13,7 +13,7 @@
 			<result name="qna" type="tiles">user/qna/qnaView</result>
 			<result name="qnaReply" type="tiles">user/qna/qnaReplyView</result>
 		</action>
-		<action name="qnaForm">
+		<action name="qnaForm" class="kr.or.ddit.qna.controller.QnaFormAction">
 			<result type="tiles">user/qna/qnaForm</result>
 		</action>
 		<action name="insertQna" class="kr.or.ddit.qna.controller.InsertQnaAction">

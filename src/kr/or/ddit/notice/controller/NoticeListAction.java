@@ -74,8 +74,15 @@ public class NoticeListAction {
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
 
 		noticeList = noticeService.noticeList(params);
-		request.setAttribute("boardtitle", "공지사항");
 
+		
+		
+
+		// content-header
+		request.setAttribute("boardlist", "공지사항");
+		request.setAttribute("boardhref", "/user/notice/noticeList.do");
+		
+		
 		return "success";
 		
 	}

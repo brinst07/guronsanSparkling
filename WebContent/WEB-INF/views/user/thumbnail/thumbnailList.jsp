@@ -53,10 +53,10 @@ $(function() {
 
 						<td>
 							<c:if test="${!empty thumbnailInfo.items}">
-								<img src="/files/${thumbnailInfo.items.get(0).thumbfile_name}" width="200px" height="200px" alt="pic1">
+								<img src="/files/${thumbnailInfo.items.get(0).thumbfile_name}" width="200px" height="100px" alt="pic1">
 							</c:if>
 							<c:if test="${empty thumbnailInfo.items}">
-								<img src="/files/noimg.jpg" width="200px" height="200px" alt="pic1">
+								<img src="/files/noimg.jpg" width="200px" height="100px" alt="pic1">
 							</c:if>
 						</td>
 						<td align="left">							

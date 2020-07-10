@@ -52,7 +52,7 @@ public class InsertFreeboardAction implements ModelDriven<FreeboardVO>{
 		
 		String bo_no = freeboardService.insertFreeboard(freeboardInfo);
 		
-		if(files !=null){
+		if(files != null){
 			List<FreeFileVO> fileItemList = new ArrayList<>();
 			
 			for(int i = 0; i<files.size(); i++){

@@ -5,6 +5,7 @@
 
 <struts>
 	<package name="userThumbnailPKG" extends="struts-default,tiles-default" namespace="/user/thumbnail">
+		
 		<action name="thumbnailList" class="kr.or.ddit.thumbnail.controller.ThumbnailListAction">
 			<result type="tiles">user/thumbnail/thumbnailList</result>
 		</action>
@@ -29,7 +30,7 @@
 			</result>
 		</action>
 		
-		<action name="thumbnailForm">
+		<action name="thumbnailForm" class="kr.or.ddit.thumbnail.controller.ThumbnailFormAction">
 			<result type="tiles">user/thumbnail/thumbnailForm</result>
 		</action>
 
@@ -37,7 +38,7 @@
 			<interceptor-ref name="fileUpload"></interceptor-ref>
 			<interceptor-ref name="modelDriven"></interceptor-ref>
 			<interceptor-ref name="params"></interceptor-ref>
-			<result type="redirectAction">
+			<result type="chain">
 				<param name="namespace">/user/thumbnail</param>
 				<param name="actionName">thumbnailList</param>
 			</result>

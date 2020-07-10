@@ -3,6 +3,10 @@ package kr.or.ddit.notice.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import kr.or.ddit.notice.service.INoticeService;
 import kr.or.ddit.notice.service.NoticeServiceImpl;
 import kr.or.ddit.vo.NoticeVO;
@@ -19,6 +23,14 @@ public class NoticeViewAction {
 		
 		INoticeService noticeService = NoticeServiceImpl.getInstance();
 		noticeInfo = noticeService.noticeInfo(params);
+		
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+
+		// content-header
+		request.setAttribute("boardlist", "공지사항");
+		request.setAttribute("boardview", "상세보기");
+		request.setAttribute("boardhref", "/user/notice/noticeList.do");
 		
 		return "success";
 		

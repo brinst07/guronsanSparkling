@@ -3,6 +3,10 @@ package kr.or.ddit.qna.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import kr.or.ddit.qna.service.IQnAService;
 import kr.or.ddit.qna.service.QnAServiceImpl;
 import kr.or.ddit.vo.QnAVO;
@@ -45,6 +49,18 @@ public class QnaViewAction {
 		}else{
 			addr = "qna";
 		}
+		
+		
+		
+		
+		
+		//content-header
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("boardlist", "QnA게시판");
+		request.setAttribute("boardview", "상세보기");
+		request.setAttribute("boardhref", "/user/qna/qnaList.do");
+		
+		
 		
 		return addr;
 	}

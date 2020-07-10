@@ -9,9 +9,10 @@
 <body>
 <div class="page-title-breadcrumb">
 	<ol class="breadcrumb">
-		<li><i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-		<li>${boardtitle }&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-		<li class="active">목록</li>
+		<li><i class="fa fa-home"></i>&nbsp;<a href="/user/notice/noticeList.do">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+		<li>${boardlist }&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+		<li class="active"><a href="${boardhref }">목록</a></li>
+		<li><i class="fa fa-angle-right"></i>&nbsp;&nbsp;${boardview }&nbsp;&nbsp;&nbsp;&nbsp;</li>
 	</ol>
 	<div class="clearfix"></div>
 </div>

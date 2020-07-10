@@ -8,7 +8,7 @@
 		<action name="faqList" class="kr.or.ddit.faq.controller.FAQListAction">
 			<result type="tiles">admin/faq/faqList</result>
 		</action>
-		<action name="faqRegistForm">
+		<action name="faqRegistForm" class="kr.or.ddit.faq.controller.FAQFormAction">
 			<result type="tiles">admin/faq/faqForm</result>
 		</action>
 		<action name="faqRegistAction" class="kr.or.ddit.faq.controller.FAQRegistAction">

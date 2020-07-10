@@ -40,10 +40,14 @@ public class ThumbnailListAction {
 		
 		params.put("startCount", String.valueOf(pagination.getStartCount()));
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
-		
-		
+				
 		thumbnailList = thumbnailService.thumbnailList(params);
-		request.setAttribute("boardtitle", "썸네일게시판");
+		
+		
+		//content-header
+		request.setAttribute("boardlist", "썸네일게시판");
+		request.setAttribute("boardhref", "/user/thumbnail/thumbnailList.do");
+		
 		return "success";
 	}
 

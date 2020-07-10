@@ -14,7 +14,7 @@
 	<div class="sidebar-collapse menu-scroll">
 		<ul id="side-menu" class="nav">
 			<div class="clearfix"></div>
-			<li class="active">
+			<li>
 				<a href="${pageContext.request.contextPath}/user/notice/noticeList.do">
 					<i class="fa fa-tachometer fa-fw"><div class="icon-bg bg-orange"></div></i>
 					<span class="menu-title">공지사항</span>

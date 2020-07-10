@@ -63,46 +63,48 @@ public class InsertLibraryAction implements ModelDriven<LibraryVO>{
 		
 		String library_no = libraryService.insertLibrary(libraryInfo);
 		
-		List<LibraryFileVO> fileItemList = new ArrayList<>();
-		
-		for(int i = 0; i<files.size(); i++){
-			File targetFile = files.get(i);
-			if(targetFile.length() > 0){
-				
-				//파일이 업로드되어 로컬에 저장되는 부분
-				File saveFile = new File(GlobalConstant.FILE_PATH,fileNames.get(i));
-				
-				FileUtils.copyFile(targetFile, saveFile);
-				//DB에 파일 정보를 저장하는 부분
-				LibraryFileVO fileVO = new LibraryFileVO();
-				
-				fileVO.setLibraryfile_library_no(library_no);
-				
-				String fileName = FilenameUtils.getName(fileNames.get(i));
-				
-				fileVO.setLibraryfile_name(fileName);
-				
-				String baseName = FilenameUtils.getBaseName(fileName);
-				
-				String extension = FilenameUtils.getExtension(fileName);
-				
-				this.fileName = URLEncoder.encode(fileNames.get(i),"utf-8");
-				
-				String genID = UUID.randomUUID().toString().replace("-", "");
-				String saveFileName = baseName+genID+"."+extension;
-				
-				fileVO.setLibraryfile_save_name(saveFileName);
-				
-				fileVO.setLibraryfile_content_type(contentType.get(i));
-				
-				fileVO.setLibraryfile_size(String.valueOf(targetFile.length()));
-				
-				fileItemList.add(fileVO);
+		if(files != null){
+			List<LibraryFileVO> fileItemList = new ArrayList<>();
+			
+			for(int i = 0; i<files.size(); i++){
+				File targetFile = files.get(i);
+				if(targetFile.length() > 0){
+					
+					//파일이 업로드되어 로컬에 저장되는 부분
+					File saveFile = new File(GlobalConstant.FILE_PATH,fileNames.get(i));
+					
+					FileUtils.copyFile(targetFile, saveFile);
+					//DB에 파일 정보를 저장하는 부분
+					LibraryFileVO fileVO = new LibraryFileVO();
+					
+					fileVO.setLibraryfile_library_no(library_no);
+					
+					String fileName = FilenameUtils.getName(fileNames.get(i));
+					
+					fileVO.setLibraryfile_name(fileName);
+					
+					String baseName = FilenameUtils.getBaseName(fileName);
+					
+					String extension = FilenameUtils.getExtension(fileName);
+					
+					this.fileName = URLEncoder.encode(fileNames.get(i),"utf-8");
+					
+					String genID = UUID.randomUUID().toString().replace("-", "");
+					String saveFileName = baseName+genID+"."+extension;
+					
+					fileVO.setLibraryfile_save_name(saveFileName);
+					
+					fileVO.setLibraryfile_content_type(contentType.get(i));
+					
+					fileVO.setLibraryfile_size(String.valueOf(targetFile.length()));
+					
+					fileItemList.add(fileVO);
+				}
 			}
+			ILibraryFileService service = LibraryFileServiceImpl.getInstance();
+			
+			service.insertLibraryfile(fileItemList);
 		}
-		ILibraryFileService service = LibraryFileServiceImpl.getInstance();
-		
-		service.insertLibraryfile(fileItemList);
 		return "success";
 	}
 

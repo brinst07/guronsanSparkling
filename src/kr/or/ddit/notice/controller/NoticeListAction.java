@@ -74,7 +74,8 @@ public class NoticeListAction {
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
 
 		noticeList = noticeService.noticeList(params);
-		
+		request.setAttribute("boardtitle", "공지사항");
+
 		return "success";
 		
 	}

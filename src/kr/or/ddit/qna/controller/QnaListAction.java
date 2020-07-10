@@ -42,7 +42,7 @@ public class QnaListAction {
 		params.put("endCount", String.valueOf(pagination.getEndCount()));
 		
 		qnaList = qnaService.qnaList(params);
-		
+		request.setAttribute("boardtitle", "QnA게시판");
 		
 		return "success";
 	}

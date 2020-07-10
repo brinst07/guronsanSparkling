@@ -43,6 +43,7 @@ public class ThumbnailListAction {
 		
 		
 		thumbnailList = thumbnailService.thumbnailList(params);
+		request.setAttribute("boardtitle", "썸네일게시판");
 		return "success";
 	}
 

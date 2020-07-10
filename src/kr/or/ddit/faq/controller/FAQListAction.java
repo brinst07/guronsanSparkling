@@ -59,7 +59,8 @@ public class FAQListAction implements Action{
 		this.faqList = service.FAQList(params);
 		
 		this.pagination = pagination.getPagingHtmls();
-		
+		request.setAttribute("boardtitle", "자주하는질문");
+
 		return SUCCESS;
 	}
 

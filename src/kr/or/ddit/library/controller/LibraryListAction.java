@@ -53,7 +53,7 @@ public class LibraryListAction {
 		
 		libraryList = service.libraryList(params);
 		pagingHTML = pagination.getPagingHtmls();
-
+		request.setAttribute("boardtitle", "자료실");
 		return "success";
 		
 	}

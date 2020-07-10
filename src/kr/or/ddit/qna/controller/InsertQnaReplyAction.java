@@ -77,7 +77,6 @@ public class InsertQnaReplyAction implements ModelDriven<QnAVO>{
 				
 				fileItemList.add(fileVO);
 				
-				System.out.println("¼öÁ¤!!!!!!!!!!!!!!!");
 				
 			}
 		}

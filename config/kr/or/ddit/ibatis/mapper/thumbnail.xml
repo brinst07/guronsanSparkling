@@ -119,10 +119,13 @@
 		,thumbnail_IP = #thumbnail_ip#
 		WHERE thumbnail_NO = #thumbnail_no#
 	</update>
-	
-	<insert id="">
-	
-	</insert>
+				
+   <update id="updateThumbnailHit" parameterClass="String">
+		UPDATE thumbnail
+		SET thumbnail_hit = thumbnail_hit + 1
+		WHERE thumbnail_no = #thumbnail_no#
+	</update>
+
 
 	
 

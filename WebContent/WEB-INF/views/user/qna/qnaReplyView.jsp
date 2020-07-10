@@ -111,7 +111,7 @@ $(function(){
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${qnafileInfo.qnafile_save_name }" alt="pic1"
+						<img src="/files/${qnafileInfo.qnafile_name }" alt="pic1"
 						onclick="javascript:location.href='/user/qnaFileDownload.do?qnafile_seq=${qnafileInfo.qnafile_seq }';"/>
 					</div>
 				</c:forEach>

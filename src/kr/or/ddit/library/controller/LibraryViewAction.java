@@ -23,6 +23,7 @@ public class LibraryViewAction {
 		params.put("library_no", this.library_no);
 		
 		ILibraryService service = LibraryServiceImpl.getInstance();
+		service.updateLibraryHit(library_no);
 		this.libraryInfo = service.libraryInfo(params);
 		
 		ILibraryFileService service2 = LibraryFileServiceImpl.getInstance();

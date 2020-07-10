@@ -16,4 +16,5 @@ public interface IThumbnailDAO {
 	public ThumbnailVO thumbnailInfo(Map<String, String> params)  throws Exception;
 	public void deleteThumbnail(Map<String, String> params)  throws Exception;
 	public void updateThumbnail(ThumbnailVO thumbnailInfo)  throws Exception;
+	public void updateThumbnailHit(String thumbnail_no) throws Exception;
 }

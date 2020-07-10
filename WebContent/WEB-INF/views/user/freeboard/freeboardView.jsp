@@ -170,7 +170,7 @@ function alertPrint(msg) {
 			</ol>
 			<!-- Wrapper for slides -->
 
-			<div class="carousel-inner" role="listbox" style="height: 200px;">
+			<div class="carousel-inner" role="listbox" style="height: 200px; width : 500px;">
 				<c:forEach items="${freeboardInfo.items }" var="fileitemInfo" varStatus="stat">
 					<c:if test="${stat.first }">
 						<div class="item active">
@@ -178,7 +178,7 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${fileitemInfo.freefile_save_name }" alt="pic1"
+						<img src="/files/${fileitemInfo.freefile_name }" alt="pic1"
 						onclick="javascript:location.href='/user/freeFileDownload.do?freefile_seq=${fileitemInfo.freefile_seq }';" />
 					</div>
 				</c:forEach>

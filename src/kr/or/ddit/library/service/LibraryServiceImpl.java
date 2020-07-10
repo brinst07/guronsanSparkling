@@ -142,4 +142,14 @@ public class LibraryServiceImpl implements ILibraryService {
 		
 		return library_no;
 	}
+
+
+	@Override
+	public void updateLibraryHit(String library_no) {
+		try{
+			dao.updateLibraryHit(library_no);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }

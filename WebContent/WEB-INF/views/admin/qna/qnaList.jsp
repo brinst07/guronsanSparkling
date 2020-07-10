@@ -72,6 +72,7 @@ $(function() {
 							<option selected="selected" value="TOTAL">전체</option>
 							<option value="TITLE">제목</option>
 							<option value="CONTENT">내용</option>	
+							<option value="WRITER">작성자</option>	
 						</select> 
 						<input  type="text"  name="search_keyword" id="search_keyword" size="20" /> 
 						<input class="btn1" type="submit" value="검색"/>

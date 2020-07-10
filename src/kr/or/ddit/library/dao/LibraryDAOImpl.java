@@ -92,5 +92,11 @@ public class LibraryDAOImpl implements ILibraryDAO {
 		smc.update("library.addFile",params);
 	}
 
+	@Override
+	public void updateLibraryHit(String library_no) throws Exception {
+		smc.update("library.updateLibraryHit", library_no);
+		
+	}
+
 	
 }

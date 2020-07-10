@@ -49,4 +49,8 @@ public class ThumbnailDAOImpl implements IThumbnailDAO {
 	public void updateThumbnail(ThumbnailVO thumbnailInfo) throws Exception {
 		smc.update("thumbnail.updateThumbnail", thumbnailInfo);
 	}
+	@Override
+	public void updateThumbnailHit(String thumbnail_no) throws Exception {
+		smc.update("thumbnail.updateThumbnailHit", thumbnail_no);
+	}
 }

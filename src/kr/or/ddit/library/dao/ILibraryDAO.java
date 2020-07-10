@@ -17,4 +17,5 @@ public interface ILibraryDAO {
 	public String insertLibraryReply(LibraryVO libraryInfo)  throws Exception;
 	public int libraryCount() throws Exception;
 	public void modifylibrary(Map<String, String> params) throws Exception;
+	public void updateLibraryHit(String library_no) throws Exception;
 }

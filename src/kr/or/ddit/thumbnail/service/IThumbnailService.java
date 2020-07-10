@@ -17,5 +17,6 @@ public interface IThumbnailService {
 	public ThumbnailVO thumbnailInfo(Map<String, String> params);
 	public void deleteThumbnail(Map<String, String> params);
 	public void updateThumbnail(ThumbnailVO thumbnailInfo);
+	public void updateThumbnailHit(String thumbnail_no);
 	
 }

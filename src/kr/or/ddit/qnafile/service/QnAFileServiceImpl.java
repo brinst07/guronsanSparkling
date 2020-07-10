@@ -29,7 +29,11 @@ public class QnAFileServiceImpl implements IQnAFileService{
 
 	@Override
 	public void insertQnafile(List<QnAFileVO> qnafileList) {
-		
+		try {
+			dao.insertQnafile(qnafileList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

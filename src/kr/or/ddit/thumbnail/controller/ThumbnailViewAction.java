@@ -17,6 +17,7 @@ public class ThumbnailViewAction {
 		params.put("thumbnail_no", thumbnail_no);
 		
 		IThumbnailService thumbnailService = ThumbnailServiceImpl.getInstance();
+		thumbnailService.updateThumbnailHit(thumbnail_no);
 		thumbnailInfo = thumbnailService.thumbnailInfo(params);
 		
 		return "success";

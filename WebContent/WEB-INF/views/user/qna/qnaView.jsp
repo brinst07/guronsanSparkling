@@ -98,7 +98,7 @@ $(function(){
     	}
 	});
     
-    $('#btn3').click(function(){
+/*     $('#btn3').click(function(){
  	   if(eval('${!empty LOGIN_MEMBERINFO}')){
  	   var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;
  	   var parentInfo = '&qna_group='+qna_group+'&qna_seq='+qna_seq+'&qna_depth='+qna_depth;
@@ -110,7 +110,7 @@ $(function(){
  	             message: '로그인 후 작성이 가능합니다.'
  	       });
  	   }
-    });
+    }); */
 });
 
 function alertPrint(msg) {
@@ -172,7 +172,7 @@ function alertPrint(msg) {
 					<c:if test="${stat.last}">
 						<div class="item">
 					</c:if>
-						<img src="/files/${qnafileInfo.qnafile_save_name }" alt="pic1"
+						<img src="/files/${qnafileInfo.qnafile_name }" alt="pic1"
 						onclick="javascript:location.href='/user/qnaFileDownload.do?qnafile_seq=${qnafileInfo.qnafile_seq }';"/>
 					</div>
 				</c:forEach>

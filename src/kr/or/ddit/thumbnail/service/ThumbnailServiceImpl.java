@@ -107,5 +107,14 @@ public class ThumbnailServiceImpl implements IThumbnailService {
 		}
 	}
 
+	@Override
+	public void updateThumbnailHit(String thumbnail_no) {
+		try {
+			dao.updateThumbnailHit(thumbnail_no);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 }

@@ -17,4 +17,5 @@ public interface ILibraryService {
 	public String insertLibraryReply(LibraryVO libraryInfo);
 	public int libraryCount();
 	public void modifylibrary(Map<String, String> params);
+	public void updateLibraryHit(String library_no);
 }

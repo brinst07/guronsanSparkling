@@ -47,6 +47,9 @@
 			<isEqual property="search_keycode" compareValue="NICKNAME" >
 				QNA_NICKNAME LIKE '%'|| #search_keyword#||'%'
 			</isEqual>
+			<isEqual property="search_keycode" compareValue="WRITER" >
+				QNA_WRITER LIKE '%'|| #search_keyword#||'%'
+			</isEqual>
 		</isNotEmpty>
 	</dynamic>
 </sql>

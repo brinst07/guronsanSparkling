@@ -168,7 +168,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -193,8 +193,15 @@ input[type=text]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
+, input[type=password]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
 
 input[type=text]:placeholder {
+  color: #cccccc;
+}
+, input[type=password]:placeholder {
   color: #cccccc;
 }
 
@@ -329,7 +336,7 @@ input[type=text]:placeholder {
     <!-- Login Form -->
    
       <input type="text" id="login" class="fadeIn second" name="mem_id" placeholder="login">
-      <input type="text" id="password" class="fadeIn third" name="mem_pass" placeholder="password">
+      <input type="password" id="password" class="fadeIn third" name="mem_pass" placeholder="password">
       <input type="button" class="fadeIn fourth" value="Log In" id="loginbtn">
    
 

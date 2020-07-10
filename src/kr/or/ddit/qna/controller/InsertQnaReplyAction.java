@@ -43,46 +43,49 @@ public class InsertQnaReplyAction implements ModelDriven<QnAVO>{
 		
 		String qna_no = qnaService.insertQnaReply(qnaInfo);
 		
-		List<QnAFileVO> fileItemList = new ArrayList<>();
-		
-		for(int i =0; i<files.size(); i++){
-			File targetfile = files.get(i);
-			if(targetfile.length() > 0){
-				
-				File saveFile = new File(GlobalConstant.FILE_PATH, fileNames.get(i));
-				FileUtils.copyFile(targetfile, saveFile);
-				
-				QnAFileVO fileVO = new QnAFileVO();
-				
-				fileVO.setQnafile_qna_no(qna_no);
-				
-				String fileName = FilenameUtils.getName(fileNames.get(i));
-				
-				fileVO.setQnafile_name(fileName);
-				
-				String baseName = FilenameUtils.getBaseName(fileName);
-				
-				String extension = FilenameUtils.getExtension(fileName);
-				
-				this.fileName = URLEncoder.encode(fileNames.get(i), "utf-8");
-				
-				String genID = UUID.randomUUID().toString().replace("-", "");
-				String saveFileName = baseName+genID+"."+extension;
-				
-				fileVO.setQnafile_save_name(saveFileName);
-				
-				fileVO.setQnafile_content_type(contentType.get(i));
-				
-				fileVO.setQnafile_size(String.valueOf(targetfile.length()));
-				
-				fileItemList.add(fileVO);
-				
-				
+		if(files != null){
+			List<QnAFileVO> fileItemList = new ArrayList<>();
+			
+			for(int i =0; i<files.size(); i++){
+				File targetfile = files.get(i);
+				if(targetfile.length() > 0){
+					
+					File saveFile = new File(GlobalConstant.FILE_PATH, fileNames.get(i));
+					FileUtils.copyFile(targetfile, saveFile);
+					
+					QnAFileVO fileVO = new QnAFileVO();
+					
+					fileVO.setQnafile_qna_no(qna_no);
+					
+					String fileName = FilenameUtils.getName(fileNames.get(i));
+					
+					fileVO.setQnafile_name(fileName);
+					
+					String baseName = FilenameUtils.getBaseName(fileName);
+					
+					String extension = FilenameUtils.getExtension(fileName);
+					
+					this.fileName = URLEncoder.encode(fileNames.get(i), "utf-8");
+					
+					String genID = UUID.randomUUID().toString().replace("-", "");
+					String saveFileName = baseName+genID+"."+extension;
+					
+					fileVO.setQnafile_save_name(saveFileName);
+					
+					fileVO.setQnafile_content_type(contentType.get(i));
+					
+					fileVO.setQnafile_size(String.valueOf(targetfile.length()));
+					
+					fileItemList.add(fileVO);
+					
+					
+				}
 			}
+			IQnAFileService service = QnAFileServiceImpl.getInstance();
+			
+			service.insertQnafile(fileItemList);
 		}
-		IQnAFileService service = QnAFileServiceImpl.getInstance();
 		
-		service.insertQnafile(fileItemList);
 		return "success";
 	}
 	

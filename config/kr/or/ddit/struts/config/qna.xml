@@ -78,24 +78,7 @@
 				<param name="actionName">qnaList</param>
 			</result>
 		</action>
-		
-<!-- 		<action name="updateQnaReply" class="kr.or.ddit.qna.controller.UpdateQnaReplyAction"> -->
-<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
-<!-- 			<interceptor-ref name="params"></interceptor-ref> -->
-<!-- 			<result type="redirectAction"> -->
-<!-- 				<param name="namespace">/admin/qna</param> -->
-<!-- 				<param name="actionName">qnaList</param> -->
-<!-- 			</result> -->
-<!-- 		</action> -->
+
 	</package>
 </struts>
 
-<!-- 		<action name="insertMemberInfo" class="kr.or.ddit.member.controller.InsertMemberInfoAction"> -->
-<!-- 			<interceptor-ref name="modelDriven"></interceptor-ref> -->
-<!-- 			<interceptor-ref name="params"></interceptor-ref> -->
-<!-- 			<result name="success" type="redirectAction"> -->
-<!-- 				<param name="namespace">/user/join</param> -->
-<!-- 				<param name="actionName">loginForm</param> -->
-<!-- 				<param name="message">${message}</param> -->
-<!-- 			</result> -->
-<!-- 		</action> -->

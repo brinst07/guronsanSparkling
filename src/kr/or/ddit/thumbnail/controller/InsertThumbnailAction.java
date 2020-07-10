@@ -58,45 +58,48 @@ public class InsertThumbnailAction implements ModelDriven<ThumbnailVO>{
 		IThumbnailService thumbnailservice = ThumbnailServiceImpl.getInstance();
 		String bo_no = thumbnailservice.insertThumbnail(thumbnailInfo);
 		
-		List<ThumbnailFileVO> fileItemList = new ArrayList<>();
-		
-		for(int i = 0; i<files.size(); i++){
-			File targetFile = files.get(i);
-			if(targetFile.length() > 0){
-				
-				//파일이 업로드되어 로컬에 저장되는 부분
-				File saveFile = new File(GlobalConstant.FILE_PATH,fileNames.get(i));
-				
-				FileUtils.copyFile(targetFile, saveFile);
-				//DB에 파일 정보를 저장하는 부분
-				ThumbnailFileVO fileVO = new ThumbnailFileVO();
-				
-				fileVO.setThumbfile_thumbnail_no(bo_no);
-				
-				String fileName = FilenameUtils.getName(fileNames.get(i));
-				
-				fileVO.setThumbfile_name(fileName);
-				
-				String baseName = FilenameUtils.getBaseName(fileName);
-				
-				String extension = FilenameUtils.getExtension(fileName);
-				
-				this.fileName = URLEncoder.encode(fileNames.get(i),"utf-8");
-				
-				String genID = UUID.randomUUID().toString().replace("-", "");
-				String saveFileName = baseName+genID+"."+extension;
-				
-				fileVO.setThumbfile_save_name(saveFileName);
-				
-				fileVO.setThumbfile_content_type(contentType.get(i));
-				
-				fileVO.setThumbfile_size(String.valueOf(targetFile.length()));
-				
-				fileItemList.add(fileVO);
+		if(files != null){
+			List<ThumbnailFileVO> fileItemList = new ArrayList<>();
+			
+			for(int i = 0; i<files.size(); i++){
+				File targetFile = files.get(i);
+				if(targetFile.length() > 0){
+					
+					//파일이 업로드되어 로컬에 저장되는 부분
+					File saveFile = new File(GlobalConstant.FILE_PATH,fileNames.get(i));
+					
+					FileUtils.copyFile(targetFile, saveFile);
+					//DB에 파일 정보를 저장하는 부분
+					ThumbnailFileVO fileVO = new ThumbnailFileVO();
+					
+					fileVO.setThumbfile_thumbnail_no(bo_no);
+					
+					String fileName = FilenameUtils.getName(fileNames.get(i));
+					
+					fileVO.setThumbfile_name(fileName);
+					
+					String baseName = FilenameUtils.getBaseName(fileName);
+					
+					String extension = FilenameUtils.getExtension(fileName);
+					
+					this.fileName = URLEncoder.encode(fileNames.get(i),"utf-8");
+					
+					String genID = UUID.randomUUID().toString().replace("-", "");
+					String saveFileName = baseName+genID+"."+extension;
+					
+					fileVO.setThumbfile_save_name(saveFileName);
+					
+					fileVO.setThumbfile_content_type(contentType.get(i));
+					
+					fileVO.setThumbfile_size(String.valueOf(targetFile.length()));
+					
+					fileItemList.add(fileVO);
+				}
 			}
+			IThumbnailFileService service = ThumbnailFileServiceImpl.getInstance();
+			service.insertThumbnailfile(fileItemList);
 		}
-		IThumbnailFileService service = ThumbnailFileServiceImpl.getInstance();
-		service.insertThumbnailfile(fileItemList);
+		
 		
 		
 		

@@ -98,19 +98,6 @@ $(function(){
     	}
 	});
     
-/*     $('#btn3').click(function(){
- 	   if(eval('${!empty LOGIN_MEMBERINFO}')){
- 	   var queryString = '?rnum=${qnaInfo.rnum}&qna_title='+qna_title;
- 	   var parentInfo = '&qna_group='+qna_group+'&qna_seq='+qna_seq+'&qna_depth='+qna_depth;
- 	   $(location).attr('href','/user/qnaReplyForm.do' + queryString + parentInfo); 
- 	   }
- 	   else{
- 		   BootstrapDialog.show({
- 	             title: '알림',
- 	             message: '로그인 후 작성이 가능합니다.'
- 	       });
- 	   }
-    }); */
 });
 
 function alertPrint(msg) {

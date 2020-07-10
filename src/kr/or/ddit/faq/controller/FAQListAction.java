@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.views.util.TextUtil;
 
 import kr.or.ddit.faq.service.FAQServiceImpl;
 import kr.or.ddit.faq.service.IFAQService;
@@ -15,6 +18,7 @@ import kr.or.ddit.utiles.RolePaginationUtil;
 import kr.or.ddit.vo.FAQVO;
 
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.util.TextUtils;
 
 public class FAQListAction implements Action{
 	
@@ -23,6 +27,10 @@ public class FAQListAction implements Action{
 	private String currentPage;
 	
 	private String pagination;
+	
+	private String search_keyword;
+	
+	private String search_keycode;
 
 	@Override
 	public String execute() throws Exception {
@@ -31,6 +39,8 @@ public class FAQListAction implements Action{
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = request.getSession();
+				
 		if(this.currentPage == null){
 			currentPage = "1";
 		}
@@ -39,13 +49,17 @@ public class FAQListAction implements Action{
 		
 		Map<String, String> params = new HashMap<String,String>();
 		
-		Map<String, String[]> mapobject = request.getParameterMap();
+		if(StringUtils.isEmpty(search_keycode)){
+			params.put("search_keycode", String.valueOf(session.getAttribute("search_keycode")));
+			
+			params.put("search_keyword", String.valueOf(session.getAttribute("search_keyword")));
+		}else{
+			
+			params.put("search_keycode", this.search_keycode);
+			
+			params.put("search_keyword", this.search_keyword);			
+		}
 		
-		for (String mapkey : mapobject.keySet()){
-	        String[] list = mapobject.get(mapkey);
-	        params.put(mapkey, list[0]);
-	    }
-				
 		int totalCount = Integer.parseInt(service.totalCount(params));		
 		
 		int count = 10;
@@ -59,6 +73,7 @@ public class FAQListAction implements Action{
 		this.faqList = service.FAQList(params);
 		
 		this.pagination = pagination.getPagingHtmls();
+		
 		request.setAttribute("boardtitle", "자주하는질문");
 		
 		
@@ -71,6 +86,12 @@ public class FAQListAction implements Action{
 		
 		
 
+		
+		
+		session.setAttribute("search_keyword", params.get("search_keyword"));
+		
+		session.setAttribute("search_keycode", params.get("search_keycode"));
+		
 		return SUCCESS;
 	}
 
@@ -85,5 +106,22 @@ public class FAQListAction implements Action{
 	public void setCurrentPage(String currentPage) {
 		this.currentPage = currentPage;
 	}
+
+	public String getSearch_keyword() {
+		return search_keyword;
+	}
+
+	public String getSearch_keycode() {
+		return search_keycode;
+	}
+
+	public void setSearch_keyword(String search_keyword) {
+		this.search_keyword = search_keyword;
+	}
+
+	public void setSearch_keycode(String search_keycode) {
+		this.search_keycode = search_keycode;
+	}
 		
+	
 }

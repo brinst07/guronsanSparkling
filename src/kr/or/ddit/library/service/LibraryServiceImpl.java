@@ -44,23 +44,6 @@ public class LibraryServiceImpl implements ILibraryService {
 	}
 
 
-	@Override
-	public String insertLibrary(LibraryVO libraryInfo, FileItem[] items) {
-		
-		String bo_no = null;		
-		try {
-			bo_no = dao.insertLibrary(libraryInfo);
-			
-			List<LibraryFileVO> libraryfileList = AttachFileMapper.librarymapper(items, bo_no);
-			
-			libraryFileDao.insertLibraryfile(libraryfileList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return bo_no;
-	}
-
 
 	@Override
 	public LibraryVO libraryInfo(Map<String, String> params) {
@@ -141,5 +124,22 @@ public class LibraryServiceImpl implements ILibraryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	@Override
+	public String insertLibrary(LibraryVO libraryInfo) {
+		String library_no = null;		
+		try {
+			library_no = dao.insertLibrary(libraryInfo);
+			
+//			List<LibraryFileVO> libraryfileList = AttachFileMapper.librarymapper(items, bo_no);
+//			
+//			libraryFileDao.insertLibraryfile(libraryfileList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return library_no;
 	}
 }

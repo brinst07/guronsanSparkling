@@ -1,5 +1,6 @@
 package kr.or.ddit.vo;
 
+import java.io.File;
 import java.util.List;
 
 public class NoticeVO {
@@ -23,7 +24,43 @@ public class NoticeVO {
 		this.items = items;
 	}
 
+	
+	private List<File> files;
+	// 전송되는 파일 컨텐츠 타입
+	// 변수명명 규칙 : 필드네임 + ContentType 
+	private List<String> filesContentType;
+	// 전송되는 파일명
+	// 변수명명 규칙 : 필드네임 + FileName
+	private List<String> filesFileName;
+	
+	
 
+	public List<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<File> files) {
+		this.files = files;
+	}
+
+	public List<String> getFilesContentType() {
+		return filesContentType;
+	}
+
+	public void setFilesContentType(List<String> filesContentType) {
+		this.filesContentType = filesContentType;
+	}
+
+	public List<String> getFilesFileName() {
+		return filesFileName;
+	}
+
+	public void setFilesFileName(List<String> filesFileName) {
+		this.filesFileName = filesFileName;
+	}
+
+	
+	
 	public String getRnum() {
 		return rnum;
 	}

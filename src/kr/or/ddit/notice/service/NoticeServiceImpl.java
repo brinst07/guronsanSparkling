@@ -86,22 +86,6 @@ public class NoticeServiceImpl implements INoticeService{
 		
 	}
 
-	@Override
-	public String insertNotice(NoticeVO noticeInfo, FileItem[] items) {
-		
-			String notice_no = null;
-			
-			try {
-				notice_no = dao.insertNotice(noticeInfo);
-				
-				List<NoticeFileVO> noticefileList = AttachFileMapper.noticemapper(items, notice_no);
-				noticefileDao.insertNoticefile(noticefileList);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return notice_no;
-		}
 
 	@Override
 	public List<NoticeVO> noticeList(Map<String, String> params) {
@@ -114,6 +98,22 @@ public class NoticeServiceImpl implements INoticeService{
 		}
 		
 		return noticeList;
+	}
+
+	@Override
+	public String insertNotice(NoticeVO noticeInfo) {
+		String notice_no = null;
+		
+		try {
+			notice_no = dao.insertNotice(noticeInfo);
+			
+//			List<NoticeFileVO> noticefileList = AttachFileMapper.noticemapper(items, notice_no);
+//			noticefileDao.insertNoticefile(noticefileList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return notice_no;
 	}
 	
 

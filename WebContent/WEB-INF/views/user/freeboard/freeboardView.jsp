@@ -79,7 +79,8 @@ $(function(){
 		
 	});
     $('#btnList').on('click', function(){
-    	location.replace("${pageContext.request.contextPath}/user/freeboard/freeboardList.do");
+    	//location.replace("${pageContext.request.contextPath}/user/freeboard/freeboardList.do");
+    	window.history.back();
     });
     
     $('#btnDelete').on('click', function() {

@@ -16,6 +16,10 @@ $(function() {
 		faq_no = $(this).find('td:eq(0) input').val();
 		
 		rnum = $(this).find('td:eq(0)').text();
+		
+		var search_keycode = '${search_keycode}';
+		var search_keyword = '${search_keycode}';
+		
 		$(location).attr('href', '/user/faq/faqView.do?faq_no=' + faq_no);
 	});
 	

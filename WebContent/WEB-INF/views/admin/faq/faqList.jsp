@@ -18,7 +18,8 @@ $(function() {
 	
 	$('#faqBody tr').on('click', function() {
 		var faq_no = $(this).find('td:eq(0) input').val();
-		$(location).attr('href', '/admin/faq/faqViewAction.do?faq_no=' + faq_no);
+
+		$(location).attr('href', '/admin/faq/faqViewAction.do?faq_no=' + faq_no+'&search_keycode=${search_keycode}&search_keyword=${search_keyword}');
 	});
 });
 </script>

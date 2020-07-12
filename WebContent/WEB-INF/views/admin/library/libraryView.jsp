@@ -43,7 +43,8 @@ $(function(){
 	});
 	
 	$('#list').on('click', function(){
-		location.replace('${pageContext.request.contextPath}/admin/library/libraryList.do');
+		//location.replace('${pageContext.request.contextPath}/admin/library/libraryList.do');
+		window.history.back();
     })
 })
 </script>

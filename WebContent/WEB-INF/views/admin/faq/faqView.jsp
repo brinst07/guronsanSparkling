@@ -39,8 +39,9 @@ $(function(){
 	});
 	
 	$('#listBTN').on('click', function(){
-    	location.replace("/admin/faq/faqListAction.do");
-    })
+//    	location.href = "/admin/faq/faqListAction.do?search_keycode=${search_keycode}&search_keyword=${search_keyword}";
+    	window.history.back();
+    });
 
     
 /*     // 글쓰기

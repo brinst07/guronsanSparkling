@@ -36,8 +36,9 @@ $(function(){
     
     
     $('#btnList').on('click', function(){
-    	location.replace("${pageContext.request.contextPath}/user/notice/noticeList.do");
-    })  
+    	//location.replace("${pageContext.request.contextPath}/user/notice/noticeList.do");
+    	window.history.back();
+    });  
    
    
 });

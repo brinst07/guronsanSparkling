@@ -85,7 +85,8 @@ $(function(){
     
     
     $('#btnList').on('click', function(){
-    	location.replace("${pageContext.request.contextPath}/user/library/libraryList.do");
+    	//location.replace("${pageContext.request.contextPath}/user/library/libraryList.do");
+    	window.history.back();
     })
     
     $('#btnDelete').on('click', function() {

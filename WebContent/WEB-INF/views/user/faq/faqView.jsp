@@ -32,8 +32,9 @@ $(function(){
     
     
     $('#btnList').on('click', function(){
-    	location.replace("/user/faq/faqList.do");
-    })  
+    	//location.replace("/user/faq/faqList.do");
+    	window.history.back();
+    });
    
    
 });

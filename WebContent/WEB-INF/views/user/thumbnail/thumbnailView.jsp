@@ -77,8 +77,9 @@ $(function(){
     	
 	});
     $('#btnList').on('click', function(){
-    	location.replace("/user/thumbnail/thumbnailList.do");
-    })
+    	//location.replace("/user/thumbnail/thumbnailList.do");
+    	window.history.back();
+    });
     
     $('#btnDelete').on('click', function() {
     	var flag = true;

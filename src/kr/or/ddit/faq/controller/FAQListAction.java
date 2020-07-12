@@ -37,10 +37,6 @@ public class FAQListAction implements Action{
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		HttpSession session = request.getSession();
-				
 		if(this.currentPage == null){
 			currentPage = "1";
 		}
@@ -48,17 +44,10 @@ public class FAQListAction implements Action{
 		IFAQService service = FAQServiceImpl.getInstance();
 		
 		Map<String, String> params = new HashMap<String,String>();
-		
-		if(StringUtils.isEmpty(search_keycode)){
-			params.put("search_keycode", String.valueOf(session.getAttribute("search_keycode")));
 			
-			params.put("search_keyword", String.valueOf(session.getAttribute("search_keyword")));
-		}else{
+		params.put("search_keycode", this.search_keycode);
 			
-			params.put("search_keycode", this.search_keycode);
-			
-			params.put("search_keyword", this.search_keyword);			
-		}
+		params.put("search_keyword", this.search_keyword);			
 		
 		int totalCount = Integer.parseInt(service.totalCount(params));		
 		

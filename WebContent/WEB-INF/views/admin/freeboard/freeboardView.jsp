@@ -51,7 +51,8 @@ $(function(){
 	});
 	
 	$('#listBTN').on('click', function(){
-    	location.replace("${pageContext.request.contextPath}/admin/freeboard/freeboardList.do");
+    	//location.replace("${pageContext.request.contextPath}/admin/freeboard/freeboardList.do");
+		window.history.back();
     })
 
 });

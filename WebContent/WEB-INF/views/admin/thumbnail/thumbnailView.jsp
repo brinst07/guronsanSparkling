@@ -11,7 +11,8 @@
 <script type="text/javascript">
 $(function(){
 	 $('#btnList').on('click', function(){
-	    	location.replace("/admin/thumbnail/thumbnailList.do");
+	    	//location.replace("/admin/thumbnail/thumbnailList.do");
+		 	window.history.back();
 	    })
 	    
 	    $('#btnDelete').on('click', function() {	    	

@@ -78,8 +78,9 @@ $(function(){
 		
 	});
     $('#btnList').on('click', function(){
-    	location.replace("${pageContext.request.contextPath}/user/qna/qnaList.do");
-    })
+    	//location.replace("${pageContext.request.contextPath}/user/qna/qnaList.do");
+    	window.history.back();
+    });
     
     $('#btnDelete').on('click', function() {
     	var flag = true;

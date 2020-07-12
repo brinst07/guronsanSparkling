@@ -30,7 +30,8 @@ $(function(){
     
 	
 	$('#listBTN').on('click', function() {
-		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaList.do');
+		//$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaList.do');
+		window.history.back();
 	});
 	
 	$('#btn3').click(function(){

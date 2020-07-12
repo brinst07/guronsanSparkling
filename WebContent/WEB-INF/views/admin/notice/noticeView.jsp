@@ -45,7 +45,8 @@ $(function(){
 	});
 	
 	$('#listBTN').on('click', function(){
-		location.replace('${pageContext.request.contextPath}/admin/notice/noticeList.do');
+		//location.replace('${pageContext.request.contextPath}/admin/notice/noticeList.do');
+		window.history.back();
     })
 
     

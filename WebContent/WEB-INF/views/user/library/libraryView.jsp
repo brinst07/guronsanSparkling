@@ -87,7 +87,7 @@ $(function(){
     $('#btnList').on('click', function(){
     	//location.replace("${pageContext.request.contextPath}/user/library/libraryList.do");
     	window.history.back();
-    })
+    });
     
     $('#btnDelete').on('click', function() {
     	var flag = true;

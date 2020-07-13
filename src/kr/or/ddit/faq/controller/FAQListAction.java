@@ -64,22 +64,10 @@ public class FAQListAction implements Action{
 		this.pagination = pagination.getPagingHtmls();
 		
 		request.setAttribute("boardtitle", "자주하는질문");
-		
-		
-		
-		
-		
+
 		//content-header
 		request.setAttribute("boardlist", "자주하는질문게시판");
 		request.setAttribute("boardhref", "/user/faq/faqList.do");
-		
-		
-
-		
-		
-		session.setAttribute("search_keyword", params.get("search_keyword"));
-		
-		session.setAttribute("search_keycode", params.get("search_keycode"));
 		
 		return SUCCESS;
 	}

@@ -113,7 +113,7 @@
 	</update>
 	
 	<update id="deleteNotice" parameterClass="map">
-		UPDATE NOTICE SET NOTICE_title = '삭제된게시글입니다'
+		UPDATE NOTICE SET NOTICE_status = 'y'
 		WHERE NOTICE_NO = #notice_no#				
 	</update>
 	

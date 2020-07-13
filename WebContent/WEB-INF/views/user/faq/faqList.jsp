@@ -13,11 +13,6 @@ $(function() {
 	});
 	
 	$('#freeboardBody tr').on('click', function() {
-		bo_title = $(this).find('td:eq(1) input').val();
-		if(bo_title=='삭제된게시글입니다'){
-			alert('삭제된 게시글 입니다.');
-			return true;
-		}
 		faq_no = $(this).find('td:eq(0) input').val();
 		
 		rnum = $(this).find('td:eq(0)').text();
@@ -59,7 +54,6 @@ $(function() {
 						<td><input type="hidden" value="${faqInfo.faq_no }"/>${faqInfo.rnum }</td>
 						<td align="left">							
 							${faqInfo.faq_title }
-							<input type="hidden" value="${faqInfo.faq_title}"/>
 						</td>
 						<td>${faqInfo.faq_writer }</td>
 						<td>${faqInfo.faq_reg_date }</td>

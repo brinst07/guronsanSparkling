@@ -101,7 +101,7 @@
 	
 	<update id="deleteFAQ" parameterClass="map">
 		UPDATE FAQ 
-		SET faq_title = '삭제된게시글입니다'
+		SET faq_status = 'y'
 		WHERE FAQ_NO = #faq_no#
 	</update>
 	

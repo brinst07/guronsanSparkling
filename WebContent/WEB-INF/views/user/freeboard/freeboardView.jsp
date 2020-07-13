@@ -105,7 +105,6 @@ $(function(){
 	});
     
     $('#btn3').click(function(){
-    	alert('${freeboardInfo.rnum}');
  	   if(eval('${!empty LOGIN_MEMBERINFO}')){
  	   var queryString = '?rnum=${freeboardInfo.rnum}&bo_title='+bo_title;
  	   var parentInfo = '&bo_group='+bo_group+'&bo_seq='+bo_seq+'&bo_depth='+bo_depth;

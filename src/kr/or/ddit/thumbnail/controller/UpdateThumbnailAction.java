@@ -14,19 +14,11 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 public class UpdateThumbnailAction implements ModelDriven<ThumbnailVO>{
-	ThumbnailVO thumbnailInfo;
+	private ThumbnailVO thumbnailInfo;
 	
-	public String execute(){
-		ThumbnailVO thumbnailInfo = new ThumbnailVO();
+	public String execute(){	
 		HttpServletRequest request = ServletActionContext.getRequest();
-		
-		try {
-			BeanUtils.populate(thumbnailInfo, request.getParameterMap());
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
+				
 
 		IThumbnailService service = ThumbnailServiceImpl.getInstance();
 		service.updateThumbnail(thumbnailInfo);

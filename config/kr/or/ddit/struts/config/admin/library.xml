@@ -69,7 +69,7 @@
 			</result>
 		</action>
 		
-		<action name="libraryReplyForm">
+		<action name="libraryReplyForm" class="kr.or.ddit.library.controller.LibraryReplyFormAction">
 			<result type="tiles">user/library/libraryReplyForm</result>
 		</action>
 		

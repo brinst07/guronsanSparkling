@@ -52,7 +52,7 @@
 				<param name="actionName">freeboardList</param>
 			</result>
 		</action>
-		<action name="freeboardReplyForm">
+		<action name="freeboardReplyForm" class="kr.or.ddit.freeboard.controller.FreeboardReplyFormAction">
 			<result type="tiles">user/freeboard/freeboardReplyForm</result>
 		</action>
 		<action name="insertFreeboardReply" class="kr.or.ddit.freeboard.controller.InsertFreeboardReplyAction">

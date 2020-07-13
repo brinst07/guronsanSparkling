@@ -36,7 +36,7 @@ public class FAQListAction implements Action{
 	public String execute() throws Exception {
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
-		
+		HttpSession session = request.getSession();
 		if(this.currentPage == null){
 			currentPage = "1";
 		}

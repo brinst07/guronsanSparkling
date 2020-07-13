@@ -36,7 +36,7 @@ public class ThumbnailListAction {
 		
 		String totalCount = thumbnailService.totalCount(params);
 		
-		pagination = new RolePaginationUtil(request, Integer.parseInt(currentPage), Integer.parseInt(totalCount),10);
+		pagination = new RolePaginationUtil(request, Integer.parseInt(currentPage), Integer.parseInt(totalCount),5);
 		
 		params.put("startCount", String.valueOf(pagination.getStartCount()));
 		params.put("endCount", String.valueOf(pagination.getEndCount()));

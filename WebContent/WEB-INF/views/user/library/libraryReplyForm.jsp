@@ -100,7 +100,7 @@ function alertPrint(msg) {
 	</div>
 	<div class="form-group"> 
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-success" style="float: right;">답글등록</button>
+			<button type="submit" class="btn btn-success" style="float: right;">댓글등록</button>
 			<button type="button" class="btn btn-danger">취소</button>
 			<button type="button" class="btn btn-info" id="btn1">목록</button>
 		</div>

@@ -225,7 +225,7 @@ td {text-align: left; }
 	<tr>
 		<td class="fieldName" width="100px" height="25">비밀번호</td>
 		<td>
-			<input type="text" name="mem_pass" value="${LOGIN_MEMBERINFO.mem_pass }" /> 8 ~ 20 자리 영문자 및 숫자 사용
+			<input type="text" name="mem_pass" value="${LOGIN_MEMBERINFO.mem_pass }" /> 4 ~ 20 자리 영문자 및 숫자 사용
 		</td>
 	</tr>
 	<tr><td class="tLine" colspan="2"></td></tr>
@@ -233,7 +233,7 @@ td {text-align: left; }
 	<tr>
 		<td class="fieldName" width="100px" height="25">비밀번호확인</td>
 		<td>
-			<input type="text" name="mem_pass_confirm" value="${LOGIN_MEMBERINFO.mem_pass }" /> 8 ~ 20 자리 영문자 및 숫자 사용
+			<input type="text" name="mem_pass_confirm" value="${LOGIN_MEMBERINFO.mem_pass }" /> 4 ~ 20 자리 영문자 및 숫자 사용
 		</td>
 	</tr>
 	<tr><td class="tLine" colspan="2"></td></tr>

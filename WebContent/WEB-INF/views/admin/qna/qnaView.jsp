@@ -118,7 +118,7 @@ function alertPrint(msg) {
 					</table>
 					<div style="text-align:right">
 						<c:if test="${qnaInfo.qna_depth eq '0'}">
-							<button type="button" class="btn btn-primary" id="btn3">답글</button>
+							<button type="button" class="btn btn-primary" id="btn3">댓글등록</button>
 						</c:if>
 						<input class="btn2" id="listBTN" type="button" value="목록"/>
 					</div>

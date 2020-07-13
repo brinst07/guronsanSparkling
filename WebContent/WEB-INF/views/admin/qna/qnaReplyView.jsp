@@ -76,7 +76,7 @@ function alertPrint(msg) {
 			<td width="30">&nbsp;</td>
 			<td width="790"> 
 				<div id="container">
-					<div class="title">Q&A</div>
+					<div class="title">Q&A 댓글</div>
 					<table border="0" cellspacing="1" cellpadding="1">
 						<tr>
 						  <th>제목</th>

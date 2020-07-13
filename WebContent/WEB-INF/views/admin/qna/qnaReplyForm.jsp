@@ -59,7 +59,7 @@ function alertPrint(msg) {
 			<td width="30">&nbsp;</td>
 			<td width="790"> 
 				<div id="container">
-					<div class="title">Q&A답변</div>
+					<div class="title">Q&A댓글</div>
 					<table border="0" cellspacing="1" cellpadding="1">
 
 						<form name="qnaReplyForm" class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" > 
@@ -85,7 +85,7 @@ function alertPrint(msg) {
 						
 							<div class="form-group"> 
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-info" style="float: right">등록</button>
+									<button type="submit" class="btn btn-info" style="float: right">댓글등록</button>
 									<button type="button" class="btn btn-danger" style="float: right">취소</button>
 									<button type="button" id="qnaListBTN" class="btn btn-primary" style="float: right">목록</button>
 								</div>

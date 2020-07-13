@@ -11,6 +11,14 @@
 $(function() {
 	
 	$('#freeboardBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(1) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}else if(bo_title=='삭제된댓글입니다'){
+			alert('삭제된 댓글 입니다.');
+			return true;
+		}
 		var bo_no = $(this).find('td:eq(0) input').val();
 		$(location).attr('href', '${pageContext.request.contextPath}/admin/freeboard/freeboardView.do?bo_no=' + bo_no);
 	});
@@ -56,6 +64,7 @@ $(function() {
 									<i class="fa fa-angle-right"></i>
 								</c:if>
 							</c:forEach>
+							<input type="hidden" value="${freeboardInfo.bo_title }"/>
 							${freeboardInfo.bo_title }							
 						</td>
 						<td>${freeboardInfo.bo_writer }</td>

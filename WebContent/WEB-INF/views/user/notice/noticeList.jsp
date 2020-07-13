@@ -13,6 +13,12 @@ $(function() {
 	});
 	
 	$('#noticeBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(1) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}
+		
 		notice_no = $(this).find('td:eq(0) input').val();
 		
 		rnum = $(this).find('td:eq(0)').text();
@@ -47,7 +53,8 @@ $(function() {
 					<tr>
 						<%-- ${freeboardInfo.bo_rnum } --%>
 						<td><input type="hidden" value="${noticeInfo.notice_no }"/>${noticeInfo.rnum }</td>
-						<td align="left">							
+						<td align="left">				
+						<input type="hidden" value="${noticeInfo.notice_title }"/>			
 							${noticeInfo.notice_title }
 						</td>
 						<td>${noticeInfo.notice_reg_date }</td>

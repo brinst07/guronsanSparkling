@@ -17,6 +17,14 @@ $(function() {
 	});
 	
 	$('#faqBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(1) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}else if(bo_title=='삭제된댓글입니다'){
+			alert('삭제된 댓글 입니다.');
+			return true;
+		}
 		var faq_no = $(this).find('td:eq(0) input').val();
 
 		$(location).attr('href', '/admin/faq/faqViewAction.do?faq_no=' + faq_no+'&search_keycode=${search_keycode}&search_keyword=${search_keyword}');
@@ -62,6 +70,7 @@ $(function() {
 									<i class="fa fa-angle-right"></i>
 								</c:if>
 							</c:forEach> --%>
+							<input type="hidden" value="${faqInfo.faq_title }"/>
 							${faqInfo.faq_title }
 							
 						</td>

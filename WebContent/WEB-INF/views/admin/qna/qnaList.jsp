@@ -15,6 +15,14 @@ $(function() {
 	}); */
 	
 	$('#qnaBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(1) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}else if(bo_title=='삭제된댓글입니다'){
+			alert('삭제된 댓글 입니다.');
+			return true;
+		}
 		var qna_no = $(this).find('td:eq(0) input').val();
 		$(location).attr('href', '${pageContext.request.contextPath}/admin/qna/qnaView.do?qna_no=' + qna_no);
 	});
@@ -57,6 +65,7 @@ $(function() {
 													<i class="fa fa-angle-right"></i>
 												</c:if>
 											</c:forEach>
+											<input type="hidden" value="${qnaInfo.qna_title }"/>
 											${qnaInfo.qna_title }
 										</td>
 										<td>${qnaInfo.qna_writer}</td>

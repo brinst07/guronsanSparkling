@@ -104,7 +104,7 @@
 
 	<update id="deleteThumbnail" parameterClass="map">
 		UPDATE thumbnail SET
-		thumbnail_STATUS = 'y'
+		thumbnail_title = '삭제된게시글입니다'
 		WHERE thumbnail_NO = #thumbnail_no#
 	</update>
 

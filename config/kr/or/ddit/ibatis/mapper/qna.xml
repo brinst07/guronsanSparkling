@@ -103,9 +103,12 @@
 		<include refid="searchCondition"/>
 	</select>
 	
-		<update id="deleteQna" parameterClass="map">
-		UPDATE QNA SET QNA_STATUS = 'y'
-			WHERE QNA_GROUP = #qna_no#
+	<update id="deleteQna" parameterClass="map">		
+		UPDATE QNA
+		SET QNA_title = case when QNA_depth=0 then '삭제된게시글입니다'
+		else '삭제된댓글입니다' end
+		WHERE QNA_no = #qna_no#	
+			
 	</update>
 	
 	<update id="updateQna" parameterClass="qnaVO">

@@ -14,6 +14,11 @@ $(function() {
 	});
 	
 	$('#freeboardBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(2) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}
 		thumbnail_no = $(this).find('td:eq(0) input').val();		
 		rnum = $(this).find('td:eq(0)').text();
 		$(location).attr('href', '/user/thumbnail/thumbnailView.do?thumbnail_no=' + thumbnail_no);
@@ -59,7 +64,8 @@ $(function() {
 								<img src="/files/noimg.jpg" width="200px" height="100px" alt="pic1">
 							</c:if>
 						</td>
-						<td align="left">							
+						<td align="left">
+						<input type="hidden" value="${thumbnailInfo.thumbnail_title  }"/>							
 							${thumbnailInfo.thumbnail_title }
 						</td>
 						<td>${thumbnailInfo.thumbnail_nickname }</td>

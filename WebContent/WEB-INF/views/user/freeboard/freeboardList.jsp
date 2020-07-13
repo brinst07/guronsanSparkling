@@ -13,6 +13,16 @@ $(function() {
 	});
 	
 	$('#freeboardBody tr').on('click', function() {
+		bo_title = $(this).find('td:eq(1) input').val();
+		
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}else if(bo_title=='삭제된댓글입니다'){
+			alert('삭제된 댓글 입니다.');
+			return true;
+		}
+		
 		bo_no = $(this).find('td:eq(0) input').val();	
 		rnum = $(this).find('td:eq(0)').text();
 		
@@ -56,6 +66,7 @@ $(function() {
 								</c:if>
 							</c:forEach>
 							${freeboardInfo.bo_title }
+							<input type="hidden" value="${freeboardInfo.bo_title }"/>
 						</td>
 						<td>${freeboardInfo.bo_nickname }</td>
 						<td>${freeboardInfo.bo_reg_date }</td>

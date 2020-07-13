@@ -110,9 +110,11 @@
 		<include refid="searchCondition"/>
 	</select>
 	
-	<update id="deleteLibraryboard" parameterClass="map">
-			UPDATE library SET library_STATUS = 'y'
-			WHERE library_GROUP = #library_no#
+	<update id="deleteLibraryboard" parameterClass="map">		
+			UPDATE library 
+			SET library_title = case when library_depth=0 then '삭제된게시글입니다'
+			else '삭제된댓글입니다' end
+			WHERE library_no = #library_no#
 	</update>
 	
 	<update id="updateLibrary" parameterClass="libraryVO">

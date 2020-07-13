@@ -19,6 +19,14 @@ $(function() {
 	});
 	
 	$('#tbody tr').on('click',function(){
+		bo_title = $(this).find('td:eq(1) input').val();
+		if(bo_title=='삭제된게시글입니다'){
+			alert('삭제된 게시글 입니다.');
+			return true;
+		}else if(bo_title=='삭제된댓글입니다'){
+			alert('삭제된 댓글 입니다.');
+			return true;
+		}
 		var library_no = $(this).find('td:eq(0) input').val();
 		
 		location.href = '${pageContext.request.contextPath}/admin/library/libraryView.do?library_no='+library_no;
@@ -60,6 +68,7 @@ $(function() {
 									<i class="fa fa-angle-right"></i>
 								</c:if>
 							</c:forEach>
+							<input type="hidden"  value="${libraryInfo.library_title }"/>
 								${libraryInfo.library_title }</td>
 								<td>${libraryInfo.library_writer }</td>
 								<td>${libraryInfo.library_reg_date }</td>

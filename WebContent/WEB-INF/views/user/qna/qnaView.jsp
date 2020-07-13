@@ -86,7 +86,7 @@ $(function(){
     	var flag = true;
     	if(eval('${!empty LOGIN_MEMBERINFO}')){
     		if('${LOGIN_MEMBERINFO.mem_id}'== '${qnaInfo.qna_writer}'){
-		    	//deletefreeboardFormInfo.jsp?bo_no=1
+		    	//deletefreeboardFormInfo.jsp?bo_no=1  qna_no
 				$(location).attr('href', '${pageContext.request.contextPath}/user/qna/deleteQna.do?qna_no=${qnaInfo.qna_no}');
     		}else{
 	    		flag = false;

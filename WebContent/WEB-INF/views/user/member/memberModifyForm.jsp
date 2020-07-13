@@ -15,6 +15,7 @@ $(function(){
 
 	$('select[name=mem_add1]').on('change',
 		function() {
+		$('select[name=mem_add2] option').remove();
 		var selectSido = $('select[name=mem_add1]').val();
 		var gugun = getGugun(selectSido);
 		for (i = 1; i < gugun.length; i++) {
@@ -30,7 +31,10 @@ $(function(){
 	 $('select[name=mem_add1]').val(mem_sido).attr("selected","selected");
 
 	 var mem_gugun = '${LOGIN_MEMBERINFO.mem_add2}';
-	 $('select[name=mem_add2]').val(mem_gugun).attr("selected","selected");
+	 $('select[name=mem_add2]').append('<option value="${LOGIN_MEMBERINFO.mem_add2}">${LOGIN_MEMBERINFO.mem_add2}</option>'); 
+	 $('select[name=mem_add2] option[value="'+mem_gugun+'"]').attr('selected',"selected");	 
+	 
+	 
 	 
 	 var mem_calendar = '${LOGIN_MEMBERINFO.mem_calendar}';
 	 
@@ -181,16 +185,7 @@ td {text-align: left; }
 	
 	
 	
-	<tr><td class="tLine" colspan="2"></td></tr>
-	<tr><td rowspan="13" class="pic" colspan="2" style="vertical-align: bottom; width: 150px; text-align: center;">
-			<img src="${pageContext.request.contextPath }/image/btn_pic.gif" alt="사진올리기" class="btn" title="인적사항에 올릴 증명	을 검색합니다." 
-				style="cursor: pointer;"
-				onclick="idPicOpenPopup();"/><br/>
-			<div style="width: 100%" align="center">
-				size : 235x315 이하
-			</div>
-		</td>
-	</tr>
+	
 	<tr><td class="tLine" colspan="2"></td></tr>
 	<tr>
 		<td class="fieldName" width="100px" height="25">성 명</td>
